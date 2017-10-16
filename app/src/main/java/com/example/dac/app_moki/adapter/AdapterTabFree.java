@@ -1,12 +1,16 @@
 package com.example.dac.app_moki.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.example.dac.app_moki.R;
+import com.example.dac.app_moki.view.product.ProductDetail_Activity;
 
 import java.util.List;
 
@@ -42,8 +46,21 @@ public class AdapterTabFree extends RecyclerView.Adapter<AdapterTabFree.ViewHold
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public ViewHolder(View itemView) {
+        ImageButton img_prouduct;
+        TextView txt_nameProduct;
+        public ViewHolder(final View itemView) {
             super(itemView);
+            img_prouduct = (ImageButton) itemView.findViewById(R.id.img_product_type_2);
+            txt_nameProduct = (TextView) itemView.findViewById(R.id.txt_nameProduct);
+
+            img_prouduct.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context.getApplicationContext(), ProductDetail_Activity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+                    context.getApplicationContext().startActivity(intent);
+                }
+            });
         }
     }
 }
