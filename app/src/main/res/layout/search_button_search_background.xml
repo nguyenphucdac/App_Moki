@@ -1,13 +1,15 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:shape="rectangle">
+    android:shape="rectangle" >
+    <solid android:color="@color/NAVI_BG_IMAGE"/>
     <corners
         android:radius="5dp"
         android:topRightRadius="5dp"
         android:bottomRightRadius="5dp"
         android:bottomLeftRadius="5dp" />
     <stroke
-        android:width="2px"
-        android:color="@color/backround_color" />
+        android:background="@color/NAVI_BG_IMAGE"
+        android:width="1px"
+        android:color="#d81f2a" />
 </shape>

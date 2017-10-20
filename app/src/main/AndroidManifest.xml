@@ -8,13 +8,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".view.login.Login_Activity"
-            android:screenOrientation="portrait"
-            >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:screenOrientation="portrait">
         </activity>
         <activity android:name=".view.home.Home_Activity"
             android:screenOrientation="portrait"
@@ -25,6 +19,15 @@
             android:screenOrientation="portrait"
             >
 
+        </activity>
+        <activity android:name=".view.search.Search_Activity"
+            android:screenOrientation="portrait"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 
