@@ -1,5 +1,6 @@
 package com.example.dac.app_moki.view.home;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -8,18 +9,23 @@ import android.os.Handler;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.TabLayout;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.dac.app_moki.R;
 import com.example.dac.app_moki.adapter.RouterViewPager;
+import com.example.dac.app_moki.view.search.Search_Activity;
 
 import java.util.ArrayList;
 import java.util.Timer;
@@ -31,18 +37,18 @@ import me.relex.circleindicator.CircleIndicator;
  * Created by Dac on 10/12/2017.
  */
 public class Home_Activity extends AppCompatActivity{
+    private Menu menu;
+    private DrawerLayout drawMenu;
+    private ActionBarDrawerToggle drawMenuToggel;
+    private AppBarLayout appBarLayout;
+    private CollapsingToolbarLayout collapsingToolbarLayout;
+    private Toolbar homeHeader;
+    private TabLayout tabLayout;
+    private ViewPager viewPagerListProduct;
 
-    Toolbar home_header;
-    TabLayout tab_layout;
-    ViewPager view_pager;
-    DrawerLayout draw_menu;
-    ActionBarDrawerToggle draw_menu_toggel;
-    AppBarLayout appBarLayout;
-    CollapsingToolbarLayout collapsingToolbarLayout;
-
-    private static ViewPager slide_Pager;
-    private static int currentPage = 0;
-    private static final Integer[] slideImage= {R.drawable.prof_bg, R.drawable.prof_bg};
+    private ViewPager slide_Pager;
+    private int currentPage = 0;
+    private Integer[] slideImage= {R.drawable.prof_bg, R.drawable.prof_bg};
     private ArrayList<Integer> arrSlideImage = new ArrayList<Integer>();
 
     @Override
@@ -50,40 +56,43 @@ public class Home_Activity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_2);
         addControls();
+        addEvents();
+        addSlideShow();
+    }
+
+    private void addEvents() {
+
     }
 
 
     private void addControls() {
-        home_header = (Toolbar) findViewById(R.id.home_header);
-        home_header.setTitle("");
-        setSupportActionBar(home_header);
+        homeHeader = (Toolbar) findViewById(R.id.home_header);
+        homeHeader.setTitle("");
+        setSupportActionBar(homeHeader);
         setSizeItemHeader();
 
-        view_pager = (ViewPager) findViewById(R.id.view_pager);
+        viewPagerListProduct = (ViewPager) findViewById(R.id.view_pager);
         RouterViewPager router = new RouterViewPager(getSupportFragmentManager());
-        view_pager.setAdapter(router);
+        viewPagerListProduct.setAdapter(router);
 
-        tab_layout = (TabLayout) findViewById(R.id.tab_layout);
-        tab_layout.setupWithViewPager(view_pager);
+        tabLayout = (TabLayout) findViewById(R.id.tab_layout);
+        tabLayout.setupWithViewPager(viewPagerListProduct);
 
-        draw_menu = (DrawerLayout) findViewById(R.id.draw_menu);
-        draw_menu_toggel = new ActionBarDrawerToggle(this, draw_menu,R.string.open_menu,R.string.close_menu);
-        draw_menu.setDrawerListener(draw_menu_toggel);
+        drawMenu = (DrawerLayout) findViewById(R.id.draw_menu);
+        drawMenuToggel = new ActionBarDrawerToggle(this, drawMenu,R.string.open_menu,R.string.close_menu);
+        drawMenu.setDrawerListener(drawMenuToggel);
 
-        setSupportActionBar(home_header);
+        setSupportActionBar(homeHeader);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        draw_menu_toggel.syncState();
+        drawMenuToggel.syncState();
 
         appBarLayout = (AppBarLayout) findViewById(R.id.app_bar);
         collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collaps_toolbar);
         collapsingToolbarLayout.setTitleEnabled(false);
-
-        initSlideShow();
-
     }
 
-    private void initSlideShow() {
+    private void addSlideShow() {
         for(int i=0;i<slideImage.length;i++)
             arrSlideImage.add(slideImage[i]);
 
@@ -108,7 +117,7 @@ public class Home_Activity extends AppCompatActivity{
             public void run() {
                 handler.post(Update);
             }
-        }, 2500, 2500);
+        }, 5000, 5000);
     }
 
     private void setSizeItemHeader(){
@@ -120,9 +129,9 @@ public class Home_Activity extends AppCompatActivity{
             getSupportActionBar().setHomeAsUpIndicator(newdrawable);
 
             Drawable logo = getResources().getDrawable(R.drawable.logo_login);
-            home_header.setLogo(logo);
-            for (int i = 0; i < home_header.getChildCount(); i++) {
-                View child = home_header.getChildAt(i);
+            homeHeader.setLogo(logo);
+            for (int i = 0; i < homeHeader.getChildCount(); i++) {
+                View child = homeHeader.getChildAt(i);
                 if (child != null)
                     if (child.getClass() == ImageView.class) {
                         ImageView iv2 = (ImageView) child;
@@ -135,17 +144,41 @@ public class Home_Activity extends AppCompatActivity{
         }
     }
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.header_item, menu);
+    public boolean onCreateOptionsMenu(final Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.header_item, menu);
+
+        this.menu = menu;
+
+        MenuItem itemSearch = menu.findItem(R.id.menu_search);
+        View menuSearch = MenuItemCompat.getActionView(itemSearch);
+        menuSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Home_Activity.this, Search_Activity.class);
+                startActivity(intent);
+            }
+        });
+
+        final MenuItem itemOptionView = menu.findItem(R.id.menu_option_view);
+        View menuOptionView = MenuItemCompat.getActionView(itemOptionView);
+        menuOptionView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(Home_Activity.this, "press grid", Toast.LENGTH_LONG).show();
+                menu.getItem(0).setIcon(ContextCompat.getDrawable(Home_Activity.this, R.drawable.icon_grid));
+            }
+        });
+
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(draw_menu_toggel.onOptionsItemSelected(item)){
+        if(drawMenuToggel.onOptionsItemSelected(item)){
             return  true;
         }
-        return true;
+        return super.onOptionsItemSelected(item);
     }
 
 }
