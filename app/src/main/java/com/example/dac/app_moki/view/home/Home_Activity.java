@@ -20,11 +20,14 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.dac.app_moki.R;
 import com.example.dac.app_moki.adapter.RouterViewPager;
+import com.example.dac.app_moki.view.fragment.FragmentDialog;
+import com.example.dac.app_moki.view.fragment.FragmentDialogExit;
 import com.example.dac.app_moki.view.search.Search_Activity;
 
 import java.util.ArrayList;
@@ -46,6 +49,12 @@ public class Home_Activity extends AppCompatActivity{
     private TabLayout tabLayout;
     private ViewPager viewPagerListProduct;
 
+    private FragmentDialog dialogFilter;
+    private FragmentDialogExit dialogExit;
+    private Button filter;
+    private Button sort;
+    private Button rada;
+
     private ViewPager slide_Pager;
     private int currentPage = 0;
     private Integer[] slideImage= {R.drawable.prof_bg, R.drawable.prof_bg};
@@ -61,7 +70,28 @@ public class Home_Activity extends AppCompatActivity{
     }
 
     private void addEvents() {
-
+        sort.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                android.app.FragmentManager fm = getFragmentManager();
+                dialogFilter = FragmentDialog.newInstance("Some Title");
+                dialogFilter.show(fm, "Sample Fragment");
+            }
+        });
+        filter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                android.app.FragmentManager fm = getFragmentManager();
+                dialogFilter = FragmentDialog.newInstance("Some Title");
+                dialogFilter.show(fm, "Sample Fragment");
+            }
+        });
+        rada.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(Home_Activity.this, "press rada", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
 
@@ -90,6 +120,13 @@ public class Home_Activity extends AppCompatActivity{
         appBarLayout = (AppBarLayout) findViewById(R.id.app_bar);
         collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collaps_toolbar);
         collapsingToolbarLayout.setTitleEnabled(false);
+
+        //FragmentManager fragmentManager = getSupportFragmentManager();
+        dialogExit = new FragmentDialogExit();
+        dialogFilter = new FragmentDialog();
+        filter = (Button) findViewById(R.id.filter);
+        sort = (Button)findViewById(R.id.sort);
+        rada = (Button)findViewById(R.id.rada);
     }
 
     private void addSlideShow() {
@@ -181,4 +218,10 @@ public class Home_Activity extends AppCompatActivity{
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onBackPressed() {
+        android.app.FragmentManager fm1 = getFragmentManager();
+        dialogExit = FragmentDialogExit.newInstance();
+        dialogExit.show(fm1,"");
+    }
 }

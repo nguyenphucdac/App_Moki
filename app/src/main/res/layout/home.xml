@@ -16,7 +16,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#ffffff"
-            android:fitsSystemWindows="true">
+            android:fitsSystemWindows="true"
+            >
 
             <android.support.design.widget.CollapsingToolbarLayout
                 android:id="@+id/collaps_toolbar"
@@ -24,7 +25,8 @@
                 android:layout_height="wrap_content"
                 android:background="#fff"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
-                app:titleEnabled="false">
+                app:titleEnabled="false"
+                >
 
                 <LinearLayout
                     android:id="@+id/slide_home"
@@ -32,7 +34,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="100dp"
                     android:background="@color/red_button"
-                    app:layout_scrollFlags="scroll|enterAlwaysCollapsed|enterAlways|snap">
+                    app:layout_scrollFlags="scroll|enterAlwaysCollapsed|enterAlways">
 
                     <RelativeLayout
                         android:layout_width="fill_parent"
@@ -53,6 +55,27 @@
                             />
                     </RelativeLayout>
                 </LinearLayout>
+
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/home_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="95dp"
+                    app:logo="@drawable/logo_login"
+                    app:navigationIcon="@drawable/icon_menu"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                    app:theme="@style/menuItemColor"
+                    android:background="#ffffff"
+                    app:layout_collapseMode="pin"
+                    />
+                <android.support.v4.view.ViewPager
+                    android:layout_marginTop="44dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="3px"
+                    android:background="@color/red_button"
+                    app:layout_collapseMode="pin"
+                    >
+
+                </android.support.v4.view.ViewPager>
                 <android.support.design.widget.TabLayout
                     android:id="@+id/tab_layout"
                     android:layout_width="match_parent"
@@ -63,21 +86,19 @@
                     app:tabTextAppearance="@style/CapFalse"
                     app:tabTextColor="@color/text_black"
                     app:layout_collapseMode="pin"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed"
                     android:layout_marginTop="45dp"
                     />
-                <android.support.v7.widget.Toolbar
-                    android:id="@+id/home_header"
+                <android.support.v4.view.ViewPager
+                    android:layout_marginTop="92dp"
                     android:layout_width="match_parent"
-                    android:layout_height="?android:attr/actionBarSize"
-                    app:logo="@drawable/logo_login"
-                    app:navigationIcon="@drawable/icon_menu"
-                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                    app:theme="@style/menuItemColor"
-                    android:background="#fff"
+                    android:layout_height="2px"
+                    android:background="@color/red_button"
                     app:layout_collapseMode="pin"
-                    />
-            </android.support.design.widget.CollapsingToolbarLayout>
+                    >
 
+                </android.support.v4.view.ViewPager>
+            </android.support.design.widget.CollapsingToolbarLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -120,8 +141,8 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="15dp"
                     android:background="#fff"
                     android:orientation="horizontal">
 
@@ -189,7 +210,7 @@
                 android:id="@+id/view_pager"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
                 >
 
             </android.support.v4.view.ViewPager>
@@ -203,6 +224,6 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:background="#fff">
-
+        `
     </ExpandableListView>
 </android.support.v4.widget.DrawerLayout>

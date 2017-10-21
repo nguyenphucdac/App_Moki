@@ -1,6 +1,5 @@
 package com.example.dac.app_moki.view.product;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
@@ -13,7 +12,6 @@ import android.widget.LinearLayout;
 
 import com.ecloud.pulltozoomview.PullToZoomScrollViewEx;
 import com.example.dac.app_moki.R;
-import com.example.dac.app_moki.view.home.Home_Activity;
 
 /**
  * Created by Dac on 10/15/2017.
@@ -27,15 +25,12 @@ public class ProductDetail_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.product_detail);
 
-        btnBack = (ImageButton) findViewById(R.id.product_detail_btn_back);
+        addControls();
+        addEvents();
+    }
 
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ProductDetail_Activity.this, Home_Activity.class);
-                startActivity(intent);
-            }
-        });
+    private void addControls() {
+        btnBack = (ImageButton) findViewById(R.id.product_detail_btn_back);
 
         loadViewForCode();
         scrollView = (PullToZoomScrollViewEx) findViewById(R.id.scroll_view);
@@ -46,8 +41,15 @@ public class ProductDetail_Activity extends AppCompatActivity {
         int mScreenWidth = localDisplayMetrics.widthPixels;
         LinearLayout.LayoutParams localObject = new LinearLayout.LayoutParams(mScreenWidth, (int) (9.0F * (mScreenWidth / 16.0F)));
         scrollView.setHeaderLayoutParams(localObject);
+    }
 
-
+    private void addEvents() {
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     @Override
