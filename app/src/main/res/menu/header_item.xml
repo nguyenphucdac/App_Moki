@@ -13,7 +13,7 @@
         android:enabled="true"
         />
     <item
-        android:id="@+id/menu_chat"
+        android:id="@+id/menu_message"
         android:title="search"
         android:icon="@drawable/ic_icon_message"
         app:showAsAction = "always"
@@ -21,7 +21,7 @@
         app:actionLayout="@layout/home_header_messeage_background"
         />
     <item
-        android:id="@+id/menu_notification"
+        android:id="@+id/menu_alert"
         android:title="search"
         android:icon="@drawable/icon_alert"
         app:showAsAction = "always"

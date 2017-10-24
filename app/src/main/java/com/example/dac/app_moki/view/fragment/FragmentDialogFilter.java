@@ -12,10 +12,10 @@ import com.example.dac.app_moki.R;
 /**
  * Created by Dac on 10/21/2017.
  */
-public class FragmentDialog extends DialogFragment {
+public class FragmentDialogFilter extends DialogFragment {
 
-    public static FragmentDialog newInstance(String title) {
-        FragmentDialog frag = new FragmentDialog();
+    public static FragmentDialogFilter newInstance(String title) {
+        FragmentDialogFilter frag = new FragmentDialogFilter();
         Bundle args = new Bundle();
         args.putString("title", title);
         frag.setArguments(args);
@@ -23,7 +23,7 @@ public class FragmentDialog extends DialogFragment {
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.home_fragment_dialog, container, false);
+        View rootView = inflater.inflate(R.layout.home_fragment_dialog_filter, container, false);
 
         Button dismiss = (Button) rootView.findViewById(R.id.dismiss);
         dismiss.setOnClickListener(new View.OnClickListener() {

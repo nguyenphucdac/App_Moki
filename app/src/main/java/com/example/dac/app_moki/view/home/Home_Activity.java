@@ -1,5 +1,6 @@
 package com.example.dac.app_moki.view.home;
 
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -9,7 +10,6 @@ import android.os.Handler;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.TabLayout;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -25,9 +25,11 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.dac.app_moki.R;
-import com.example.dac.app_moki.adapter.RouterViewPager;
-import com.example.dac.app_moki.view.fragment.FragmentDialog;
+import com.example.dac.app_moki.adapter.AdapterViewPager;
+import com.example.dac.app_moki.view.fragment.FragmentDialogAlert;
 import com.example.dac.app_moki.view.fragment.FragmentDialogExit;
+import com.example.dac.app_moki.view.fragment.FragmentDialogFilter;
+import com.example.dac.app_moki.view.fragment.FragmentDialogMessage;
 import com.example.dac.app_moki.view.search.Search_Activity;
 
 import java.util.ArrayList;
@@ -36,10 +38,12 @@ import java.util.TimerTask;
 
 import me.relex.circleindicator.CircleIndicator;
 
+import static com.example.dac.app_moki.R.drawable.icon_menu;
+
 /**
  * Created by Dac on 10/12/2017.
  */
-public class Home_Activity extends AppCompatActivity{
+public class Home_Activity extends AppCompatActivity {
     private Menu menu;
     private DrawerLayout drawMenu;
     private ActionBarDrawerToggle drawMenuToggel;
@@ -49,16 +53,18 @@ public class Home_Activity extends AppCompatActivity{
     private TabLayout tabLayout;
     private ViewPager viewPagerListProduct;
 
-    private FragmentDialog dialogFilter;
+    private FragmentDialogMessage dialogMessage;
+    private FragmentDialogAlert dialogAlert;
+    private FragmentDialogFilter dialogFilter;
     private FragmentDialogExit dialogExit;
     private Button filter;
     private Button sort;
     private Button rada;
 
     private ViewPager slide_Pager;
-    private int currentPage = 0;
-    private Integer[] slideImage= {R.drawable.prof_bg, R.drawable.prof_bg};
-    private ArrayList<Integer> arrSlideImage = new ArrayList<Integer>();
+    private int currentPage;
+    private Integer[] slideImage = {R.drawable.prof_bg, R.drawable.prof_bg};
+    private ArrayList<Integer> arrSlideImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,22 +73,23 @@ public class Home_Activity extends AppCompatActivity{
         addControls();
         addEvents();
         addSlideShow();
+
     }
 
     private void addEvents() {
         sort.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                android.app.FragmentManager fm = getFragmentManager();
-                dialogFilter = FragmentDialog.newInstance("Some Title");
+                FragmentManager fm = getFragmentManager();
+                dialogFilter = FragmentDialogFilter.newInstance("Some Title");
                 dialogFilter.show(fm, "Sample Fragment");
             }
         });
         filter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                android.app.FragmentManager fm = getFragmentManager();
-                dialogFilter = FragmentDialog.newInstance("Some Title");
+                FragmentManager fm = getFragmentManager();
+                dialogFilter = FragmentDialogFilter.newInstance("Some Title");
                 dialogFilter.show(fm, "Sample Fragment");
             }
         });
@@ -98,21 +105,13 @@ public class Home_Activity extends AppCompatActivity{
     private void addControls() {
         homeHeader = (Toolbar) findViewById(R.id.home_header);
         homeHeader.setTitle("");
-        setSupportActionBar(homeHeader);
-        setSizeItemHeader();
-
-        viewPagerListProduct = (ViewPager) findViewById(R.id.view_pager);
-        RouterViewPager router = new RouterViewPager(getSupportFragmentManager());
-        viewPagerListProduct.setAdapter(router);
-
-        tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-        tabLayout.setupWithViewPager(viewPagerListProduct);
 
         drawMenu = (DrawerLayout) findViewById(R.id.draw_menu);
-        drawMenuToggel = new ActionBarDrawerToggle(this, drawMenu,R.string.open_menu,R.string.close_menu);
+        drawMenuToggel = new ActionBarDrawerToggle(this, drawMenu, R.string.open_menu, R.string.close_menu);
         drawMenu.setDrawerListener(drawMenuToggel);
 
         setSupportActionBar(homeHeader);
+        setSizeItemHeader();
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         drawMenuToggel.syncState();
@@ -121,23 +120,34 @@ public class Home_Activity extends AppCompatActivity{
         collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collaps_toolbar);
         collapsingToolbarLayout.setTitleEnabled(false);
 
-        //FragmentManager fragmentManager = getSupportFragmentManager();
+        viewPagerListProduct = (ViewPager) findViewById(R.id.view_pager);
+        AdapterViewPager adapterViewPager = new AdapterViewPager(getSupportFragmentManager());
+        viewPagerListProduct.setAdapter(adapterViewPager);
+
+        tabLayout = (TabLayout) findViewById(R.id.tab_layout);
+        tabLayout.setupWithViewPager(viewPagerListProduct);
+
+        dialogMessage = new FragmentDialogMessage();
+        dialogAlert = new FragmentDialogAlert();
         dialogExit = new FragmentDialogExit();
-        dialogFilter = new FragmentDialog();
+        dialogFilter = new FragmentDialogFilter();
         filter = (Button) findViewById(R.id.filter);
-        sort = (Button)findViewById(R.id.sort);
-        rada = (Button)findViewById(R.id.rada);
+        sort = (Button) findViewById(R.id.sort);
+        rada = (Button) findViewById(R.id.rada);
     }
 
     private void addSlideShow() {
-        for(int i=0;i<slideImage.length;i++)
+
+        currentPage = 0;
+        arrSlideImage = new ArrayList<Integer>();
+
+        for (int i = 0; i < slideImage.length; i++)
             arrSlideImage.add(slideImage[i]);
 
         slide_Pager = (ViewPager) findViewById(R.id.slide_pager);
-        slide_Pager.setAdapter(new RouterSlide(Home_Activity.this,arrSlideImage));
+        slide_Pager.setAdapter(new RouterSlide(Home_Activity.this, arrSlideImage));
         CircleIndicator indicator = (CircleIndicator) findViewById(R.id.indicator);
         indicator.setViewPager(slide_Pager);
-
         // Auto start of viewpager
         final Handler handler = new Handler();
         final Runnable Update = new Runnable() {
@@ -157,9 +167,9 @@ public class Home_Activity extends AppCompatActivity{
         }, 5000, 5000);
     }
 
-    private void setSizeItemHeader(){
-        if(getSupportActionBar()!=null){
-            Drawable drawable= getResources().getDrawable(R.drawable.icon_menu);
+    private void setSizeItemHeader() {
+        if (getSupportActionBar() != null) {
+            Drawable drawable = getResources().getDrawable(icon_menu);
             Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
             Drawable newdrawable = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap, 140, 140, true));
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -172,14 +182,15 @@ public class Home_Activity extends AppCompatActivity{
                 if (child != null)
                     if (child.getClass() == ImageView.class) {
                         ImageView iv2 = (ImageView) child;
-                        iv2.setPadding(50,40,110,160);
-                        if ( iv2.getDrawable() == logo ) {
+                        iv2.setPadding(50, 40, 110, 160);
+                        if (iv2.getDrawable() == logo) {
                             iv2.setAdjustViewBounds(true);
                         }
                     }
             }
         }
     }
+
     @Override
     public boolean onCreateOptionsMenu(final Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -197,13 +208,41 @@ public class Home_Activity extends AppCompatActivity{
             }
         });
 
+        MenuItem itemMessage = menu.findItem(R.id.menu_message);
+        View menuMessage = MenuItemCompat.getActionView(itemMessage);
+        menuMessage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fm1 = getFragmentManager();
+                dialogMessage = FragmentDialogMessage.newInstance();
+                dialogMessage.show(fm1, "");
+            }
+        });
+
+        MenuItem itemAlert = menu.findItem(R.id.menu_alert);
+        View menuAlert = MenuItemCompat.getActionView(itemAlert);
+        menuAlert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fm1 = getFragmentManager();
+                dialogAlert = FragmentDialogAlert.newInstance();
+                dialogAlert.show(fm1, "");
+            }
+        });
+
         final MenuItem itemOptionView = menu.findItem(R.id.menu_option_view);
         View menuOptionView = MenuItemCompat.getActionView(itemOptionView);
         menuOptionView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(Home_Activity.this, "press grid", Toast.LENGTH_LONG).show();
-                menu.getItem(0).setIcon(ContextCompat.getDrawable(Home_Activity.this, R.drawable.icon_grid));
+                int index = tabLayout.getSelectedTabPosition();
+
+
+                AdapterViewPager adapterViewPager = new AdapterViewPager(getSupportFragmentManager());
+                viewPagerListProduct.setAdapter(adapterViewPager);
+                tabLayout.setupWithViewPager(viewPagerListProduct);
+                tabLayout.setScrollPosition(index, 0f, true);
+                viewPagerListProduct.setCurrentItem(index);
             }
         });
 
@@ -212,16 +251,18 @@ public class Home_Activity extends AppCompatActivity{
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(drawMenuToggel.onOptionsItemSelected(item)){
-            return  true;
+        if (drawMenuToggel.onOptionsItemSelected(item)) {
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
     @Override
     public void onBackPressed() {
-        android.app.FragmentManager fm1 = getFragmentManager();
+        FragmentManager fm1 = getFragmentManager();
         dialogExit = FragmentDialogExit.newInstance();
-        dialogExit.show(fm1,"");
+        dialogExit.show(fm1, "");
     }
+
+
 }

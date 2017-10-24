@@ -17,26 +17,26 @@ import java.util.List;
 /**
  * Created by Dac on 10/14/2017.
  */
-public class AdapterTabFree extends RecyclerView.Adapter<AdapterTabFree.ViewHolder> {
+public class AdapterTabFree_1 extends RecyclerView.Adapter<AdapterTabFree_1.ViewHolder> {
     Context context;
     List<String> lstString;
 
-    public AdapterTabFree(Context context, List<String> lstString){
+    public AdapterTabFree_1(Context context, List<String> lstString){
         this.context = context;
         this.lstString = lstString;
     }
 
     @Override
-    public AdapterTabFree.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public AdapterTabFree_1.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = layoutInflater.inflate(R.layout.product_taball_type_2,parent, false );
+        View view = layoutInflater.inflate(R.layout.product_taball_type_1,parent, false );
 
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(AdapterTabFree.ViewHolder holder, int position) {
+    public void onBindViewHolder(AdapterTabFree_1.ViewHolder holder, int position) {
 
     }
 
@@ -50,7 +50,7 @@ public class AdapterTabFree extends RecyclerView.Adapter<AdapterTabFree.ViewHold
         TextView txt_nameProduct;
         public ViewHolder(final View itemView) {
             super(itemView);
-            img_prouduct = (ImageButton) itemView.findViewById(R.id.img_product_type_2);
+            img_prouduct = (ImageButton) itemView.findViewById(R.id.img_product_type_1);
             txt_nameProduct = (TextView) itemView.findViewById(R.id.txt_nameProduct);
 
             img_prouduct.setOnClickListener(new View.OnClickListener() {

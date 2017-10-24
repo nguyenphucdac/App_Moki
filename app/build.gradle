@@ -27,4 +27,5 @@ dependencies {
     compile 'me.relex:circleindicator:1.2.2@aar'
     compile 'com.github.frank-zhu:pullzoomview:1.0.0'
     //compile 'nl.psdcompany:duo-navigation-drawer:2.0.4'
+    compile 'com.google.android.gms:play-services-appindexing:8.1.0'
 }
