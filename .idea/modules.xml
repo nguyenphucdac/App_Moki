@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/App_Moki.iml" filepath="$PROJECT_DIR$/App_Moki.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Flipview/Flipview.iml" filepath="$PROJECT_DIR$/Flipview/Flipview.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

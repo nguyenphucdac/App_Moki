@@ -213,14 +213,21 @@
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             >
-            <android.support.v4.view.ViewPager
-                android:id="@+id/view_pager"
+            <ViewFlipper
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                android:id="@+id/viewFlipper1"
                 >
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/view_pager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                    >
 
-            </android.support.v4.view.ViewPager>
+                </android.support.v4.view.ViewPager>
+
+            </ViewFlipper>
         </FrameLayout>
         <LinearLayout
             android:layout_width="match_parent"

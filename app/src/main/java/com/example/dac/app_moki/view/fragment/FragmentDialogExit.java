@@ -1,7 +1,7 @@
 package com.example.dac.app_moki.view.fragment;
 
 import android.app.Dialog;
-import android.os.*;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

@@ -23,6 +23,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
+import android.widget.ViewAnimator;
 
 import com.example.dac.app_moki.R;
 import com.example.dac.app_moki.adapter.AdapterViewPager;
@@ -31,6 +32,7 @@ import com.example.dac.app_moki.view.fragment.FragmentDialogExit;
 import com.example.dac.app_moki.view.fragment.FragmentDialogFilter;
 import com.example.dac.app_moki.view.fragment.FragmentDialogMessage;
 import com.example.dac.app_moki.view.search.Search_Activity;
+import com.tekle.oss.android.animation.AnimationFactory;
 
 import java.util.ArrayList;
 import java.util.Timer;
@@ -65,6 +67,8 @@ public class Home_Activity extends AppCompatActivity {
     private int currentPage;
     private Integer[] slideImage = {R.drawable.prof_bg, R.drawable.prof_bg};
     private ArrayList<Integer> arrSlideImage;
+
+    MenuItem itemOptionView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -230,13 +234,19 @@ public class Home_Activity extends AppCompatActivity {
             }
         });
 
-        final MenuItem itemOptionView = menu.findItem(R.id.menu_option_view);
+        itemOptionView = menu.findItem(R.id.menu_option_view);
         View menuOptionView = MenuItemCompat.getActionView(itemOptionView);
+
+
         menuOptionView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                menu.getItem(3).setIcon(R.drawable.icon_grid);
+
                 int index = tabLayout.getSelectedTabPosition();
 
+                ViewAnimator viewAnimatorFragmentAll = (ViewAnimator) findViewById(R.id.viewFlipper1);
+                AnimationFactory.flipTransition(viewAnimatorFragmentAll, AnimationFactory.FlipDirection.LEFT_RIGHT);
 
                 AdapterViewPager adapterViewPager = new AdapterViewPager(getSupportFragmentManager());
                 viewPagerListProduct.setAdapter(adapterViewPager);
@@ -254,6 +264,7 @@ public class Home_Activity extends AppCompatActivity {
         if (drawMenuToggel.onOptionsItemSelected(item)) {
             return true;
         }
+
         return super.onOptionsItemSelected(item);
     }
 
