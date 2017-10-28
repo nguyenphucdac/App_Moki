@@ -31,6 +31,7 @@ import com.example.dac.app_moki.view.fragment.FragmentDialogAlert;
 import com.example.dac.app_moki.view.fragment.FragmentDialogExit;
 import com.example.dac.app_moki.view.fragment.FragmentDialogFilter;
 import com.example.dac.app_moki.view.fragment.FragmentDialogMessage;
+import com.example.dac.app_moki.view.menu.News;
 import com.example.dac.app_moki.view.search.Search_Activity;
 import com.tekle.oss.android.animation.AnimationFactory;
 
@@ -69,6 +70,8 @@ public class Home_Activity extends AppCompatActivity {
     private ArrayList<Integer> arrSlideImage;
 
     MenuItem itemOptionView;
+    private View itemNewsMenu;
+    private View itemHomeMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,6 +104,22 @@ public class Home_Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(Home_Activity.this, "press rada", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        itemNewsMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Home_Activity.this, News.class);
+                startActivity(intent);
+            }
+        });
+        itemHomeMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(Home_Activity.this, "press home", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(Home_Activity.this, Home_Activity.class);
+                startActivity(intent);
             }
         });
     }
@@ -138,6 +157,9 @@ public class Home_Activity extends AppCompatActivity {
         filter = (Button) findViewById(R.id.filter);
         sort = (Button) findViewById(R.id.sort);
         rada = (Button) findViewById(R.id.rada);
+
+        itemNewsMenu = findViewById(R.id.item_news_menu);
+        itemHomeMenu = findViewById(R.id.item_home_menu);
     }
 
     private void addSlideShow() {

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:orientation="horizontal"
+    android:layout_marginBottom="3px"
+    android:background="#fff"
+    >
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="10"
+        android:layout_height="70dp"
+        android:layout_gravity="center_vertical"
+        android:orientation="vertical"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical"
+            >
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="20dp"
+                android:src="@drawable/icon_clock"
+                />
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="9"
+                android:layout_height="match_parent"
+                android:text="26/04.2017 09:42"
+                android:gravity="center_vertical"
+
+                />
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:text="Thông báo lịch nghỉ lễ quốc khánh"
+            android:textColor="@color/text_black"
+            android:textStyle="bold"
+            />
+
+    </LinearLayout>
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_weight="0.3"
+        android:layout_height="15dp"
+        android:layout_marginRight="5dp"
+        android:layout_gravity="center_vertical"
+        android:src="@drawable/sidemenu_next_arrow_normal"
+        android:background="#fff"
+        android:scaleType="fitXY"
+        />
+</LinearLayout>
