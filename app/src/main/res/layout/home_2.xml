@@ -238,6 +238,7 @@
             android:background="#00ffffff"
             >
             <ImageButton
+                android:id="@+id/btn_camera_sale"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:scaleType="fitXY"

@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * Created by Dac on 10/28/2017.
  */
-public class News extends AppCompatActivity {
+public class News_Activity extends AppCompatActivity {
     RecyclerView recyclerViewNews;
 
     @Override
