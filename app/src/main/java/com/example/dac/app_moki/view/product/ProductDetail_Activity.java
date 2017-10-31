@@ -1,5 +1,6 @@
 package com.example.dac.app_moki.view.product;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
@@ -12,6 +13,7 @@ import android.widget.LinearLayout;
 
 import com.ecloud.pulltozoomview.PullToZoomScrollViewEx;
 import com.example.dac.app_moki.R;
+import com.example.dac.app_moki.view.user.UserInfo_Activity;
 
 /**
  * Created by Dac on 10/15/2017.
@@ -70,6 +72,16 @@ public class ProductDetail_Activity extends AppCompatActivity {
         PullToZoomScrollViewEx scrollView = (PullToZoomScrollViewEx) findViewById(R.id.scroll_view);
         View zoomView = LayoutInflater.from(this).inflate(R.layout.product_detail_zoom_image, null, false);
         View contentView = LayoutInflater.from(this).inflate(R.layout.product_detail_content, null, false);
+
+        View userInfo = contentView.findViewById(R.id.view_user_info);
+        userInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProductDetail_Activity.this, UserInfo_Activity.class);
+                startActivity(intent);
+            }
+        });
+
         scrollView.setZoomView(zoomView);
         scrollView.setScrollContentView(contentView);
     }

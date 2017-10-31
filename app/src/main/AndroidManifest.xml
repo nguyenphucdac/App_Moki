@@ -13,7 +13,11 @@
         >
         <activity android:name=".view.login.Login_Activity"
             android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".view.home.Home_Activity"
             android:screenOrientation="portrait"
@@ -23,6 +27,10 @@
         <activity android:name=".view.product.ProductDetail_Activity"
             android:screenOrientation="portrait"
             >
+
+        </activity>
+        <activity android:name=".view.user.UserInfo_Activity"
+            android:screenOrientation="portrait">
 
         </activity>
         <activity android:name=".view.search.Search_Activity"
@@ -44,11 +52,7 @@
         <activity android:name=".view.tutorial.Tutorial_Activity"
             android:screenOrientation="portrait"
             >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <!-- ATTENTION: This was auto-generated to add Google Play services to your project for
              App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
