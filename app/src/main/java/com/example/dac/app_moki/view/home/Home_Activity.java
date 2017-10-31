@@ -123,6 +123,8 @@ public class Home_Activity extends AppCompatActivity {
         homeHeader = (Toolbar) findViewById(R.id.home_header);
         homeHeader.setTitle("");
 
+        setSupportActionBar(homeHeader);
+        setSizeItemHeader();
         drawMenu = (DrawerLayout) findViewById(R.id.draw_menu);
         drawMenuToggel = new ActionBarDrawerToggle(this, drawMenu, R.string.open_menu, R.string.close_menu);
         drawMenu.setDrawerListener(drawMenuToggel);
@@ -190,7 +192,7 @@ public class Home_Activity extends AppCompatActivity {
         if (getSupportActionBar() != null) {
             Drawable drawable = getResources().getDrawable(icon_menu);
             Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
-            Drawable newdrawable = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap, 140, 140, true));
+            Drawable newdrawable = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap, 200, 200, true));
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setHomeAsUpIndicator(newdrawable);
 
@@ -201,7 +203,7 @@ public class Home_Activity extends AppCompatActivity {
                 if (child != null)
                     if (child.getClass() == ImageView.class) {
                         ImageView iv2 = (ImageView) child;
-                        iv2.setPadding(50, 40, 110, 160);
+                        iv2.setPadding(20, 50, 60, 30);
                         if (iv2.getDrawable() == logo) {
                             iv2.setAdjustViewBounds(true);
                         }
