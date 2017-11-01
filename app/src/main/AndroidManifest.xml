@@ -49,6 +49,41 @@
         <activity android:name=".view.product.SaleCamera_Activity">
 
         </activity>
+        <activity android:name=".view.menu.ListMyBuy_Activity"
+            android:screenOrientation="portrait"
+            >
+
+        </activity>
+        <activity android:name=".view.menu.ListMyLike_Activity"
+            android:screenOrientation="portrait"
+            >
+
+        </activity>
+        <activity android:name=".view.menu.ListMySale_Activity"
+            android:screenOrientation="portrait"
+            >
+
+        </activity>
+        <activity android:name=".view.menu.Charity_Activity"
+            android:screenOrientation="portrait"
+            >
+
+        </activity>
+        <activity android:name=".view.menu.Setup_Activity"
+            android:screenOrientation="portrait"
+            >
+
+        </activity>
+        <activity android:name=".view.menu.SupportCenter_Activity"
+            android:screenOrientation="portrait"
+            >
+
+        </activity>
+        <activity android:name=".view.menu.IntroMoki_Activity"
+            android:screenOrientation="portrait"
+            >
+
+        </activity>
         <activity android:name=".view.tutorial.Tutorial_Activity"
             android:screenOrientation="portrait"
             >

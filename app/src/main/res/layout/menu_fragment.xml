@@ -128,6 +128,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal"
+        android:id="@+id/item_listlike_menu"
         >
         <LinearLayout
             android:layout_width="0dp"
@@ -169,6 +170,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal"
+        android:id="@+id/item_listsale_menu"
         >
         <LinearLayout
             android:layout_width="0dp"
@@ -210,6 +212,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal"
+        android:id="@+id/item_listbuy_menu"
         >
         <LinearLayout
             android:layout_width="0dp"
@@ -251,6 +254,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal"
+        android:id="@+id/item_charity_menu"
         >
         <LinearLayout
             android:layout_width="0dp"
@@ -292,6 +296,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal"
+        android:id="@+id/item_setup_menu"
         >
         <LinearLayout
             android:layout_width="0dp"
@@ -333,6 +338,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal"
+        android:id="@+id/item_supportcenter_menu"
         >
         <LinearLayout
             android:layout_width="0dp"
@@ -374,6 +380,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal"
+        android:id="@+id/item_intro_menu"
         >
         <LinearLayout
             android:layout_width="0dp"
@@ -415,6 +422,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal"
+        android:id="@+id/item_login_menu"
         >
         <LinearLayout
             android:layout_width="0dp"

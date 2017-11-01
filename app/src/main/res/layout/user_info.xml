@@ -56,6 +56,7 @@
     android:fitsSystemWindows="true"
     >
     <android.support.design.widget.AppBarLayout
+        android:id="@+id/user_info_appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/backround_color"
@@ -80,29 +81,54 @@
                 app:layout_scrollFlags="scroll|enterAlways"
 
                 >
-                <FrameLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
                     android:background="@drawable/prof_bg"
                     >
                     <LinearLayout
+                        android:id="@+id/user_info_bar"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="#1AFFFFFF"
+                        android:background="#6F000000"
                         android:orientation="vertical"
                         >
-                        <LinearLayout
+                        <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_weight="3"
                             >
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="70dp"
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:id="@+id/profile_image"
+                                android:layout_width="75dp"
+                                android:layout_height="80dp"
                                 android:src="@drawable/unknown_user"
-                                android:layout_gravity="center_vertical"
+                                app:civ_border_width="0dp"
+                                app:civ_border_color="#00FFFFFF"
+                                android:layout_alignParentTop="true"
+                                android:layout_centerHorizontal="true"
                                 />
-                        </LinearLayout>
+                            <View
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_alignBottom="@+id/profile_image"
+                                android:layout_alignEnd="@+id/profile_image"
+                                android:layout_alignRight="@+id/profile_image"
+                                android:background="@drawable/icon_offline" />
+
+                            <TextView
+                                android:id="@+id/textView2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Offline"
+                                android:layout_toEndOf="@+id/profile_image"
+                                android:layout_toRightOf="@+id/profile_image"
+                                android:layout_alignBottom="@+id/profile_image"
+                                android:layout_marginLeft="2dp"
+                                android:textSize="10sp"
+                                android:textColor="#fff" />
+
+                        </RelativeLayout>
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
@@ -111,7 +137,7 @@
                             >
                             <LinearLayout
                                 android:layout_width="0dp"
-                                android:layout_weight="1"
+                                android:layout_weight="1.4"
                                 android:layout_height="wrap_content">
 
                             </LinearLayout>
@@ -165,13 +191,33 @@
                             </LinearLayout>
                             <LinearLayout
                                 android:layout_width="0dp"
-                                android:layout_weight="1"
+                                android:layout_weight="1.4"
                                 android:layout_height="wrap_content">
 
                             </LinearLayout>
+
                         </LinearLayout>
                     </LinearLayout>
-                </FrameLayout>
+                    <LinearLayout
+                        android:id="@+id/lnl_theo_doi"
+                        android:layout_width="150dp"
+                        android:layout_height="20dp"
+                        android:layout_centerHorizontal="true"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:background="@layout/user_info_btn_follow_background"
+                        android:layout_alignBottom="@+id/user_info_bar"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="+ Theo dõi"
+                            android:textColor="@color/text_black"
+                            android:textSize="12sp"
+                            />
+                    </LinearLayout>
+                </RelativeLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
@@ -260,76 +306,39 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:layout_marginBottom="30dp"
                     >
                     <TextView
+                        android:background="@layout/user_info_btn_follow_background"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:minHeight="80dp"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp"
-                        android:gravity="center_horizontal"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:gravity="center_horizontal|center_vertical"
                         android:text="Shop chuyên bán hàng cho mẹ và bé các sản phẩm đều được nhập chính hãng"
                         />
                 </LinearLayout>
             </LinearLayout>
 
         </android.support.design.widget.CollapsingToolbarLayout>
-        <LinearLayout
+        <android.support.design.widget.TabLayout
+            android:id="@+id/user_info_tabbar"
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:background="@layout/login_button_skip_signup_background"
-            android:layout_marginRight="10dp"
-            android:layout_marginLeft="10dp"
-            android:orientation="horizontal"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
+            android:background="@layout/user_info_tabbar_background"
+            android:layout_margin="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            app:tabTextAppearance="@style/CapFalse"
+            app:tabTextColor="@color/text_black"
+            android:tabStripEnabled="false"
+            app:tabIndicatorColor="@android:color/transparent"
+            app:tabIndicatorHeight="0dp"
             >
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="#00ffffff"
-                android:textAllCaps="false"
-                android:text="Sản phẩm"
 
-                android:textSize="11sp"
-                android:textColor="@color/text_black"
-                android:gravity="center"
-                />
-            <TextView
-                android:layout_width="3px"
-                android:layout_height="match_parent"
-                android:background="@color/red_button"
-                ></TextView>
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="#00ffffff"
-                android:textAllCaps="false"
-                android:text="Đang theo dõi"
-                android:textSize="11sp"
-                android:textColor="@color/text_black"
-                android:gravity="center"
-                />
-            <TextView
-                android:layout_width="3px"
-                android:layout_height="match_parent"
-                android:background="@color/red_button"
-                ></TextView>
-            <Button
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="#00ffffff"
-                android:textAllCaps="false"
-                android:text="Người theo dõi"
-                android:foregroundGravity="center_horizontal"
-                android:textSize="11sp"
-                android:textColor="@color/text_black"
-                android:gravity="center"
-                />
-        </LinearLayout>
+        </android.support.design.widget.TabLayout>
     </android.support.design.widget.AppBarLayout>
     <android.support.v4.view.ViewPager
         android:id="@+id/view_pager_user_info"
@@ -338,5 +347,7 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     </android.support.v4.view.ViewPager>
+
 </android.support.design.widget.CoordinatorLayout>
+
 </LinearLayout>

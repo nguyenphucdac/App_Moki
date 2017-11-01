@@ -8,7 +8,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
@@ -27,7 +26,7 @@ import android.widget.Toast;
 import android.widget.ViewAnimator;
 
 import com.example.dac.app_moki.R;
-import com.example.dac.app_moki.adapter.AdapterViewPager;
+import com.example.dac.app_moki.adapter.AdapterViewPagerHome;
 import com.example.dac.app_moki.view.fragment.FragmentDialogAlert;
 import com.example.dac.app_moki.view.fragment.FragmentDialogExit;
 import com.example.dac.app_moki.view.fragment.FragmentDialogFilter;
@@ -52,7 +51,6 @@ public class Home_Activity extends AppCompatActivity {
     private DrawerLayout drawMenu;
     private ActionBarDrawerToggle drawMenuToggel;
     private AppBarLayout appBarLayout;
-    private CollapsingToolbarLayout collapsingToolbarLayout;
     private Toolbar homeHeader;
     private TabLayout tabLayout;
     private ViewPager viewPagerListProduct;
@@ -136,12 +134,10 @@ public class Home_Activity extends AppCompatActivity {
         drawMenuToggel.syncState();
 
         appBarLayout = (AppBarLayout) findViewById(R.id.app_bar);
-        collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collaps_toolbar);
-        collapsingToolbarLayout.setTitleEnabled(false);
 
         viewPagerListProduct = (ViewPager) findViewById(R.id.view_pager);
-        AdapterViewPager adapterViewPager = new AdapterViewPager(getSupportFragmentManager());
-        viewPagerListProduct.setAdapter(adapterViewPager);
+        AdapterViewPagerHome adapterViewPagerHome = new AdapterViewPagerHome(getSupportFragmentManager());
+        viewPagerListProduct.setAdapter(adapterViewPagerHome);
 
         tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         tabLayout.setupWithViewPager(viewPagerListProduct);
@@ -265,8 +261,8 @@ public class Home_Activity extends AppCompatActivity {
                 ViewAnimator viewAnimatorFragmentAll = (ViewAnimator) findViewById(R.id.viewFlipper1);
                 AnimationFactory.flipTransition(viewAnimatorFragmentAll, AnimationFactory.FlipDirection.LEFT_RIGHT);
 
-                AdapterViewPager adapterViewPager = new AdapterViewPager(getSupportFragmentManager());
-                viewPagerListProduct.setAdapter(adapterViewPager);
+                AdapterViewPagerHome adapterViewPagerHome = new AdapterViewPagerHome(getSupportFragmentManager());
+                viewPagerListProduct.setAdapter(adapterViewPagerHome);
                 tabLayout.setupWithViewPager(viewPagerListProduct);
                 tabLayout.setScrollPosition(index, 0f, true);
                 viewPagerListProduct.setCurrentItem(index);

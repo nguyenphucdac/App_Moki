@@ -17,10 +17,10 @@ import java.util.List;
 /**
  * Created by Dac on 10/13/2017.
  */
-public class AdapterViewPager extends FragmentPagerAdapter {
+public class AdapterViewPagerHome extends FragmentPagerAdapter {
     List<Fragment> lstFragment = new ArrayList<Fragment>();
     List<String> lstTitle = new ArrayList<String>();
-    public AdapterViewPager(FragmentManager fm) {
+    public AdapterViewPagerHome(FragmentManager fm) {
         super(fm);
         lstFragment.add(new FragmentAll());
         lstFragment.add(new FragmentFree());
