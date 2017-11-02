@@ -15,7 +15,7 @@ import java.util.List;
  * Created by Dac on 10/28/2017.
  */
 public class News_Activity extends AppCompatActivity {
-    RecyclerView recyclerViewNews;
+    private RecyclerView recyclerViewNews;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +27,7 @@ public class News_Activity extends AppCompatActivity {
     }
 
     private void addControls() {
+
         recyclerViewNews = (RecyclerView) findViewById(R.id.recycle_news_menu);
 
         List<String> data = new ArrayList<>();
@@ -36,9 +37,9 @@ public class News_Activity extends AppCompatActivity {
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerViewNews.setLayoutManager(layoutManager);
-        AdapterMenuNews adapterResultSearch = new AdapterMenuNews(this, data);
-        recyclerViewNews.setAdapter(adapterResultSearch);
-        adapterResultSearch.notifyDataSetChanged();
+        AdapterMenuNews adapterMenuNews = new AdapterMenuNews(this, data);
+        recyclerViewNews.setAdapter(adapterMenuNews);
+        adapterMenuNews.notifyDataSetChanged();
     }
 
     private void addEvents() {

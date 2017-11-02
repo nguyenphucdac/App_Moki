@@ -12,7 +12,7 @@ public class ListMyBuy_Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.product_list_my_buy);
+        setContentView(R.layout.menu_list_my_buy);
 
         addControls();
         addEvents();

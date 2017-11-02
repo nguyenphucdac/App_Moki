@@ -1,6 +1,6 @@
 <android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/draw_menu_news"
+    android:id="@+id/draw_menu"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -10,39 +10,30 @@
         android:background="#fff"
         android:orientation="vertical"
         >
-        <FrameLayout
-            android:id="@+id/news_header"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:background="#ffffff"
+            android:orientation="vertical"
             >
-            <ImageButton
-                android:id="@+id/btn_menu_news"
-                android:layout_width="50dp"
-                android:layout_height="40dp"
-                android:src="@drawable/icon_menu"
-                android:scaleType="fitXY"
-                android:background="#fff"
-                />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Tin Tức"
+                android:text="Danh sách yêu thích"
                 android:textColor="@color/red_button"
-                android:gravity="center"
+                android:gravity="center_vertical|center_horizontal"
                 />
 
-        </FrameLayout>
+        </LinearLayout>
         <View
             android:layout_width="match_parent"
             android:layout_height="3px"
             android:background="@color/red_button"
             ></View>
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycle_news_menu"
+            android:id="@+id/recycle_list_my_like_menu"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/backround_color"
+            android:background="#fff"
             >
 
         </android.support.v7.widget.RecyclerView>
@@ -56,5 +47,8 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         >
+        `
+
+
     </fragment>
 </android.support.v4.widget.DrawerLayout>

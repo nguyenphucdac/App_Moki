@@ -12,7 +12,7 @@ public class Setup_Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.setup);
+        setContentView(R.layout.menu_setup);
 
         addControls();
         addEvents();

@@ -124,13 +124,7 @@ public class Home_Activity extends AppCompatActivity {
         setSupportActionBar(homeHeader);
         setSizeItemHeader();
         drawMenu = (DrawerLayout) findViewById(R.id.draw_menu);
-        drawMenuToggel = new ActionBarDrawerToggle(this, drawMenu, R.string.open_menu, R.string.close_menu);
-        drawMenu.setDrawerListener(drawMenuToggel);
-
-        setSupportActionBar(homeHeader);
-        setSizeItemHeader();
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        drawMenuToggel = new ActionBarDrawerToggle(Home_Activity.this, drawMenu, R.string.open_menu, R.string.close_menu);
         drawMenuToggel.syncState();
 
         appBarLayout = (AppBarLayout) findViewById(R.id.app_bar);
@@ -188,7 +182,7 @@ public class Home_Activity extends AppCompatActivity {
         if (getSupportActionBar() != null) {
             Drawable drawable = getResources().getDrawable(icon_menu);
             Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
-            Drawable newdrawable = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap, 200, 200, true));
+            Drawable newdrawable = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap, 140, 140, true));
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setHomeAsUpIndicator(newdrawable);
 

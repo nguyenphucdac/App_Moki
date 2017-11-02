@@ -12,7 +12,7 @@ public class SupportCenter_Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.support_center);
+        setContentView(R.layout.menu_support_center);
 
         addControls();
         addEvents();
