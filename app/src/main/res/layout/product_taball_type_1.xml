@@ -3,6 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:clickable="true"
+    android:onClick="onClick"
+    android:id="@+id/item_product_type_1"
     >
    <LinearLayout
        android:layout_width="match_parent"
@@ -22,12 +25,11 @@
                android:scaleType="fitXY"
                android:layout_width="175dp"
                android:layout_height="150dp"
-               android:id="@+id/img_product_type_1"
                android:src="@drawable/iphone7"
+               android:layout_gravity="center"
                android:clickable="true"
                android:onClick="onClick"
-               android:layout_gravity="center"
-
+               android:id="@+id/image_product_type_1"
                />
            <TextView
                android:layout_width="wrap_content"
@@ -35,12 +37,11 @@
                android:text="Iphone 7 red like new"
                android:textSize="11sp"
                android:layout_marginTop="5dp"
-               android:id="@+id/txt_nameProduct"
                android:layout_gravity="center" />
 
            <LinearLayout
                android:orientation="horizontal"
-               android:layout_width="wrap_content"
+               android:layout_width="match_parent"
                android:layout_height="wrap_content"
                android:layout_marginTop="10dp"
                android:layout_marginBottom="5dp"
@@ -48,18 +49,18 @@
                android:gravity="center_horizontal"
                >
 
-               <ImageButton
-                   android:layout_width="17dp"
+               <ImageView
+                   android:layout_width="0dp"
+                   android:layout_weight="1"
                    android:layout_height="15dp"
-                   android:scaleType="fitXY"
                    android:background="#ffffff"
                    android:src="@drawable/grid_heart_off"
-                   android:id="@+id/imageButton"
                    android:layout_gravity="center_vertical"
                    android:layout_marginLeft="5dp" />
 
                <TextView
-                   android:layout_width="wrap_content"
+                   android:layout_width="0dp"
+                   android:layout_weight="1"
                    android:layout_height="wrap_content"
                    android:text="0"
                    android:id="@+id/textView"
@@ -67,33 +68,32 @@
                    android:layout_gravity="center_vertical"
                    android:textSize="15dp" />
 
-               <ImageButton
-                   android:layout_width="15dp"
+               <ImageView
+                   android:layout_width="0dp"
+                   android:layout_weight="1"
                    android:layout_height="15dp"
-                   android:scaleType="fitXY"
                    android:background="#ffffff"
                    android:src="@drawable/grid_comment"
-                   android:id="@+id/imageButton2"
                    android:layout_marginLeft="10dp"
                    android:layout_gravity="center_vertical" />
 
                <TextView
-                   android:layout_width="wrap_content"
+                   android:layout_width="0dp"
+                   android:layout_weight="1"
                    android:layout_height="wrap_content"
                    android:text="0"
-                   android:id="@+id/textView2"
                    android:layout_marginLeft="3dp"
                    android:layout_gravity="center_vertical"
                    android:textSize="15dp" />
 
                <TextView
-                   android:layout_width="wrap_content"
+                   android:layout_width="0dp"
+                   android:layout_weight="6"
                    android:layout_height="wrap_content"
                    android:text="20 K"
                    android:textColor="@color/red_button"
-                   android:id="@+id/textView3"
-                   android:layout_marginLeft="60dp"
-                   android:layout_gravity="center_vertical"
+                   android:gravity="right"
+                   android:layout_marginRight="5dp"
                    android:textSize="15dp" />
 
            </LinearLayout>

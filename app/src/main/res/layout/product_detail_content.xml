@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backround_color"
     android:orientation="vertical">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -12,53 +14,30 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:background="@color/red_button">
-
+            android:background="@color/red_button"
+            android:orientation="horizontal"
+            >
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="10dp"
-                android:text="0"
-                android:textColor="#fff"
-                android:textSize="18sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="4"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="5dp"
-                android:text="thích và"
-                android:textColor="#fff"
-                android:textSize="18sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="5dp"
-                android:text="0"
-                android:textColor="#fff"
-                android:textSize="18sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="5dp"
-                android:text="bình luận"
+                android:text="0 thích và 0 bình luận"
                 android:textColor="#fff"
                 android:textSize="18sp" />
 
             <ImageButton
-                android:layout_width="35dp"
+                android:layout_width="5dp"
+                android:layout_weight="0.4"
                 android:layout_height="30dp"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="73dp"
-                android:layout_marginRight="0dp"
+                android:layout_marginRight="10dp"
                 android:background="@color/red_button"
                 android:scaleType="fitXY"
-                android:src="@drawable/icon_like_off" />
+                android:src="@drawable/icon_like_off"
+
+                />
         </LinearLayout>
 
         <LinearLayout
@@ -71,18 +50,24 @@
             android:background="#fff"
             android:orientation="horizontal">
 
-            <ImageView
-                android:layout_width="60dp"
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="60dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="10dp"
-                android:src="@drawable/unknown_user" />
+                android:layout_gravity="center"
+                android:src="@drawable/unknown_user"
+                app:civ_border_width="0dp"
+                app:civ_border_color="#00FFFFFF"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                />
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="3"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="10dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -102,10 +87,11 @@
             </LinearLayout>
 
             <ImageButton
-                android:layout_width="10dp"
-                android:layout_height="13dp"
+                android:layout_width="0dp"
+                android:layout_weight="0.1"
+                android:layout_height="10dp"
+                android:layout_marginRight="10dp"
                 android:layout_gravity="center_vertical"
-                android:layout_marginLeft="83dp"
                 android:background="#fff"
                 android:scaleType="fitXY"
                 android:src="@drawable/sidemenu_next_arrow_pressed" />
@@ -244,8 +230,11 @@
             android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="50dp">
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+
+                >
 
                 <ImageView
                     android:layout_width="20dp"
@@ -263,10 +252,22 @@
                     android:textColor="@color/text_black"
                     android:textSize="14sp" />
             </LinearLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bé chơi mà học"
+                    android:textColor="@color/red_button"
+                    android:textSize="14sp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:background="@layout/user_info_tabbar_background"
+                    android:layout_gravity="center_vertical"
+                    />
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -279,8 +280,9 @@
             android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="50dp">
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent">
 
                 <ImageView
                     android:layout_width="20dp"
@@ -299,9 +301,22 @@
                     android:textSize="14sp" />
             </LinearLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Apple"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:textColor="@color/red_button"
+                    android:textSize="14sp"
+                    android:background="@layout/user_info_tabbar_background"
+                    android:layout_gravity="center_vertical"
+                    />
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -314,8 +329,9 @@
             android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="50dp">
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent">
 
                 <ImageView
                     android:layout_width="20dp"
@@ -335,8 +351,13 @@
             </LinearLayout>
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="như mới"
+                android:textColor="@color/text_black"
+                android:layout_gravity="center_vertical"
+                />
         </LinearLayout>
 
         <LinearLayout
@@ -349,8 +370,9 @@
             android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="50dp">
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent">
 
                 <ImageView
                     android:layout_width="20dp"
@@ -370,9 +392,22 @@
             </LinearLayout>
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Phương liệt thanh xuân hà nội"
+                android:textColor="@color/text_black"
+                android:layout_gravity="center_vertical"
+                android:paddingRight="10dp"
+                />
         </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycle_product_detail_comment"
+            android:layout_width="match_parent"
+            android:layout_height="400dp">
+
+        </android.support.v7.widget.RecyclerView>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -382,6 +417,7 @@
             >
 
             <Button
+                android:id="@+id/btnToPageComment"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginLeft="30dp"
@@ -394,34 +430,5 @@
 
         </LinearLayout>
 
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="bottom"
-        android:layout_alignParentBottom="true"
-        android:background="@color/NAVI_BG_IMAGE"
-        >
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="10dp"
-            android:layout_weight="3"
-            android:background="@color/NAVI_BG_IMAGE"
-            android:text="Giá: 20,000,000 VNĐ"
-            android:textColor="#fff"
-            android:textSize="18sp" />
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:background="@color/GREEN_COLOR"
-            android:text="Mua"
-            android:textColor="#fff"
-            android:textSize="16sp" />
     </LinearLayout>
 </LinearLayout>

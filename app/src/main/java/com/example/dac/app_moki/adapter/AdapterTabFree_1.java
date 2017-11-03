@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.TextView;
 
 import com.example.dac.app_moki.R;
 import com.example.dac.app_moki.view.product.ProductDetail_Activity;
@@ -46,17 +45,25 @@ public class AdapterTabFree_1 extends RecyclerView.Adapter<AdapterTabFree_1.View
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        ImageButton img_prouduct;
-        TextView txt_nameProduct;
+        private View itemProductType1;
+        private ImageButton imageProductType1;
         public ViewHolder(final View itemView) {
             super(itemView);
-            img_prouduct = (ImageButton) itemView.findViewById(R.id.img_product_type_1);
-            txt_nameProduct = (TextView) itemView.findViewById(R.id.txt_nameProduct);
+            itemProductType1 = itemView.findViewById(R.id.item_product_type_1);
+            imageProductType1 = (ImageButton) itemView.findViewById(R.id.image_product_type_1);
 
-            img_prouduct.setOnClickListener(new View.OnClickListener() {
+            itemProductType1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(context.getApplicationContext(), ProductDetail_Activity.class);
+                    Intent intent=new Intent(context.getApplicationContext(), ProductDetail_Activity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+                    context.getApplicationContext().startActivity(intent);
+                }
+            });
+            imageProductType1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent=new Intent(context.getApplicationContext(), ProductDetail_Activity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
                     context.getApplicationContext().startActivity(intent);
                 }

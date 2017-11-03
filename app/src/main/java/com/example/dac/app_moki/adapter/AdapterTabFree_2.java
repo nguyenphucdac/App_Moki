@@ -7,10 +7,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.TextView;
 
 import com.example.dac.app_moki.R;
 import com.example.dac.app_moki.view.product.ProductDetail_Activity;
+import com.example.dac.app_moki.view.user.UserInfo_Activity;
 
 import java.util.List;
 
@@ -46,21 +46,41 @@ public class AdapterTabFree_2 extends RecyclerView.Adapter<AdapterTabFree_2.View
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        ImageButton img_prouduct;
-        TextView txt_nameProduct;
+        private View userInfo;
+        private ImageButton imgProduct;
+        private View infoProduct;
         public ViewHolder(final View itemView) {
             super(itemView);
-            img_prouduct = (ImageButton) itemView.findViewById(R.id.img_product_type_2);
-            txt_nameProduct = (TextView) itemView.findViewById(R.id.txt_nameProduct);
+            userInfo = itemView.findViewById(R.id.user_info_product_type_2);
+            imgProduct = (ImageButton) itemView.findViewById(R.id.img_product_type_2);
+            infoProduct = itemView.findViewById(R.id.info_product_type_2);
 
-            img_prouduct.setOnClickListener(new View.OnClickListener() {
+            userInfo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(context.getApplicationContext(), ProductDetail_Activity.class);
+                    Intent intent=new Intent(context.getApplicationContext(), UserInfo_Activity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
                     context.getApplicationContext().startActivity(intent);
                 }
             });
+            imgProduct.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent=new Intent(context.getApplicationContext(), ProductDetail_Activity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+                    context.getApplicationContext().startActivity(intent);
+                }
+            });
+
+            infoProduct.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent=new Intent(context.getApplicationContext(), ProductDetail_Activity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+                    context.getApplicationContext().startActivity(intent);
+                }
+            });
+
         }
     }
 }

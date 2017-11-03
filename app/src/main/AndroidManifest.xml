@@ -84,6 +84,31 @@
             >
 
         </activity>
+        <activity android:name=".view.product.ProductCommentPage_Activity"
+            android:screenOrientation="portrait"
+            >
+
+        </activity>
+        <activity android:name=".view.search.SearchBrand_Activity"
+            android:screenOrientation="portrait"
+            >
+
+        </activity>
+        <activity android:name=".view.search.SearchSize_Activity"
+            android:screenOrientation="portrait"
+            >
+
+        </activity>
+        <activity android:name=".view.search.SearchCategories_Activity"
+            android:screenOrientation="portrait"
+            >
+
+        </activity>
+        <activity android:name=".view.search.SearchState_Activity"
+            android:screenOrientation="portrait"
+            >
+
+        </activity>
         <activity android:name=".view.tutorial.Tutorial_Activity"
             android:screenOrientation="portrait"
             >

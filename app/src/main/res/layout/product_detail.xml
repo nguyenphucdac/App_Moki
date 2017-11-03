@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="0dp"
+       android:layout_weight="9"
+       android:background="#00ffffff"
+       android:orientation="vertical"
+       >
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
@@ -12,7 +17,8 @@
         >
         <ImageButton
             android:id="@+id/product_detail_btn_back"
-            android:layout_width="40dp"
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
             android:layout_height="40dp"
             android:src="@drawable/icon_back"
             android:clickable="true"
@@ -21,19 +27,18 @@
             android:scaleType="fitXY"
             />
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="match_parent"
             android:text="Iphone 7 red like new"
             android:textColor="@color/red_button"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="50dp"
+            android:gravity="center"
             />
         <ImageButton
-            android:layout_width="40dp"
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
             android:layout_height="40dp"
             android:src="@drawable/icon_more"
-            android:layout_marginLeft="47dp"
-            android:layout_marginRight="0dp"
             android:background="#fff"
             android:scaleType="fitXY"
             />
@@ -42,11 +47,42 @@
         android:layout_width="match_parent"
         android:layout_height="2px"
         android:background="@color/red_button"
-        ></LinearLayout>
 
+        ></LinearLayout>
     <com.ecloud.pulltozoomview.PullToZoomScrollViewEx
         android:id="@+id/scroll_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />
+   </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.8"
+        android:layout_gravity="bottom"
+        android:layout_alignParentBottom="true"
+        android:background="@color/NAVI_BG_IMAGE"
+        >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="3"
+            android:background="@color/NAVI_BG_IMAGE"
+            android:text="Giá: 20,000,000 VNĐ"
+            android:textColor="#fff"
+            android:textSize="18sp" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:background="@color/GREEN_COLOR"
+            android:text="Mua"
+            android:textColor="#fff"
+            android:textSize="16sp" />
+    </LinearLayout>
 </LinearLayout>

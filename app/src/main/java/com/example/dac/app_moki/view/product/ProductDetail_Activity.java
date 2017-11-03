@@ -3,25 +3,33 @@ package com.example.dac.app_moki.view.product;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 import com.ecloud.pulltozoomview.PullToZoomScrollViewEx;
 import com.example.dac.app_moki.R;
+import com.example.dac.app_moki.adapter.AdapterProductComment;
 import com.example.dac.app_moki.view.user.UserInfo_Activity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Dac on 10/15/2017.
  */
 public class ProductDetail_Activity extends AppCompatActivity {
-
+    private ImageButton btnBack;
     private PullToZoomScrollViewEx scrollView;
-    ImageButton btnBack;
+    private RecyclerView recyclerViewListComment;
+    private Button btnToPageComment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +51,19 @@ public class ProductDetail_Activity extends AppCompatActivity {
         int mScreenWidth = localDisplayMetrics.widthPixels;
         LinearLayout.LayoutParams localObject = new LinearLayout.LayoutParams(mScreenWidth, (int) (9.0F * (mScreenWidth / 16.0F)));
         scrollView.setHeaderLayoutParams(localObject);
+
+        List<String> data = new ArrayList<>();
+        for (int i = 0; i < 20; i++) {
+            data.add("name " + i);
+        }
+        recyclerViewListComment = (RecyclerView) findViewById(R.id.recycle_product_detail_comment);
+        recyclerViewListComment.setLayoutManager(new LinearLayoutManager(this));
+        AdapterProductComment adapterProductComment = new AdapterProductComment(this, data);
+        recyclerViewListComment.setAdapter(adapterProductComment);
+        adapterProductComment.notifyDataSetChanged();
+
+        btnToPageComment = (Button) findViewById(R.id.btnToPageComment);
+
     }
 
     private void addEvents() {
@@ -50,6 +71,13 @@ public class ProductDetail_Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+        btnToPageComment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProductDetail_Activity.this, ProductCommentPage_Activity.class);
+                startActivity(intent);
             }
         });
     }
