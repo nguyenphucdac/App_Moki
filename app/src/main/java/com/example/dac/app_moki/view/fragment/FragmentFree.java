@@ -11,8 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.dac.app_moki.R;
-import com.example.dac.app_moki.adapter.AdapterTabFree_1;
-import com.example.dac.app_moki.adapter.AdapterTabFree_2;
+import com.example.dac.app_moki.view.adapter.AdapterTabFree_1;
+import com.example.dac.app_moki.view.adapter.AdapterTabFree_2;
 
 import java.util.ArrayList;
 import java.util.List;

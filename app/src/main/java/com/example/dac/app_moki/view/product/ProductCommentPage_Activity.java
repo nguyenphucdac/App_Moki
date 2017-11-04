@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import com.example.dac.app_moki.R;
-import com.example.dac.app_moki.adapter.AdapterProductComment;
+import com.example.dac.app_moki.view.adapter.AdapterProductComment;
 
 import java.util.ArrayList;
 import java.util.List;

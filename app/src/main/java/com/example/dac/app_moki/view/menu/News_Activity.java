@@ -6,7 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.example.dac.app_moki.R;
-import com.example.dac.app_moki.adapter.AdapterMenuNews;
+import com.example.dac.app_moki.view.adapter.AdapterMenuNews;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -5,7 +5,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.dac.app_moki.R;
-import com.example.dac.app_moki.adapter.AdapterTutorial;
+import com.example.dac.app_moki.view.adapter.AdapterTutorial;
 
 import me.relex.circleindicator.CircleIndicator;
 

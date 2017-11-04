@@ -1,4 +1,4 @@
-package com.example.dac.app_moki.adapter;
+package com.example.dac.app_moki.view.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;

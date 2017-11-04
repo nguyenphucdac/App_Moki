@@ -16,7 +16,7 @@ import android.widget.LinearLayout;
 
 import com.ecloud.pulltozoomview.PullToZoomScrollViewEx;
 import com.example.dac.app_moki.R;
-import com.example.dac.app_moki.adapter.AdapterProductComment;
+import com.example.dac.app_moki.view.adapter.AdapterProductComment;
 import com.example.dac.app_moki.view.user.UserInfo_Activity;
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.example.dac.app_moki.adapter;
+package com.example.dac.app_moki.view.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,17 +16,17 @@ import java.util.List;
 /**
  * Created by Dac on 10/14/2017.
  */
-public class AdapterTabAll_1 extends RecyclerView.Adapter<AdapterTabAll_1.ViewHolder> {
+public class AdapterTabFree_1 extends RecyclerView.Adapter<AdapterTabFree_1.ViewHolder> {
     Context context;
     List<String> lstString;
 
-    public AdapterTabAll_1(Context context, List<String> lstString){
+    public AdapterTabFree_1(Context context, List<String> lstString){
         this.context = context;
         this.lstString = lstString;
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public AdapterTabFree_1.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = layoutInflater.inflate(R.layout.product_taball_type_1,parent, false );
 
@@ -35,13 +35,12 @@ public class AdapterTabAll_1 extends RecyclerView.Adapter<AdapterTabAll_1.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(AdapterTabFree_1.ViewHolder holder, int position) {
 
     }
 
     @Override
     public int getItemCount() {
-
         return lstString.size();
     }
 

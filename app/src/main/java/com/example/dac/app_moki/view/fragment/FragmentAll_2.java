@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.dac.app_moki.R;
-import com.example.dac.app_moki.adapter.AdapterTabAll_2;
+import com.example.dac.app_moki.view.adapter.AdapterTabAll_2;
 
 import java.util.ArrayList;
 import java.util.List;

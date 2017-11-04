@@ -11,7 +11,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.dac.app_moki.R;
-import com.example.dac.app_moki.adapter.AdapterViewPagerUserInfo;
+import com.example.dac.app_moki.view.adapter.AdapterViewPagerUserInfo;
 
 /**
  * Created by Dac on 10/31/2017.

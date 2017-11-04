@@ -26,7 +26,7 @@ import android.widget.Toast;
 import android.widget.ViewAnimator;
 
 import com.example.dac.app_moki.R;
-import com.example.dac.app_moki.adapter.AdapterViewPagerHome;
+import com.example.dac.app_moki.view.adapter.AdapterViewPagerHome;
 import com.example.dac.app_moki.view.fragment.FragmentDialogAlert;
 import com.example.dac.app_moki.view.fragment.FragmentDialogExit;
 import com.example.dac.app_moki.view.fragment.FragmentDialogFilter;
