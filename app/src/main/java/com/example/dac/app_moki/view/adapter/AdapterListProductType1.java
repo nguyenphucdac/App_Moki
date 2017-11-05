@@ -16,11 +16,11 @@ import java.util.List;
 /**
  * Created by Dac on 10/14/2017.
  */
-public class AdapterTabAll_1 extends RecyclerView.Adapter<AdapterTabAll_1.ViewHolder> {
+public class AdapterListProductType1 extends RecyclerView.Adapter<AdapterListProductType1.ViewHolder> {
     Context context;
     List<String> lstString;
 
-    public AdapterTabAll_1(Context context, List<String> lstString){
+    public AdapterListProductType1(Context context, List<String> lstString){
         this.context = context;
         this.lstString = lstString;
     }

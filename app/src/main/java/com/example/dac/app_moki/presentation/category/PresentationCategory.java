@@ -1,13 +1,8 @@
 package com.example.dac.app_moki.presentation.category;
 
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-
 import com.example.dac.app_moki.model.nesworks.LoadData;
 import com.example.dac.app_moki.model.object.Category;
 import com.example.dac.app_moki.model.parsejson.IOCategory;
-import com.example.dac.app_moki.view.adapter.AdapterCategories;
-import com.example.dac.app_moki.view.search.SearchCategories_Activity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,13 +13,6 @@ import java.util.concurrent.ExecutionException;
  */
 
 public class PresentationCategory implements IPresentationCategory {
-
-    SearchCategories_Activity searchCategoriesActivity;
-
-    public PresentationCategory(SearchCategories_Activity searchCategoriesActivity){
-        this.searchCategoriesActivity = searchCategoriesActivity;
-    }
-
     @Override
     public List<Category> getListCategories() {
         String jsonData = "";
@@ -38,13 +26,6 @@ public class PresentationCategory implements IPresentationCategory {
             jsonData = loadData.get();
             IOCategory ioCategory = new IOCategory();
             lstCategories = IOCategory.getListCategory(jsonData);
-
-            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this.searchCategoriesActivity);
-            this.searchCategoriesActivity.recyclerViewCategories.setLayoutManager(layoutManager);
-
-            AdapterCategories adapterCategories = new AdapterCategories(this.searchCategoriesActivity, lstCategories);
-            this.searchCategoriesActivity.recyclerViewCategories.setAdapter(adapterCategories);
-            adapterCategories.notifyDataSetChanged();
 
             return lstCategories;
 

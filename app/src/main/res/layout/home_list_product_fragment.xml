@@ -5,12 +5,13 @@
     android:layout_width="match_parent"
     android:background="@color/backround_color"
     android:layout_height="match_parent">
+
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycle_taball"
+        android:id="@+id/recycle_home_list_product"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         >
-
     </android.support.v7.widget.RecyclerView>
+
 </LinearLayout>

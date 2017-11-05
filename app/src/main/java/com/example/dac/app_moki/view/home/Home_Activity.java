@@ -52,7 +52,9 @@ public class Home_Activity extends AppCompatActivity {
     private ActionBarDrawerToggle drawMenuToggel;
     private AppBarLayout appBarLayout;
     private Toolbar homeHeader;
+    private View toolBar;
     private TabLayout tabLayout;
+    AdapterViewPagerHome adapterViewPagerHome;
     private ViewPager viewPagerListProduct;
 
     private FragmentDialogMessage dialogMessage;
@@ -68,6 +70,7 @@ public class Home_Activity extends AppCompatActivity {
     private Integer[] slideImage = {R.drawable.prof_bg, R.drawable.prof_bg};
     private ArrayList<Integer> arrSlideImage;
 
+    private View bottomViewButtonSale;
     private ImageButton btnCameraSale;
     private MenuItem itemOptionView;
 
@@ -112,6 +115,7 @@ public class Home_Activity extends AppCompatActivity {
                 //Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
                 Intent intent = new Intent(Home_Activity.this, SaleCamera_Activity.class);
                 startActivity(intent);
+
             }
         });
     }
@@ -120,6 +124,8 @@ public class Home_Activity extends AppCompatActivity {
     private void addControls() {
         homeHeader = (Toolbar) findViewById(R.id.home_header);
         homeHeader.setTitle("");
+        toolBar = findViewById(R.id.toolbar_header);
+        //toolBar.setVisibility(View.GONE);
 
         setSupportActionBar(homeHeader);
         setSizeItemHeader();
@@ -130,7 +136,7 @@ public class Home_Activity extends AppCompatActivity {
         appBarLayout = (AppBarLayout) findViewById(R.id.app_bar);
 
         viewPagerListProduct = (ViewPager) findViewById(R.id.view_pager);
-        AdapterViewPagerHome adapterViewPagerHome = new AdapterViewPagerHome(getSupportFragmentManager());
+        adapterViewPagerHome = new AdapterViewPagerHome(getSupportFragmentManager());
         viewPagerListProduct.setAdapter(adapterViewPagerHome);
 
         tabLayout = (TabLayout) findViewById(R.id.tab_layout);
@@ -255,7 +261,7 @@ public class Home_Activity extends AppCompatActivity {
                 ViewAnimator viewAnimatorFragmentAll = (ViewAnimator) findViewById(R.id.viewFlipper1);
                 AnimationFactory.flipTransition(viewAnimatorFragmentAll, AnimationFactory.FlipDirection.LEFT_RIGHT);
 
-                AdapterViewPagerHome adapterViewPagerHome = new AdapterViewPagerHome(getSupportFragmentManager());
+                adapterViewPagerHome = new AdapterViewPagerHome(getSupportFragmentManager());
                 viewPagerListProduct.setAdapter(adapterViewPagerHome);
                 tabLayout.setupWithViewPager(viewPagerListProduct);
                 tabLayout.setScrollPosition(index, 0f, true);
@@ -281,6 +287,5 @@ public class Home_Activity extends AppCompatActivity {
         dialogExit = FragmentDialogExit.newInstance();
         dialogExit.show(fm1, "");
     }
-
 
 }

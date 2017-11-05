@@ -4,12 +4,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.example.dac.app_moki.view.fragment.FragmentAll;
-import com.example.dac.app_moki.view.fragment.FragmentEat;
-import com.example.dac.app_moki.view.fragment.FragmentFree;
-import com.example.dac.app_moki.view.fragment.FragmentHealth;
-import com.example.dac.app_moki.view.fragment.FragmentSleep;
-import com.example.dac.app_moki.view.fragment.FragmentWear;
+import com.example.dac.app_moki.model.object.Category;
+import com.example.dac.app_moki.presentation.category.PresentationCategory;
+import com.example.dac.app_moki.view.fragment.FragmentListProductType1;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,23 +15,18 @@ import java.util.List;
  * Created by Dac on 10/13/2017.
  */
 public class AdapterViewPagerHome extends FragmentPagerAdapter {
-    List<Fragment> lstFragment = new ArrayList<Fragment>();
+    List<Fragment> lstFragment = new ArrayList<>();
     List<String> lstTitle = new ArrayList<String>();
+    PresentationCategory presentationCategory = new PresentationCategory();
+    List<Category> lstCategories = presentationCategory.getListCategories();
+
     public AdapterViewPagerHome(FragmentManager fm) {
         super(fm);
-        lstFragment.add(new FragmentAll());
-        lstFragment.add(new FragmentFree());
-        lstFragment.add(new FragmentEat());
-        lstFragment.add(new FragmentSleep());
-        lstFragment.add(new FragmentWear());
-        lstFragment.add(new FragmentHealth());
+        for(int i = 0 ; i < lstCategories.size(); i++){
+            lstTitle.add(lstCategories.get(i).getName());
+            lstFragment.add(new FragmentListProductType1());
+        }
 
-        lstTitle.add("Tất cả");
-        lstTitle.add("Miến phí");
-        lstTitle.add("Bé ăn");
-        lstTitle.add("Bé ngủ");
-        lstTitle.add("Bé mặc");
-        lstTitle.add("Bé khỏe");
     }
 
     @Override

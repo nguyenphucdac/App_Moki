@@ -2,12 +2,17 @@ package com.example.dac.app_moki.view.search;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageButton;
 
 import com.example.dac.app_moki.R;
+import com.example.dac.app_moki.model.object.Category;
 import com.example.dac.app_moki.presentation.category.PresentationCategory;
+import com.example.dac.app_moki.view.adapter.AdapterCategories;
+
+import java.util.List;
 
 /**
  * Created by Dac on 11/3/2017.
@@ -15,7 +20,7 @@ import com.example.dac.app_moki.presentation.category.PresentationCategory;
 
 public class SearchCategories_Activity extends AppCompatActivity {
     private ImageButton btnBack;
-    public RecyclerView recyclerViewCategories;
+    private RecyclerView recyclerViewCategories;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,8 +45,16 @@ public class SearchCategories_Activity extends AppCompatActivity {
 
         recyclerViewCategories = (RecyclerView) findViewById(R.id.recycle_categories_search);
 
-        PresentationCategory presentationCategory = new PresentationCategory(SearchCategories_Activity.this);
-        presentationCategory.getListCategories();
+        PresentationCategory presentationCategory = new PresentationCategory();
+        List<Category> lstCategories =  presentationCategory.getListCategories();
+
+
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerViewCategories.setLayoutManager(layoutManager);
+
+        AdapterCategories adapterCategories = new AdapterCategories(this, lstCategories);
+        recyclerViewCategories.setAdapter(adapterCategories);
+        adapterCategories.notifyDataSetChanged();
     }
 }
 

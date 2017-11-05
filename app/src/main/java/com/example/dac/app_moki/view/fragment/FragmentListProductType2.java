@@ -10,28 +10,29 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.dac.app_moki.R;
-import com.example.dac.app_moki.view.adapter.AdapterTabAll_2;
+import com.example.dac.app_moki.view.adapter.AdapterListProductType2;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Dac on 10/25/2017.
+ * Created by Dac on 11/5/2017.
  */
-public class FragmentAll_2 extends Fragment {
-    RecyclerView recyclerView;
+
+public class FragmentListProductType2 extends Fragment {
+    private RecyclerView recyclerView;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.tab_all, container, false);
+        View view = inflater.inflate(R.layout.home_list_product_fragment, container, false);
         List<String> data = new ArrayList<>();
         for (int i = 0; i < 20; i++) {
             data.add("name " + i);
         }
-        recyclerView = (RecyclerView) view.findViewById(R.id.recycle_taball);
+        recyclerView = (RecyclerView) view.findViewById(R.id.recycle_home_list_product);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        AdapterTabAll_2 adapterTabAll = new AdapterTabAll_2(getActivity(), data);
+        AdapterListProductType2 adapterTabAll = new AdapterListProductType2(getActivity(), data);
         recyclerView.setAdapter(adapterTabAll);
         adapterTabAll.notifyDataSetChanged();
 
