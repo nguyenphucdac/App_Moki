@@ -1,4 +1,4 @@
-package com.example.dac.app_moki.model.parsejson;
+package com.example.dac.app_moki.presentation.category;
 
 import com.example.dac.app_moki.model.object.Category;
 
@@ -18,8 +18,11 @@ public class IOCategory {
         List<Category> lstCategory = new ArrayList<>();
 
         try {
-            JSONArray arrCategories = new JSONArray(jsonData);
+            if(jsonData == null || jsonData ==""){
+                return lstCategory;
+            }
 
+            JSONArray arrCategories = new JSONArray(jsonData);
             for (int i = 0 ; i < arrCategories.length(); i++){
                 JSONObject itemCategory = arrCategories.getJSONObject(i);
                 if(itemCategory.getString("parent") == null){

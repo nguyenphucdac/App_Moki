@@ -7,9 +7,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.example.dac.app_moki.R;
+import com.example.dac.app_moki.model.object.Product;
 import com.example.dac.app_moki.view.product.ProductDetail_Activity;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -18,11 +21,11 @@ import java.util.List;
  */
 public class AdapterListProductType1 extends RecyclerView.Adapter<AdapterListProductType1.ViewHolder> {
     Context context;
-    List<String> lstString;
+    List<Product> lstProduct;
 
-    public AdapterListProductType1(Context context, List<String> lstString){
+    public AdapterListProductType1(Context context, List<Product> lstProduct){
         this.context = context;
-        this.lstString = lstString;
+        this.lstProduct = lstProduct;
     }
 
     @Override
@@ -36,22 +39,35 @@ public class AdapterListProductType1 extends RecyclerView.Adapter<AdapterListPro
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-
+        holder.price.setText((lstProduct.get(position).getPrice()) + " K");
+        holder.nameProduct.setText(lstProduct.get(position).getName());
+        holder.numbeComment.setText((lstProduct.get(position).getNumberComment()) + "");
+        holder.numberLike.setText((lstProduct.get(position).getNumberLike()) + "");
+        Picasso.with(context).load(lstProduct.get(position).getImage(0)).into(holder.imageProductType1);
     }
 
     @Override
     public int getItemCount() {
 
-        return lstString.size();
+        return lstProduct.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private View itemProductType1;
         private ImageButton imageProductType1;
+        private TextView nameProduct;
+        private TextView numberLike;
+        private TextView numbeComment;
+        private TextView price;
+
         public ViewHolder(final View itemView) {
             super(itemView);
             itemProductType1 = itemView.findViewById(R.id.item_product_type_1);
             imageProductType1 = (ImageButton) itemView.findViewById(R.id.image_product_type_1);
+            nameProduct = (TextView) itemView.findViewById(R.id.nameProduct);
+            numberLike = (TextView) itemView.findViewById(R.id.numberLike);
+            numbeComment = (TextView) itemView.findViewById(R.id.numberComment);
+            price = (TextView) itemView.findViewById(R.id.priceProduct);
 
             itemProductType1.setOnClickListener(new View.OnClickListener() {
                 @Override

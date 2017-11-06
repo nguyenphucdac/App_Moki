@@ -1,6 +1,7 @@
 package com.example.dac.app_moki.model.object;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Dac on 11/4/2017.
@@ -11,21 +12,87 @@ public class Product {
     private String code;
     private String name;
     private int userId;
-    private float price;
+    private int price;
     private float pricePercen;
     private int number;
-    private Date fromDate;
-    private Date endDate;
+    private String fromDate;
+    private String endDate;
     private int statusId;
     private String description;
     private float rating;
     private int numberLike;
-    private int numbẻComment;
+    private int numberComment;
+    private boolean isLike;
     private int addressId;
+    private String brand;
+    private boolean isBlocked;
+    private boolean canEdit;
+    private boolean banned;
+    private int categoryId;
+    private float priceNew;
+    private String priceType;
+    private int coditionId;
+    private Date modified;
+    private List<String> image;
+
+    public List<String> getImage() {
+        return image;
+    }
+
+    public void setImage(List<String> image) {
+        this.image = image;
+    }
+    public String getImage(int index){
+        if(image.get(index) == null || image.get(index) == ""){
+            return "";
+        }
+        return image.get(index);
+    }
+
+    public boolean isBanned() {
+        return banned;
+    }
+
+    public void setBanned(boolean banned) {
+        this.banned = banned;
+    }
+
+    public boolean isCanEdit() {
+        return canEdit;
+    }
+
+    public void setCanEdit(boolean canEdit) {
+        this.canEdit = canEdit;
+    }
+
+    public boolean isBlocked() {
+        return isBlocked;
+    }
+
+    public void setBlocked(boolean blocked) {
+        isBlocked = blocked;
+    }
+
+    public boolean isLike() {
+        return isLike;
+    }
+
+    public void setLike(boolean like) {
+        isLike = like;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
 
     public int getId() {
         return id;
     }
+
 
     public void setId(int id) {
         this.id = id;
@@ -55,11 +122,11 @@ public class Product {
         this.userId = userId;
     }
 
-    public float getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
@@ -79,19 +146,19 @@ public class Product {
         this.number = number;
     }
 
-    public Date getFromDate() {
+    public String getFromDate() {
         return fromDate;
     }
 
-    public void setFromDate(Date fromDate) {
+    public void setFromDate(String fromDate) {
         this.fromDate = fromDate;
     }
 
-    public Date getEndDate() {
+    public String getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
 
@@ -127,12 +194,12 @@ public class Product {
         this.numberLike = numberLike;
     }
 
-    public int getNumbẻComment() {
-        return numbẻComment;
+    public int getNumberComment() {
+        return numberComment;
     }
 
-    public void setNumbẻComment(int numbẻComment) {
-        this.numbẻComment = numbẻComment;
+    public void setNumberComment(int numbẻComment) {
+        this.numberComment = numbẻComment;
     }
 
     public int getAddressId() {
@@ -183,11 +250,6 @@ public class Product {
         this.modified = modified;
     }
 
-    private int categoryId;
-    private float priceNew;
-    private String priceType;
-    private int coditionId;
-    private Date modified;
 
 
 }

@@ -22,11 +22,16 @@ public class AdapterViewPagerHome extends FragmentPagerAdapter {
 
     public AdapterViewPagerHome(FragmentManager fm) {
         super(fm);
-        for(int i = 0 ; i < lstCategories.size(); i++){
-            lstTitle.add(lstCategories.get(i).getName());
+        if(lstCategories.size() > 0){
+            for(int i = 0 ; i < lstCategories.size(); i++){
+                lstTitle.add(lstCategories.get(i).getName());
+                lstFragment.add(new FragmentListProductType1());
+            }
+        }
+        else{
+            lstTitle.add("Tất cả");
             lstFragment.add(new FragmentListProductType1());
         }
-
     }
 
     @Override

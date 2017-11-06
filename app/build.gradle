@@ -30,4 +30,5 @@ dependencies {
     compile 'com.google.android.gms:play-services-appindexing:8.1.0'
     compile project(':Flipview')
     compile 'de.hdodenhof:circleimageview:2.2.0'
+    compile 'com.squareup.picasso:picasso:2.5.2'
 }

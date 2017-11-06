@@ -14,9 +14,10 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
 import com.example.dac.app_moki.R;
+import com.example.dac.app_moki.model.object.Product;
+import com.example.dac.app_moki.presentation.product.PresentationProduct;
 import com.example.dac.app_moki.view.adapter.AdapterListProductType1;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -35,10 +36,9 @@ public class FragmentListProductType1 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.home_list_product_fragment, container, false);
-        List<String> data = new ArrayList<>();
-        for (int i = 0; i < 20; i++) {
-            data.add("name " + i);
-        }
+
+        PresentationProduct presentationProduct = new PresentationProduct();
+        List<Product> lstProduct = presentationProduct.getListProducts();
 
         toolBar_header = getActivity().findViewById(R.id.toolbar_header);
         slideHome = getActivity().findViewById(R.id.slide_home);
@@ -46,7 +46,7 @@ public class FragmentListProductType1 extends Fragment {
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recycle_home_list_product);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-        AdapterListProductType1 adapterListProductType1 = new AdapterListProductType1(getActivity(), data);
+        AdapterListProductType1 adapterListProductType1 = new AdapterListProductType1(getActivity(), lstProduct);
         recyclerView.setAdapter(adapterListProductType1);
         adapterListProductType1.notifyDataSetChanged();
 

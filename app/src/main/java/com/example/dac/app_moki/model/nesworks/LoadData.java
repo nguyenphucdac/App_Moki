@@ -54,6 +54,7 @@ public class LoadData extends AsyncTask<String, Void, String>{
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         return data;
     }
     private String getDataByMethodGet(HttpURLConnection httpURLConnection){

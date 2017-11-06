@@ -32,12 +32,15 @@
                android:id="@+id/image_product_type_1"
                />
            <TextView
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:text="Iphone 7 red like new"
+               android:id="@+id/nameProduct"
+               android:layout_width="match_parent"
+               android:layout_height="35dp"
+               android:text="Iphone 7 red like"
                android:textSize="11sp"
                android:layout_marginTop="5dp"
-               android:layout_gravity="center" />
+               android:layout_gravity="center"
+               android:gravity="center_horizontal|center_vertical"
+               />
 
            <LinearLayout
                android:orientation="horizontal"
@@ -63,7 +66,7 @@
                    android:layout_weight="1"
                    android:layout_height="wrap_content"
                    android:text="0"
-                   android:id="@+id/textView"
+                   android:id="@+id/numberLike"
                    android:layout_marginLeft="3dp"
                    android:layout_gravity="center_vertical"
                    android:textSize="15dp" />
@@ -78,6 +81,7 @@
                    android:layout_gravity="center_vertical" />
 
                <TextView
+                   android:id="@+id/numberComment"
                    android:layout_width="0dp"
                    android:layout_weight="1"
                    android:layout_height="wrap_content"
@@ -87,6 +91,7 @@
                    android:textSize="15dp" />
 
                <TextView
+                   android:id="@+id/priceProduct"
                    android:layout_width="0dp"
                    android:layout_weight="6"
                    android:layout_height="wrap_content"
