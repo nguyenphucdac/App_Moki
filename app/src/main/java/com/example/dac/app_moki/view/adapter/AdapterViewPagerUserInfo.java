@@ -4,9 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.example.dac.app_moki.view.fragment.FragmentListProductType1;
-import com.example.dac.app_moki.view.fragment.FragmentHealth;
-import com.example.dac.app_moki.view.fragment.FragmentWear;
+import com.example.dac.app_moki.view.fragment.FragmentListProducResult;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,9 +17,9 @@ public class AdapterViewPagerUserInfo extends FragmentPagerAdapter {
     List<String> lstTitle = new ArrayList<String>();
     public AdapterViewPagerUserInfo(FragmentManager fm) {
         super(fm);
-        lstFragment.add(new FragmentListProductType1());
-        lstFragment.add(new FragmentWear());
-        lstFragment.add(new FragmentHealth());
+        lstFragment.add(new FragmentListProducResult());
+        lstFragment.add(new FragmentListProducResult());
+        lstFragment.add(new FragmentListProducResult());
 
         lstTitle.add("Sản phẩm");
         lstTitle.add("Đang theo dõi");

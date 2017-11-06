@@ -1,6 +1,7 @@
 package com.example.dac.app_moki.presentation.product;
 
 import com.example.dac.app_moki.model.object.Product;
+import com.example.dac.app_moki.model.object.Seller;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -48,14 +49,18 @@ public class IOProduct {
                 JSONArray arrImage = itemProduct.getJSONArray("image");
                 List<String> lstImages = new ArrayList<>();
 
-                if(arrImage == null || arrImage.length() <= 0){
-                    lstProducts.add(product);
-                    continue;
-                }
                 for(int j = 0; j < arrImage.length(); j ++){
                     JSONObject itemImage = arrImage.getJSONObject(j);
                     lstImages.add(itemImage.getString("url"));
                 }
+
+                JSONObject objectSeller = itemProduct.getJSONObject("seller");
+                Seller seller = new Seller();
+                seller.setId(Integer.parseInt(objectSeller.getString("id")));
+                seller.setNameShop(String.valueOf(objectSeller.getString("username")));
+                seller.setImage(String.valueOf(objectSeller.getString("avatar")));
+
+                product.setSeller(seller);
                 product.setImage(lstImages);
                 lstProducts.add(product);
 

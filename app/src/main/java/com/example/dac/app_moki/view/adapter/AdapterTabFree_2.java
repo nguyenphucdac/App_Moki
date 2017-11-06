@@ -29,7 +29,7 @@ public class AdapterTabFree_2 extends RecyclerView.Adapter<AdapterTabFree_2.View
     @Override
     public AdapterTabFree_2.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = layoutInflater.inflate(R.layout.product_taball_type_2,parent, false );
+        View view = layoutInflater.inflate(R.layout.product_item_type_2,parent, false );
 
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;

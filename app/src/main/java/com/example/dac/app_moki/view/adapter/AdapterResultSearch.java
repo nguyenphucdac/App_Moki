@@ -29,7 +29,7 @@ public class AdapterResultSearch extends RecyclerView.Adapter<AdapterResultSearc
     @Override
     public AdapterResultSearch.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = layoutInflater.inflate(R.layout.product_taball_type_1,parent, false );
+        View view = layoutInflater.inflate(R.layout.product_item_type_1,parent, false );
 
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;

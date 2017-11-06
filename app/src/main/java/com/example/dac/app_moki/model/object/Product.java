@@ -33,20 +33,29 @@ public class Product {
     private String priceType;
     private int coditionId;
     private Date modified;
-    private List<String> image;
+    private List<String> lstImage;
+    private Seller seller;
 
-    public List<String> getImage() {
-        return image;
+    public Seller getSeller() {
+        return seller;
     }
 
-    public void setImage(List<String> image) {
-        this.image = image;
+    public void setSeller(Seller seller) {
+        this.seller = seller;
     }
-    public String getImage(int index){
-        if(image.get(index) == null || image.get(index) == ""){
-            return "";
+
+    public List<String> getListImage() {
+        return lstImage;
+    }
+
+    public void setImage(List<String> lstImage) {
+        this.lstImage = lstImage;
+    }
+    public String getImageOnList(int index){
+        if(lstImage.size() <=0 ){
+            return null;
         }
-        return image.get(index);
+        return lstImage.get(index);
     }
 
     public boolean isBanned() {

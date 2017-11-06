@@ -38,6 +38,7 @@
             android:layout_gravity="center_vertical" />
 
         <EditText
+            android:id="@+id/txtPhone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="phone"
@@ -46,7 +47,6 @@
             android:maxLength="11"
             android:imeOptions="actionNext"
             android:textAppearance="?android:textAppearanceSmall"
-            android:id="@+id/txt_phone"
             android:background="@android:color/transparent"
             android:layout_weight="0.85"
             android:layout_gravity="center_vertical"
@@ -76,13 +76,13 @@
             android:layout_gravity="center_vertical" />
 
         <EditText
+            android:id="@+id/txt_password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
             android:hint="Mật khẩu"
             android:textAppearance="?android:textAppearanceSmall"
             android:ems="10"
-            android:id="@+id/txt_password"
             android:background="@android:color/transparent"
             android:layout_weight="0.85"
             android:layout_gravity="center_vertical"
@@ -92,12 +92,12 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/btn_login"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:textAllCaps="false"
-        android:id="@+id/btn_login"
         android:background="@layout/login_button_background"
         android:layout_gravity="center_horizontal"
         android:textColor="#ffffff"
@@ -115,27 +115,27 @@
         android:gravity="center_horizontal"
         android:padding="5dp"
         android:layout_marginBottom="20dp"
-        android:weightSum="1">
+        >
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="37dp"
             android:background="@layout/login_button_skip_signup_background"
             android:text="Đăng ký"
             android:textAllCaps="false"
             android:id="@+id/btn_signup"
-            android:layout_weight="0.50"
+            android:layout_weight="1"
             android:textColor="#d81f2a" />
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="37dp"
             android:background="@layout/login_button_skip_signup_background"
             android:text="Bỏ qua"
             android:textAllCaps="false"
             android:id="@+id/btn_skip"
             android:layout_marginLeft="15dp"
-            android:layout_weight="0.50"
+            android:layout_weight="1"
             android:textColor="#d81f2a" />
     </LinearLayout>
 

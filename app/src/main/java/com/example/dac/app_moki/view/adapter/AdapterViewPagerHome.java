@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import com.example.dac.app_moki.model.object.Category;
 import com.example.dac.app_moki.presentation.category.PresentationCategory;
 import com.example.dac.app_moki.view.fragment.FragmentListProductType1;
+import com.example.dac.app_moki.view.fragment.FragmentListProductType2;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +31,7 @@ public class AdapterViewPagerHome extends FragmentPagerAdapter {
         }
         else{
             lstTitle.add("Tất cả");
-            lstFragment.add(new FragmentListProductType1());
+            lstFragment.add(new FragmentListProductType2());
         }
     }
 

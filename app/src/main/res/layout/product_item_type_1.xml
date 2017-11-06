@@ -32,7 +32,7 @@
                android:id="@+id/image_product_type_1"
                />
            <TextView
-               android:id="@+id/nameProduct"
+               android:id="@+id/name_product_type_1"
                android:layout_width="match_parent"
                android:layout_height="35dp"
                android:text="Iphone 7 red like"
@@ -66,7 +66,7 @@
                    android:layout_weight="1"
                    android:layout_height="wrap_content"
                    android:text="0"
-                   android:id="@+id/numberLike"
+                   android:id="@+id/number_like_product_type_1"
                    android:layout_marginLeft="3dp"
                    android:layout_gravity="center_vertical"
                    android:textSize="15dp" />
@@ -81,7 +81,7 @@
                    android:layout_gravity="center_vertical" />
 
                <TextView
-                   android:id="@+id/numberComment"
+                   android:id="@+id/number_comment_product_type_1"
                    android:layout_width="0dp"
                    android:layout_weight="1"
                    android:layout_height="wrap_content"
@@ -91,7 +91,7 @@
                    android:textSize="15dp" />
 
                <TextView
-                   android:id="@+id/priceProduct"
+                   android:id="@+id/price_product_type_1"
                    android:layout_width="0dp"
                    android:layout_weight="6"
                    android:layout_height="wrap_content"

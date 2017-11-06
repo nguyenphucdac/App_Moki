@@ -6,11 +6,16 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.dac.app_moki.R;
+import com.example.dac.app_moki.model.object.Product;
 import com.example.dac.app_moki.view.product.ProductDetail_Activity;
 import com.example.dac.app_moki.view.user.UserInfo_Activity;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -19,17 +24,17 @@ import java.util.List;
  */
 public class AdapterListProductType2 extends RecyclerView.Adapter<AdapterListProductType2.ViewHolder> {
     Context context;
-    List<String> lstString;
+    List<Product> lstProducts;
 
-    public AdapterListProductType2(Context context, List<String> lstString){
+    public AdapterListProductType2(Context context, List<Product> lstProducts){
         this.context = context;
-        this.lstString = lstString;
+        this.lstProducts = lstProducts;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = layoutInflater.inflate(R.layout.product_taball_type_2,parent, false );
+        View view = layoutInflater.inflate(R.layout.product_item_type_2,parent, false );
 
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
@@ -38,25 +43,58 @@ public class AdapterListProductType2 extends RecyclerView.Adapter<AdapterListPro
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
+        Product product = lstProducts.get(position);
+
+        holder.nameProduct.setText(product.getName());
+        if(product.getImageOnList(0) != null){
+            Picasso.with(context).load(product.getImageOnList(0)).into(holder.imageProduct);
+        }
+        else {
+            Picasso.with(context).load(R.drawable.no_image).into(holder.imageProduct);
+        }
+        holder.priceProduct.setText(String.valueOf(product.getPrice() + " VND"));
+        holder.btnLike.setText(String.valueOf(product.getNumberLike()));
+        holder.btnComment.setText(String.valueOf(product.getNumberComment()));
+
+        if(product.getSeller().getImage() != null){
+            Picasso.with(context).load(product.getSeller().getImage()).into((ImageView) holder.avatarSeller);
+        }
+        else {
+            Picasso.with(context).load(R.drawable.unknown_user).into((ImageView) holder.avatarSeller);
+        }
+
+        holder.nameSeller.setText(String.valueOf(product.getSeller().getNameShop()));
+
     }
-
-
 
     @Override
     public int getItemCount() {
 
-        return lstString.size();
+        return lstProducts.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private View userInfo;
-        private ImageButton imgProduct;
+        private ImageButton imageProduct;
         private View infoProduct;
+        private View avatarSeller;
+        private TextView nameSeller;
+        private TextView nameProduct;
+        private TextView priceProduct;
+        private Button btnLike;
+        private Button btnComment;
+
         public ViewHolder(final View itemView) {
             super(itemView);
             userInfo = itemView.findViewById(R.id.user_info_product_type_2);
-            imgProduct = (ImageButton) itemView.findViewById(R.id.img_product_type_2);
+            imageProduct = (ImageButton) itemView.findViewById(R.id.img_product_type_2);
             infoProduct = itemView.findViewById(R.id.info_product_type_2);
+            avatarSeller = itemView.findViewById(R.id.avatarSeller);
+            nameSeller = (TextView) itemView.findViewById(R.id.nameSeller);
+            nameProduct = (TextView) itemView.findViewById(R.id.name_product_type_2);
+            priceProduct = (TextView) itemView.findViewById(R.id.price_product_type_2);
+            btnLike = (Button) itemView.findViewById(R.id.button_like_product_type_2);
+            btnComment = (Button) itemView.findViewById(R.id.button_comment_product_type_2);
 
             userInfo.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -66,7 +104,7 @@ public class AdapterListProductType2 extends RecyclerView.Adapter<AdapterListPro
                     context.getApplicationContext().startActivity(intent);
                 }
             });
-            imgProduct.setOnClickListener(new View.OnClickListener() {
+            imageProduct.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent=new Intent(context.getApplicationContext(), ProductDetail_Activity.class);

@@ -1,4 +1,4 @@
-package com.example.dac.app_moki.model.object;
+package com.example.dac.app_moki.model.nesworks;
 
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;

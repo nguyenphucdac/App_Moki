@@ -8,9 +8,10 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import com.example.dac.app_moki.R;
-import com.example.dac.app_moki.view.adapter.AdapterResultSearch;
+import com.example.dac.app_moki.model.object.Product;
+import com.example.dac.app_moki.presentation.product.PresentationProduct;
+import com.example.dac.app_moki.view.adapter.AdapterListProductType1;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,17 +33,14 @@ public class ResultSearch_Activity extends AppCompatActivity {
     private void addCotnrols() {
         btnBack = (ImageButton) findViewById(R.id.btnBack);
         resultSearch = (RecyclerView) findViewById(R.id.recycle_result_search);
-        List<String> data = new ArrayList<>();
-        for(int i = 0 ; i < 20 ; i++){
-            data.add("name " + i);
-        }
+        PresentationProduct presentationProduct = new PresentationProduct();
+        List<Product> lstProduct = presentationProduct.getListProducts();
 
-        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, 2);
-        resultSearch.setLayoutManager(layoutManager);
-        AdapterResultSearch adapterResultSearch = new AdapterResultSearch(this, data);
-        resultSearch.setAdapter(adapterResultSearch);
-        adapterResultSearch.notifyDataSetChanged();
-
+        resultSearch = (RecyclerView)findViewById(R.id.recycle_result_search);
+        resultSearch.setLayoutManager(new GridLayoutManager(ResultSearch_Activity.this, 2));
+        AdapterListProductType1 adapterListProductType1 = new AdapterListProductType1(ResultSearch_Activity.this, lstProduct);
+        resultSearch.setAdapter(adapterListProductType1);
+        adapterListProductType1.notifyDataSetChanged();
 
     }
     private void addEvents() {

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#fff"
@@ -22,24 +23,24 @@
                 android:layout_gravity="center"
                 android:background="#fff">
 
-                <ImageView
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/avatarSeller"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:src="@drawable/unknown_user"
-
+                    app:civ_border_width="0dp"
+                    app:civ_border_color="#00FFFFFF"
                     android:layout_marginLeft="10dp"
-                    android:scaleType="fitXY"
-                    android:id="@+id/imageView4"
-                    android:layout_gravity="center_vertical"
-
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
                     />
 
                 <TextView
+                    android:id="@+id/nameSeller"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="User"
                     android:textColor="@color/red_button"
-                    android:id="@+id/textView4"
                     android:layout_marginLeft="5dp"
                     android:layout_gravity="center_vertical"
                     />
@@ -63,12 +64,12 @@
                     android:layout_gravity="center_vertical" />
 
                 <TextView
+                    android:id="@+id/fromDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="3 ngày trước"
                     android:layout_marginLeft="5dp"
                     android:textSize="10sp"
-                    android:id="@+id/textView5"
                     android:layout_gravity="center_vertical" />
             </LinearLayout>
 
@@ -87,7 +88,6 @@
             android:background="#fff"
             android:scaleType="fitXY"
             android:src="@drawable/iphone7"
-
             />
     </LinearLayout>
     <LinearLayout
@@ -97,26 +97,30 @@
         android:background="@color/red_button"
         >
         <TextView
+            android:id="@+id/name_product_type_2"
             android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_weight="3"
             android:layout_height="wrap_content"
             android:text="Iphone 7"
             android:textColor="#fff"
             android:gravity="center|left"
-            android:id="@+id/textView6"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="10dp" />
+            android:layout_marginLeft="10dp"
+            android:textSize="11sp"
+            android:foregroundGravity="center_horizontal"
+            />
 
         <TextView
+            android:id="@+id/price_product_type_2"
             android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_weight="1.8"
             android:layout_height="wrap_content"
             android:textColor="#fff"
             android:text="20,000,000 VNĐ"
-            android:id="@+id/textView7"
             android:layout_gravity="center_vertical"
             android:gravity="center|right"
             android:layout_marginRight="10dp"
+            android:textSize="12sp"
             />
 
     </LinearLayout>
@@ -166,9 +170,9 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
             <Button
+                android:id="@+id/button_like_product_type_2"
                 android:textColor="#fff"
                 android:gravity="center|left"
-                android:id="@+id/btnLike"
                 android:background="@drawable/icon_time_line_like_off"
                 android:paddingLeft="56.0dip"
                 android:layout_width="100.0dip"
@@ -176,12 +180,12 @@
                 android:minHeight="0.0dip"
                 android:textAllCaps="false"
                 android:text="0"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 />
             <Button
+                android:id="@+id/button_comment_product_type_2"
                 android:textColor="#fff"
                 android:gravity="center|left"
-                android:id="@+id/btnComment"
                 android:background="@drawable/icon_time_line_comment"
                 android:paddingLeft="56.0dip"
                 android:layout_width="100.0dip"
@@ -190,7 +194,7 @@
                 android:layout_centerHorizontal="true"
                 android:textAllCaps="false"
                 android:text="0"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 />
             <Button
                 android:textColor="#fff"

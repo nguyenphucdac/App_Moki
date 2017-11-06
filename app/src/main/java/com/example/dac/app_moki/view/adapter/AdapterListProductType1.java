@@ -31,7 +31,7 @@ public class AdapterListProductType1 extends RecyclerView.Adapter<AdapterListPro
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = layoutInflater.inflate(R.layout.product_taball_type_1,parent, false );
+        View view = layoutInflater.inflate(R.layout.product_item_type_1,parent, false );
 
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
@@ -43,7 +43,12 @@ public class AdapterListProductType1 extends RecyclerView.Adapter<AdapterListPro
         holder.nameProduct.setText(lstProduct.get(position).getName());
         holder.numbeComment.setText((lstProduct.get(position).getNumberComment()) + "");
         holder.numberLike.setText((lstProduct.get(position).getNumberLike()) + "");
-        Picasso.with(context).load(lstProduct.get(position).getImage(0)).into(holder.imageProductType1);
+        if(lstProduct.get(position).getImageOnList(0) != null){
+            Picasso.with(context).load(lstProduct.get(position).getImageOnList(0)).into(holder.imageProductType1);
+        }
+        else {
+            Picasso.with(context).load(R.drawable.no_image).into(holder.imageProductType1);
+        }
     }
 
     @Override
@@ -64,10 +69,10 @@ public class AdapterListProductType1 extends RecyclerView.Adapter<AdapterListPro
             super(itemView);
             itemProductType1 = itemView.findViewById(R.id.item_product_type_1);
             imageProductType1 = (ImageButton) itemView.findViewById(R.id.image_product_type_1);
-            nameProduct = (TextView) itemView.findViewById(R.id.nameProduct);
-            numberLike = (TextView) itemView.findViewById(R.id.numberLike);
-            numbeComment = (TextView) itemView.findViewById(R.id.numberComment);
-            price = (TextView) itemView.findViewById(R.id.priceProduct);
+            nameProduct = (TextView) itemView.findViewById(R.id.name_product_type_1);
+            numberLike = (TextView) itemView.findViewById(R.id.number_like_product_type_1   );
+            numbeComment = (TextView) itemView.findViewById(R.id.number_comment_product_type_1);
+            price = (TextView) itemView.findViewById(R.id.price_product_type_1);
 
             itemProductType1.setOnClickListener(new View.OnClickListener() {
                 @Override

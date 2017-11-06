@@ -15,7 +15,7 @@ public class PresentationProduct implements IPresentationProduct {
     @Override
     public List<Product> getListProducts() {
         String jsonData = "";
-        String link = "http://192.168.1.2:1337/api/get_list_products";
+        String link = "http://192.168.1.251:1337/api/get_list_products";
         List<Product> lstProducts = new ArrayList<>();
 
         LoadData loadData = new LoadData(link);
