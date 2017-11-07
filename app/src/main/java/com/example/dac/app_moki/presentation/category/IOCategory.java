@@ -14,7 +14,7 @@ import java.util.List;
  */
 
 public class IOCategory {
-    public static List<Category> getListCategory(String jsonData){
+    public List<Category> getListCategory(String jsonData){
         List<Category> lstCategory = new ArrayList<>();
 
         try {

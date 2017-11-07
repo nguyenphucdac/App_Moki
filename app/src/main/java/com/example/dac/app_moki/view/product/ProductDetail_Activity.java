@@ -12,12 +12,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.ecloud.pulltozoomview.PullToZoomScrollViewEx;
 import com.example.dac.app_moki.R;
+import com.example.dac.app_moki.model.object.Product;
+import com.example.dac.app_moki.presentation.product.PresentationProduct;
 import com.example.dac.app_moki.view.adapter.AdapterProductComment;
 import com.example.dac.app_moki.view.user.UserInfo_Activity;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +46,6 @@ public class ProductDetail_Activity extends AppCompatActivity {
 
     private void addControls() {
         btnBack = (ImageButton) findViewById(R.id.product_detail_btn_back);
-
         loadViewForCode();
         scrollView = (PullToZoomScrollViewEx) findViewById(R.id.scroll_view);
 
@@ -53,7 +57,7 @@ public class ProductDetail_Activity extends AppCompatActivity {
         scrollView.setHeaderLayoutParams(localObject);
 
         List<String> data = new ArrayList<>();
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 4; i++) {
             data.add("name " + i);
         }
         recyclerViewListComment = (RecyclerView) findViewById(R.id.recycle_product_detail_comment);
@@ -97,11 +101,57 @@ public class ProductDetail_Activity extends AppCompatActivity {
     }
 
     private void loadViewForCode() {
+        Intent myIntent = getIntent();
+        String productId = myIntent.getStringExtra("productId");
+
         PullToZoomScrollViewEx scrollView = (PullToZoomScrollViewEx) findViewById(R.id.scroll_view);
         View zoomView = LayoutInflater.from(this).inflate(R.layout.product_detail_zoom_image, null, false);
         View contentView = LayoutInflater.from(this).inflate(R.layout.product_detail_content, null, false);
-
         View userInfo = contentView.findViewById(R.id.view_user_info);
+
+        PresentationProduct presentationProduct = new PresentationProduct();
+        Product product = presentationProduct.getProduct(Integer.parseInt(productId));
+
+        TextView nameProduct = (TextView) findViewById(R.id.name_product_detail);
+        ImageView imageProduct = (ImageView) zoomView.findViewById(R.id.product_detail_image);
+        TextView txtStatusProduct = (TextView) contentView.findViewById(R.id.status_product);
+        TextView decription = (TextView) contentView.findViewById(R.id.decription_product_detail);
+        TextView nameCategory = (TextView) contentView.findViewById(R.id.name_category);
+        TextView nameBrand = (TextView) contentView.findViewById(R.id.name_brand);
+        TextView stateProduct = (TextView) contentView.findViewById(R.id.state_product_detail);
+        TextView shipFrom = (TextView) contentView.findViewById(R.id.ship_from);
+        TextView price = (TextView) findViewById(R.id.price_product_detail);
+
+
+        View avatarSeller = contentView.findViewById(R.id.avatarSeller_product_detail);
+        TextView shopName = (TextView) contentView.findViewById(R.id.shop_name_product_detail);
+        TextView scoreList = (TextView) contentView.findViewById(R.id.score_list);
+
+        if(product.getSeller().getImage() != null){
+            Picasso.with(zoomView.getContext()).load(product.getSeller().getImage()).into((ImageView) avatarSeller);
+        }
+        else {
+            Picasso.with(zoomView.getContext()).load(R.drawable.unknown_user).into((ImageView) avatarSeller);
+        }
+
+        shopName.setText(product.getSeller().getNameShop());
+        scoreList.setText("Điểm " + product.getSeller().getScore() + " sản phẩm " + product.getSeller().getNumberProduct());
+        nameProduct.setText(product.getName());
+        decription.setText(product.getDescription());
+        txtStatusProduct.setText(product.getNumberLike() + " thích và " + product.getNumberComment() + " bình luận");
+        nameBrand.setText(product.getBrand());
+        stateProduct.setText(product.getCodition());
+        shipFrom.setText(product.getShipFrom());
+        price.setText(product.getPrice() + " VNĐ");
+
+        if(product.getImageOnList(0) != null){
+            Picasso.with(zoomView.getContext()).load(product.getImageOnList(0)).into(imageProduct);
+        }
+        else {
+            Picasso.with(zoomView.getContext()).load(R.drawable.no_image).into(imageProduct);
+        }
+
+
         userInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

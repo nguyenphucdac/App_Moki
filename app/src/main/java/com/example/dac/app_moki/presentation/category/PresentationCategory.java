@@ -1,5 +1,6 @@
 package com.example.dac.app_moki.presentation.category;
 
+import com.example.dac.app_moki.model.nesworks.Host;
 import com.example.dac.app_moki.model.nesworks.LoadData;
 import com.example.dac.app_moki.model.object.Category;
 
@@ -15,7 +16,7 @@ public class PresentationCategory implements IPresentationCategory {
     @Override
     public List<Category> getListCategories() {
         String jsonData = "";
-        String link = "http://192.168.1.2:1337/api/get_categories";
+        String link = "http://"+ Host.getHost()+"/api/get_categories";
         List<Category> lstCategories = new ArrayList<>();
 
         LoadData loadData = new LoadData(link);
@@ -23,7 +24,8 @@ public class PresentationCategory implements IPresentationCategory {
 
         try {
             jsonData = loadData.get();
-            lstCategories = IOCategory.getListCategory(jsonData);
+            IOCategory ioCategory = new IOCategory();
+            lstCategories = ioCategory.getListCategory(jsonData);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {

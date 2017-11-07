@@ -1,9 +1,11 @@
 package com.example.dac.app_moki.presentation.product;
 
+import com.example.dac.app_moki.model.nesworks.Host;
 import com.example.dac.app_moki.model.nesworks.LoadData;
 import com.example.dac.app_moki.model.object.Product;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -11,19 +13,22 @@ import java.util.concurrent.ExecutionException;
  * Created by Dac on 11/6/2017.
  */
 
-public class PresentationProduct implements IPresentationProduct {
-    @Override
-    public List<Product> getListProducts() {
+public class PresentationProduct {
+    public List<Product> getListProducts(int category) {
         String jsonData = "";
-        String link = "http://192.168.1.251:1337/api/get_list_products";
+        String link = "http://"+ Host.getHost()+"/api/get_list_products?category_id=" + category;
+        HashMap<String,String> lstProps = new HashMap<>();
         List<Product> lstProducts = new ArrayList<>();
+
+        lstProps.put("category_id", String.valueOf(category));
 
         LoadData loadData = new LoadData(link);
         loadData.execute();
 
         try {
             jsonData = loadData.get();
-            lstProducts = IOProduct.getListProducts(jsonData);
+            IOProduct ioProduct = new IOProduct();
+            lstProducts = ioProduct.getListProducts(jsonData);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -31,5 +36,26 @@ public class PresentationProduct implements IPresentationProduct {
         }
 
         return lstProducts;
+    }
+    public Product getProduct(int id){
+        String jsonData = "";
+        String link = "http://"+ Host.getHost()+"/api/get_products?id="+ id;
+        Product product = new Product();
+
+        LoadData loadData = new LoadData(link);
+        loadData.execute();
+
+        try {
+            jsonData = loadData.get();
+            IOProduct ioProduct = new IOProduct();
+            product = ioProduct.getProduct(jsonData);
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        return product;
     }
 }

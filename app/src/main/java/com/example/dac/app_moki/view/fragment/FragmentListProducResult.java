@@ -36,7 +36,7 @@ public class FragmentListProducResult extends Fragment {
         View view = inflater.inflate(R.layout.home_list_product_fragment, container, false);
 
         PresentationProduct presentationProduct = new PresentationProduct();
-        List<Product> lstProduct = presentationProduct.getListProducts();
+        List<Product> lstProduct = presentationProduct.getListProducts(0);
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recycle_home_list_product);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));

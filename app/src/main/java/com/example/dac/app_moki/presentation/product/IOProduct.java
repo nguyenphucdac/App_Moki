@@ -7,7 +7,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +15,7 @@ import java.util.List;
  */
 
 public class IOProduct {
-    public static List<Product> getListProducts(String jsonData){
+    public List<Product> getListProducts(String jsonData){
         List<Product> lstProducts = new ArrayList<>();
 
         try {
@@ -30,7 +29,6 @@ public class IOProduct {
             for(int i = 0 ; i < arrProduct.length(); i++){
                 JSONObject itemProduct = arrProduct.getJSONObject(i);
                 Product product = new Product();
-                SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
                 product.setId(Integer.parseInt(itemProduct.getString("id")));
                 product.setName(itemProduct.getString("name"));
@@ -72,4 +70,60 @@ public class IOProduct {
 
         return lstProducts;
     }
+
+    public Product getProduct(String jsonData){
+        Product product = new Product();
+        if(jsonData == null || jsonData == ""){
+            return product;
+        }
+        try {
+            JSONObject jsonObject = new JSONObject(jsonData);
+            JSONArray jsonArray = jsonObject.getJSONArray("data");
+            JSONObject itemProduct = jsonArray.getJSONObject(0);
+
+            product.setId(Integer.parseInt(itemProduct.getString("id")));
+            product.setName(itemProduct.getString("name"));
+            product.setPrice(Integer.parseInt(itemProduct.getString("price")));
+            product.setPricePercen(Integer.parseInt(itemProduct.getString("price_percent")));
+            product.setBrand(itemProduct.getString("brand"));
+            product.setDescription(itemProduct.getString("described"));
+            product.setFromDate(itemProduct.getString("created"));
+            product.setNumberLike(Integer.parseInt(itemProduct.getString("like")));
+            product.setNumberComment(Integer.parseInt(itemProduct.getString("comment")));
+            product.setLike(Boolean.parseBoolean(itemProduct.getString("is_liked")));
+            product.setBlocked(Boolean.parseBoolean(itemProduct.getString("is_blocked")));
+            product.setCanEdit(Boolean.parseBoolean(itemProduct.getString("can_edit")));
+            product.setBanned(Boolean.parseBoolean(itemProduct.getString("banned")));
+
+            product.setShipFrom(String.valueOf(itemProduct.getString("ships_from")));
+
+            JSONArray arrSize = itemProduct.getJSONArray("additionals");
+            product.setSize(String.valueOf( (arrSize.getJSONObject(0)).getString("value")));
+            product.setWeigh(String.valueOf( (arrSize.getJSONObject(1)).getString("value")));
+
+            JSONArray arrImage = itemProduct.getJSONArray("image");
+            List<String> lstImages = new ArrayList<>();
+
+            for(int j = 0; j < arrImage.length(); j ++){
+                JSONObject itemImage = arrImage.getJSONObject(j);
+                lstImages.add(itemImage.getString("url"));
+            }
+
+            product.setImage(lstImages);
+
+            JSONObject objectSeller = itemProduct.getJSONObject("seller");
+            Seller seller = new Seller();
+            seller.setId(Integer.parseInt(objectSeller.getString("id")));
+            seller.setNameShop(String.valueOf(objectSeller.getString("name")));
+            seller.setImage(String.valueOf(objectSeller.getString("avatar")));
+            seller.setScore(Integer.parseInt(objectSeller.getString("score")));
+            seller.setNumberProduct(Integer.parseInt(objectSeller.getString("listing")));
+
+            product.setSeller(seller);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return product;
+    }
+
 }

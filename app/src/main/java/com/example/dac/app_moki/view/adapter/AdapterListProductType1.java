@@ -49,6 +49,23 @@ public class AdapterListProductType1 extends RecyclerView.Adapter<AdapterListPro
         else {
             Picasso.with(context).load(R.drawable.no_image).into(holder.imageProductType1);
         }
+
+        holder.itemProductType1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(context.getApplicationContext(), ProductDetail_Activity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+                context.getApplicationContext().startActivity(intent);
+            }
+        });
+        holder.imageProductType1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(context.getApplicationContext(), ProductDetail_Activity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+                context.getApplicationContext().startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -74,22 +91,6 @@ public class AdapterListProductType1 extends RecyclerView.Adapter<AdapterListPro
             numbeComment = (TextView) itemView.findViewById(R.id.number_comment_product_type_1);
             price = (TextView) itemView.findViewById(R.id.price_product_type_1);
 
-            itemProductType1.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent=new Intent(context.getApplicationContext(), ProductDetail_Activity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
-                    context.getApplicationContext().startActivity(intent);
-                }
-            });
-            imageProductType1.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent=new Intent(context.getApplicationContext(), ProductDetail_Activity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
-                    context.getApplicationContext().startActivity(intent);
-                }
-            });
         }
     }
 }

@@ -15,8 +15,9 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.util.HashMap;
-import java.util.List;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by Dac on 11/4/2017.
@@ -24,13 +25,13 @@ import java.util.Map;
 
 public class LoadData extends AsyncTask<String, Void, String>{
     String link= "";
-    List<HashMap<String, String>> lstProps;
+    HashMap<String, String> lstProps;
     String data ="";
 
     public LoadData(String link){
         this.link = link;
     }
-    public LoadData(String link, List<HashMap<String, String>> lstProps){
+    public LoadData(String link,HashMap<String, String> lstProps){
         this.link = link;
         this.lstProps = lstProps;
 
@@ -57,6 +58,7 @@ public class LoadData extends AsyncTask<String, Void, String>{
         return data;
     }
     private String getDataByMethodGet(HttpURLConnection httpURLConnection){
+        System.out.println("method get");
         try {
             httpURLConnection.connect();
             InputStream inputStream = httpURLConnection.getInputStream();
@@ -66,6 +68,7 @@ public class LoadData extends AsyncTask<String, Void, String>{
             String lineData = null;
             StringBuilder dataByGet = new StringBuilder();
             while ((lineData = bufferedReader.readLine()) != null){
+                System.out.println(lineData);
                 dataByGet.append(lineData);
             }
             bufferedReader.close();
@@ -81,6 +84,7 @@ public class LoadData extends AsyncTask<String, Void, String>{
     }
 
     private String getDataByMethodPost(HttpURLConnection httpURLConnection){
+        System.out.println("method post");
         String key= "";
         String value = "";
         String dataByPost = "";
@@ -93,14 +97,27 @@ public class LoadData extends AsyncTask<String, Void, String>{
 
             int count = lstProps.size();
 
-            for(int i = 0; i < count; i++){
-                for(Map.Entry<String, String> item : lstProps.get(i).entrySet()){
-                    key = item.getKey();
-                    value = item.getValue();
-                }
+//            for(int i = 0; i < count; i++){
+//                for(Map.Entry<String, String> item : lstProps.get(i).entrySet()){
+//                    key = item.getKey();
+//                    value = item.getValue();
+//                }
+//                builder.appendQueryParameter(key, value);
+//            }
+
+            // Lay mot tap hop cac entry
+            Set set = lstProps.entrySet();
+            // Lay mot iterator
+            Iterator i = set.iterator();
+            // Hien thi cac phan tu
+            while(i.hasNext()) {
+                Map.Entry me = (Map.Entry)i.next();
+                System.out.print(me.getKey() + ": ");
+                System.out.println(me.getValue());
                 builder.appendQueryParameter(key, value);
             }
             String query = builder.build().getEncodedQuery();
+            System.out.println(builder);
 
             OutputStream outputStream = httpURLConnection.getOutputStream();
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream);

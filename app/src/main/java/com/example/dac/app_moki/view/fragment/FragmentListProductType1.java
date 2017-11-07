@@ -32,13 +32,19 @@ public class FragmentListProductType1 extends Fragment {
     private View bottomViewButtonSale;
     private View slideHome;
 
+    private int cateogry = 0;
+
+    public FragmentListProductType1(int cateogry){
+        this.cateogry = cateogry;
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.home_list_product_fragment, container, false);
 
         PresentationProduct presentationProduct = new PresentationProduct();
-        List<Product> lstProduct = presentationProduct.getListProducts();
+        List<Product> lstProduct = presentationProduct.getListProducts(cateogry);
 
         toolBar_header = getActivity().findViewById(R.id.toolbar_header);
         slideHome = getActivity().findViewById(R.id.slide_home);

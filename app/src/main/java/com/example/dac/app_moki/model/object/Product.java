@@ -31,10 +31,46 @@ public class Product {
     private int categoryId;
     private float priceNew;
     private String priceType;
-    private int coditionId;
     private Date modified;
     private List<String> lstImage;
     private Seller seller;
+    private String codition;
+    private String shipFrom;
+    private String size;
+    private String weigh;
+
+    public String getShipFrom() {
+        return shipFrom;
+    }
+
+    public void setShipFrom(String shipFrom) {
+        this.shipFrom = shipFrom;
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    public String getWeigh() {
+        return weigh;
+    }
+
+    public void setWeigh(String weigh) {
+        this.weigh = weigh;
+    }
+
+    public String getCodition() {
+        return codition;
+    }
+
+    public void setCodition(String codition) {
+        this.codition = codition;
+    }
+
 
     public Seller getSeller() {
         return seller;
@@ -52,7 +88,7 @@ public class Product {
         this.lstImage = lstImage;
     }
     public String getImageOnList(int index){
-        if(lstImage.size() <=0 ){
+        if(lstImage == null || lstImage.size() <=0 ){
             return null;
         }
         return lstImage.get(index);
@@ -243,13 +279,6 @@ public class Product {
         this.priceType = priceType;
     }
 
-    public int getCoditionId() {
-        return coditionId;
-    }
-
-    public void setCoditionId(int coditionId) {
-        this.coditionId = coditionId;
-    }
 
     public Date getModified() {
         return modified;

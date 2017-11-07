@@ -9,7 +9,16 @@ import java.util.Date;
 public class Comment {
     private int id;
     private String content;
-    private Date fromDate;
+    private String fromDate;
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public int getId() {
         return id;
@@ -27,11 +36,11 @@ public class Comment {
         this.content = content;
     }
 
-    public Date getFromDate() {
+    public String getFromDate() {
         return fromDate;
     }
 
-    public void setFromDate(Date fromDate) {
+    public void setFromDate(String fromDate) {
         this.fromDate = fromDate;
     }
 

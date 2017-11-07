@@ -43,7 +43,7 @@ public class Login_Activity extends AppCompatActivity {
         btn_skip = (Button) findViewById(R.id.btn_skip);
         btn_forgot = (Button) findViewById(R.id.btn_forgot);
 
-        txt_phone = (EditText) findViewById(R.id.txt_phone);
+        txt_phone = (EditText) findViewById(R.id.txt_Phone);
         txt_password = (EditText) findViewById(R.id.txt_password);
     }
 }

@@ -32,6 +32,12 @@ public class FragmentListProductType2 extends Fragment {
     private View toolBar_header;
     private View bottomViewButtonSale;
     private View slideHome;
+    private int category;
+
+    public FragmentListProductType2(int category){
+        this.category = category;
+    }
+
 
     @Nullable
     @Override
@@ -43,7 +49,7 @@ public class FragmentListProductType2 extends Fragment {
         bottomViewButtonSale = getActivity().findViewById(R.id.bottom_buttonsale);
         final Animation slide_down = AnimationUtils.loadAnimation(getActivity().getApplicationContext(),R.anim.slide_down);
         PresentationProduct presentationProduct = new PresentationProduct();
-        List<Product> lstProduct = presentationProduct.getListProducts();
+        List<Product> lstProduct = presentationProduct.getListProducts(category);
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recycle_home_list_product);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));

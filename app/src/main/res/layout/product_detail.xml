@@ -12,7 +12,7 @@
        >
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="45dp"
         android:orientation="horizontal"
         >
         <ImageButton
@@ -25,8 +25,10 @@
             android:onClick="true"
             android:background="#fff"
             android:scaleType="fitXY"
+            android:layout_gravity="center_vertical"
             />
         <TextView
+            android:id="@+id/name_product_detail"
             android:layout_width="0dp"
             android:layout_weight="3"
             android:layout_height="match_parent"
@@ -41,6 +43,7 @@
             android:src="@drawable/icon_more"
             android:background="#fff"
             android:scaleType="fitXY"
+            android:layout_gravity="center_vertical"
             />
     </LinearLayout>
     <LinearLayout
@@ -65,6 +68,7 @@
         >
 
         <TextView
+            android:id="@+id/price_product_detail"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"

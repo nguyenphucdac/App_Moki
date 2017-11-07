@@ -34,7 +34,7 @@ public class ResultSearch_Activity extends AppCompatActivity {
         btnBack = (ImageButton) findViewById(R.id.btnBack);
         resultSearch = (RecyclerView) findViewById(R.id.recycle_result_search);
         PresentationProduct presentationProduct = new PresentationProduct();
-        List<Product> lstProduct = presentationProduct.getListProducts();
+        List<Product> lstProduct = presentationProduct.getListProducts(0);
 
         resultSearch = (RecyclerView)findViewById(R.id.recycle_result_search);
         resultSearch.setLayoutManager(new GridLayoutManager(ResultSearch_Activity.this, 2));
