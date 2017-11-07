@@ -36,11 +36,10 @@ public class IOComment {
                 JSONObject jsonUser = objectItem.getJSONObject("poster");
                 User user = new User();
                 user.setId(Integer.parseInt(jsonUser.getString("id")));
-                user.setUserName(String.valueOf(jsonObject.getString("name")));
-                user.setImage(String.valueOf(jsonObject.getString("avatar")));
+                user.setUserName(String.valueOf(jsonUser.getString("name")));
+                user.setImage(String.valueOf(jsonUser.getString("avatar")));
 
                 comment.setUser(user);
-
                 lstComment.add(comment);
 
             }

@@ -2,15 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="@color/backround_color"
     >
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1.5"
+        android:layout_height="20dp"
         android:orientation="horizontal"
         android:layout_marginBottom="5dp"
         >
@@ -19,6 +18,7 @@
             android:layout_weight="1"
             android:layout_height="match_parent"></View>
         <TextView
+            android:id="@+id/user_name_comment"
             android:layout_width="0dp"
             android:layout_weight="5"
             android:layout_height="match_parent"
@@ -30,11 +30,12 @@
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="5"
+        android:layout_height="wrap_content"
+        android:minHeight="80dp"
         android:orientation="horizontal"
         >
         <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/avatar_comment"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="50dp"
@@ -48,35 +49,39 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_weight="5"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:background="#fff"
             >
             <TextView
+                android:id="@+id/content_comment"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="2"
+                android:layout_height="wrap_content"
+                android:minHeight="50dp"
                 android:text="nội dung comment"
                 android:gravity="center_vertical"
                 android:paddingLeft="10dp"
+                android:textSize="12sp"
                 />
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_height="20dp"
                 >
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
                     android:src="@drawable/icon_clock"
                     android:layout_marginLeft="10dp"
+                    android:layout_gravity="center_vertical"
                     />
                 <TextView
+                    android:id="@+id/from_date_comment"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:text="Hôm qua"
                     android:textSize="12sp"
                     android:layout_marginLeft="5dp"
+                    android:layout_gravity="center_vertical"
                     />
             </LinearLayout>
         </LinearLayout>

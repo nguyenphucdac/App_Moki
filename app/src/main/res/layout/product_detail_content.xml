@@ -415,7 +415,8 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycle_product_detail_comment"
             android:layout_width="match_parent"
-            android:layout_height="400dp">
+            android:layout_height="wrap_content"
+            >
 
         </android.support.v7.widget.RecyclerView>
 
@@ -433,7 +434,7 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
                 android:background="@layout/login_button_background"
-                android:text="Trở thành người bình luận đầu tiên"
+                android:text="Xem và viết bình luận"
                 android:textAllCaps="false"
                 android:textColor="#fff"
                 android:textSize="13sp" />

@@ -18,13 +18,14 @@ import android.widget.TextView;
 
 import com.ecloud.pulltozoomview.PullToZoomScrollViewEx;
 import com.example.dac.app_moki.R;
+import com.example.dac.app_moki.model.object.Comment;
 import com.example.dac.app_moki.model.object.Product;
+import com.example.dac.app_moki.presentation.comment.PresentationComment;
 import com.example.dac.app_moki.presentation.product.PresentationProduct;
 import com.example.dac.app_moki.view.adapter.AdapterProductComment;
 import com.example.dac.app_moki.view.user.UserInfo_Activity;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -35,6 +36,10 @@ public class ProductDetail_Activity extends AppCompatActivity {
     private PullToZoomScrollViewEx scrollView;
     private RecyclerView recyclerViewListComment;
     private Button btnToPageComment;
+    private Intent myIntent;
+    private PresentationProduct presentationProduct;
+    private Product product;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,18 +61,6 @@ public class ProductDetail_Activity extends AppCompatActivity {
         LinearLayout.LayoutParams localObject = new LinearLayout.LayoutParams(mScreenWidth, (int) (9.0F * (mScreenWidth / 16.0F)));
         scrollView.setHeaderLayoutParams(localObject);
 
-        List<String> data = new ArrayList<>();
-        for (int i = 0; i < 4; i++) {
-            data.add("name " + i);
-        }
-        recyclerViewListComment = (RecyclerView) findViewById(R.id.recycle_product_detail_comment);
-        recyclerViewListComment.setLayoutManager(new LinearLayoutManager(this));
-        AdapterProductComment adapterProductComment = new AdapterProductComment(this, data);
-        recyclerViewListComment.setAdapter(adapterProductComment);
-        adapterProductComment.notifyDataSetChanged();
-
-        btnToPageComment = (Button) findViewById(R.id.btnToPageComment);
-
     }
 
     private void addEvents() {
@@ -81,6 +74,7 @@ public class ProductDetail_Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ProductDetail_Activity.this, ProductCommentPage_Activity.class);
+                intent.putExtra("productId", (product.getId()+"").toString());
                 startActivity(intent);
             }
         });
@@ -101,16 +95,17 @@ public class ProductDetail_Activity extends AppCompatActivity {
     }
 
     private void loadViewForCode() {
-        Intent myIntent = getIntent();
+        myIntent = getIntent();
         String productId = myIntent.getStringExtra("productId");
+        presentationProduct = new PresentationProduct();
+        product = presentationProduct.getProduct(Integer.parseInt(productId));
 
         PullToZoomScrollViewEx scrollView = (PullToZoomScrollViewEx) findViewById(R.id.scroll_view);
         View zoomView = LayoutInflater.from(this).inflate(R.layout.product_detail_zoom_image, null, false);
         View contentView = LayoutInflater.from(this).inflate(R.layout.product_detail_content, null, false);
         View userInfo = contentView.findViewById(R.id.view_user_info);
 
-        PresentationProduct presentationProduct = new PresentationProduct();
-        Product product = presentationProduct.getProduct(Integer.parseInt(productId));
+        contentView.invalidate();
 
         TextView nameProduct = (TextView) findViewById(R.id.name_product_detail);
         ImageView imageProduct = (ImageView) zoomView.findViewById(R.id.product_detail_image);
@@ -159,6 +154,18 @@ public class ProductDetail_Activity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        PresentationComment presentationComment = new PresentationComment();
+        List<Comment> lstComment = presentationComment.getListComment(Integer.parseInt(productId));
+
+        recyclerViewListComment = (RecyclerView) contentView.findViewById(R.id.recycle_product_detail_comment);
+        recyclerViewListComment.setLayoutManager(new LinearLayoutManager(this));
+        AdapterProductComment adapterProductComment = new AdapterProductComment(this, lstComment);
+        recyclerViewListComment.setAdapter(adapterProductComment);
+        adapterProductComment.notifyDataSetChanged();
+
+        recyclerViewListComment.setMinimumHeight(lstComment.size()*320);
+        btnToPageComment = (Button) contentView.findViewById(R.id.btnToPageComment);
 
         scrollView.setZoomView(zoomView);
         scrollView.setScrollContentView(contentView);

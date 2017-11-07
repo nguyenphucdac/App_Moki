@@ -13,9 +13,9 @@ import java.util.concurrent.ExecutionException;
  */
 
 public class PresentationComment {
-    public List<Comment> getListComment (){
+    public List<Comment> getListComment (int productId){
         String jsonData = "";
-        String link = "http://192.168.1.2:1337/api/get_comment_products";
+        String link = "http://"+ Host.getHost()+"/api/get_comment_products?productId=" + productId;
         List<Comment> lstComment = new ArrayList<>();
 
         LoadData loadData = new LoadData(link);
@@ -25,6 +25,7 @@ public class PresentationComment {
             jsonData = loadData.get();
             IOComment ioComment = new IOComment();
             lstComment = ioComment.getListComment(jsonData);
+
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
