@@ -11,21 +11,22 @@ import android.widget.Button;
 import com.example.dac.app_moki.R;
 
 /**
- * Created by Dac on 10/21/2017.
+ * Created by Dac on 11/8/2017.
  */
-public class FragmentDialogExit extends android.app.DialogFragment {
-    public static FragmentDialogExit newInstance() {
-        FragmentDialogExit frag = new FragmentDialogExit();
+
+public class FragmentDialogError extends android.app.DialogFragment {
+    public static FragmentDialogError newInstance() {
+        FragmentDialogError frag = new FragmentDialogError();
         Bundle args = new Bundle();
         frag.setArguments(args);
         return frag;
     }
     @Override
-    public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.home_fragment_dialog_exit, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.login_dialog_erorr, container, false);
         setStyle(STYLE_NO_TITLE, 0);
-        Button btnCancle = (Button) rootView.findViewById(R.id.btnCancle);
-        Button exitApp = (Button) rootView.findViewById(R.id.btnOK);
+
+        Button btnCancle = (Button) rootView.findViewById(R.id.btn_close_dialog);
         btnCancle.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -33,12 +34,7 @@ public class FragmentDialogExit extends android.app.DialogFragment {
                 dismiss();
             }
         });
-        exitApp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                System.exit(0);
-            }
-        });
+
         return rootView;
     }
     @Override

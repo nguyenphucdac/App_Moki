@@ -52,7 +52,7 @@ public class SearchCategories_Activity extends AppCompatActivity {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerViewCategories.setLayoutManager(layoutManager);
 
-        AdapterCategories adapterCategories = new AdapterCategories(this, lstCategories);
+        AdapterCategories adapterCategories = new AdapterCategories(this, lstCategories, recyclerViewCategories);
         recyclerViewCategories.setAdapter(adapterCategories);
         adapterCategories.notifyDataSetChanged();
     }

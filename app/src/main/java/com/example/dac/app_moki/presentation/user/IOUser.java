@@ -11,11 +11,12 @@ import org.json.JSONObject;
 
 public class IOUser {
     public User getUser(String jsonData){
-        User user = new User();
+        User user = null;
         try {
             JSONObject jsonObject = new JSONObject(jsonData);
             JSONObject userData = jsonObject.getJSONObject("data");
 
+            user = new User();
             user.setId(Integer.parseInt(userData.getString("id")));
             user.setUserName(String.valueOf(userData.getString("username")));
             user.setImage(String.valueOf(userData.getString("avartar")));

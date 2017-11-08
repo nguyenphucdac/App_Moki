@@ -12,8 +12,7 @@ import java.util.concurrent.ExecutionException;
  * Created by Dac on 11/4/2017.
  */
 
-public class PresentationCategory implements IPresentationCategory {
-    @Override
+public class PresentationCategory{
     public List<Category> getListCategories() {
         String jsonData = "";
         String link = "http://"+ Host.getHost()+"/api/get_categories";
@@ -33,4 +32,23 @@ public class PresentationCategory implements IPresentationCategory {
         }
         return lstCategories;
     }
+   public List<Category> getChildeCategories(int categoryId){
+       String jsonData = "";
+       String link = "http://"+ Host.getHost()+"/api/get_categories";
+       List<Category> lstCategories = new ArrayList<>();
+
+       LoadData loadData = new LoadData(link);
+       loadData.execute();
+
+       try {
+           jsonData = loadData.get();
+           IOCategory ioCategory = new IOCategory();
+           lstCategories = ioCategory.getChildeCatetory(jsonData, categoryId);
+       } catch (InterruptedException e) {
+           e.printStackTrace();
+       } catch (ExecutionException e) {
+           e.printStackTrace();
+       }
+       return lstCategories;
+   }
 }

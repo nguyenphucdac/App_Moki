@@ -1,5 +1,6 @@
 package com.example.dac.app_moki.view.search;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -31,10 +32,14 @@ public class ResultSearch_Activity extends AppCompatActivity {
     }
 
     private void addCotnrols() {
+        Intent myIntent = getIntent();
+        String categoryId = myIntent.getStringExtra("cateroy_id");
+        String keyword = myIntent.getStringExtra("keyword");
+
         btnBack = (ImageButton) findViewById(R.id.btnBack);
         resultSearch = (RecyclerView) findViewById(R.id.recycle_result_search);
         PresentationProduct presentationProduct = new PresentationProduct();
-        List<Product> lstProduct = presentationProduct.getListProducts(0);
+        List<Product> lstProduct = presentationProduct.getSerachResult(keyword, categoryId);
 
         resultSearch = (RecyclerView)findViewById(R.id.recycle_result_search);
         resultSearch.setLayoutManager(new GridLayoutManager(ResultSearch_Activity.this, 2));

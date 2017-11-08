@@ -26,11 +26,13 @@ import android.widget.Toast;
 import android.widget.ViewAnimator;
 
 import com.example.dac.app_moki.R;
+import com.example.dac.app_moki.model.object.User;
 import com.example.dac.app_moki.view.adapter.AdapterViewPagerHome;
 import com.example.dac.app_moki.view.fragment.FragmentDialogAlert;
 import com.example.dac.app_moki.view.fragment.FragmentDialogExit;
 import com.example.dac.app_moki.view.fragment.FragmentDialogFilter;
 import com.example.dac.app_moki.view.fragment.FragmentDialogMessage;
+import com.example.dac.app_moki.view.fragment.FragmentMenu;
 import com.example.dac.app_moki.view.product.SaleCamera_Activity;
 import com.example.dac.app_moki.view.search.Search_Activity;
 import com.tekle.oss.android.animation.AnimationFactory;
@@ -122,10 +124,28 @@ public class Home_Activity extends AppCompatActivity {
 
 
     private void addControls() {
+        Intent myInten = getIntent();
+        User user = (User) myInten.getSerializableExtra("user");
+
+//        FragmentManager fragmentManager = getFragmentManager();
+//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//
+//        FragmentMenu fragmentMenu = new FragmentMenu();
+//        fragmentTransaction.add(R.id.menu_view, fragmentMenu);
+//        fragmentTransaction.commit();
+
+        android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+        android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        FragmentMenu fragmentMenu = new FragmentMenu();
+
+        fragmentTransaction.add(R.id.menu_view, fragmentMenu);
+        fragmentTransaction.commit();
+
+
+
         homeHeader = (Toolbar) findViewById(R.id.home_header);
         homeHeader.setTitle("");
         toolBar = findViewById(R.id.toolbar_header);
-        //toolBar.setVisibility(View.GONE);
 
         setSupportActionBar(homeHeader);
         setSizeItemHeader();

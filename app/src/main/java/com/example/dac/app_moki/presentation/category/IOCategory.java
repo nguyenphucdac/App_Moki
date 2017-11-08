@@ -33,6 +33,7 @@ public class IOCategory {
                 category.setId(Integer.parseInt(itemCategory.getString("id")));
                 category.setName(itemCategory.getString("name"));
                 category.setDecription(itemCategory.getString("description"));
+                category.setHadChilde(true);
 
                 lstCategory.add(category);
             }
@@ -40,6 +41,40 @@ public class IOCategory {
             e.printStackTrace();
         }
 
+        return lstCategory;
+    }
+    public List<Category> getChildeCatetory(String jsonData, int categoryId){
+        List<Category> lstCategory = new ArrayList<>();
+
+        try {
+            if(jsonData == null || jsonData ==""){
+                return lstCategory;
+            }
+
+            JSONArray arrCategories = new JSONArray(jsonData);
+
+            for(int i = 0 ; i < arrCategories.length(); i++){
+                JSONObject itemCategory = arrCategories.getJSONObject(i);
+                if(Integer.parseInt(itemCategory.getString("id")) == categoryId){
+                    System.out.println(itemCategory.getString("id"));
+                    JSONArray arrChildren = itemCategory.getJSONArray("children");
+                    for (int j = 0; j < arrChildren.length(); j++) {
+                        JSONObject itemChilde = arrChildren.getJSONObject(j);
+
+                        Category category = new Category();
+                        category.setId(Integer.parseInt(itemChilde.getString("id")));
+                        category.setName(itemChilde.getString("name"));
+                        category.setDecription(itemChilde.getString("description"));
+                        category.setParentId(categoryId);
+
+                        lstCategory.add(category);
+                    }
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        System.out.println("size lst categories in IO = " + lstCategory.size());
         return lstCategory;
     }
 }

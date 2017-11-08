@@ -1,10 +1,12 @@
 package com.example.dac.app_moki.model.object;
 
+import java.io.Serializable;
+
 /**
  * Created by Dac on 11/7/2017.
  */
 
-public class User {
+public class User implements Serializable {
     private int id;
     private String userName;
     private String token;

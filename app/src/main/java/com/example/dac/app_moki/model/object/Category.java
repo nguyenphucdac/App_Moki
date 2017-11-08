@@ -9,6 +9,15 @@ public class Category {
     private String name;
     private String decription;
     private int parentId;
+    private boolean hadChilde;
+
+    public boolean isHadChilde() {
+        return hadChilde;
+    }
+
+    public void setHadChilde(boolean hadChilde) {
+        this.hadChilde = hadChilde;
+    }
 
     public int getId() {
         return id;
