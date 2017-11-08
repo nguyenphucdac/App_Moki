@@ -157,6 +157,7 @@ public class ProductDetail_Activity extends AppCompatActivity {
 
         PresentationComment presentationComment = new PresentationComment();
         List<Comment> lstComment = presentationComment.getListComment(Integer.parseInt(productId));
+        System.out.println("Số comment : " + lstComment.size());
 
         recyclerViewListComment = (RecyclerView) contentView.findViewById(R.id.recycle_product_detail_comment);
         recyclerViewListComment.setLayoutManager(new LinearLayoutManager(this));

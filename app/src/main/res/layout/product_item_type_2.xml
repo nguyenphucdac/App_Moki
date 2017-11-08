@@ -18,7 +18,7 @@
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_weight="1.5"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:background="#fff">
@@ -37,7 +37,7 @@
 
                 <TextView
                     android:id="@+id/nameSeller"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="User"
                     android:textColor="@color/red_button"

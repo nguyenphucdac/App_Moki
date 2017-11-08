@@ -88,4 +88,26 @@ public class PresentationProduct {
 
         return lstProducts;
     }
+    public List<Product> getListMyLike(String token){
+        String jsonData = "";
+        String link = "http://"+ Host.getHost()+"/api/get_my_likes?token="+ token;
+        List<Product> lstProduct = new ArrayList<>();
+
+        LoadData loadData = new LoadData(link);
+        loadData.execute();
+
+        try {
+            jsonData = loadData.get();
+            IOProduct ioProduct = new IOProduct();
+
+            lstProduct = ioProduct.getListMyLike(jsonData);
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        return lstProduct;
+    }
 }

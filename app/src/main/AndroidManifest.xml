@@ -22,7 +22,6 @@
         </activity>
         <activity android:name=".view.home.Home_Activity"
             android:screenOrientation="portrait"
-            android:noHistory="true"
             >
 
         </activity>

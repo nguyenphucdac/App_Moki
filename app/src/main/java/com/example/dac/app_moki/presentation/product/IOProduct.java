@@ -126,4 +126,47 @@ public class IOProduct {
         return product;
     }
 
+    public List<Product> getListMyLike(String jsonData){
+        List<Product> lstProducts = new ArrayList<>();
+
+        try {
+            if (jsonData == null || jsonData == "") {
+                return lstProducts;
+            }
+            JSONObject jsonObject = new JSONObject(jsonData);
+            JSONObject dataObject = jsonObject.getJSONObject("data");
+            JSONArray arrProduct = dataObject.getJSONArray("products");
+
+            for(int i = 0 ; i < arrProduct.length(); i++){
+                JSONObject itemProduct = arrProduct.getJSONObject(i);
+                Product product = new Product();
+
+                product.setId(Integer.parseInt(itemProduct.getString("id")));
+                product.setName(itemProduct.getString("name"));
+                product.setPrice(Integer.parseInt(itemProduct.getString("price")));
+                product.setPricePercen(Integer.parseInt(itemProduct.getString("price_percent")));
+                product.setBrand(itemProduct.getString("brand"));
+                product.setDescription(itemProduct.getString("described"));
+
+                product.setNumberLike(Integer.parseInt(itemProduct.getString("like")));
+                product.setNumberComment(Integer.parseInt(itemProduct.getString("comment")));
+
+                JSONArray arrImage = itemProduct.getJSONArray("image");
+                List<String> lstImages = new ArrayList<>();
+
+                for(int j = 0; j < arrImage.length(); j ++){
+                    JSONObject itemImage = arrImage.getJSONObject(j);
+                    lstImages.add(itemImage.getString("url"));
+                }
+
+                product.setImage(lstImages);
+                lstProducts.add(product);
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return lstProducts;
+    }
 }

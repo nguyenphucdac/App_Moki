@@ -62,6 +62,17 @@ public class Login_Activity extends AppCompatActivity {
     }
 
     private void addControls() {
+        Intent myIntent = getIntent();
+        String logined = myIntent.getStringExtra("logined");
+
+        if(logined == "true"){
+            FragmentDialogError fragmentDialogError = new FragmentDialogError();
+            FragmentManager fm = getFragmentManager();
+            fragmentDialogError = FragmentDialogError.newInstance();
+            fragmentDialogError.show(fm, "Sample Fragment");
+            System.out.println("popup sadfksdajfb");
+        }
+
         btn_login = (Button) findViewById(R.id.btn_login);
         btn_signup = (Button) findViewById(R.id.btn_signup);
         btn_skip = (Button) findViewById(R.id.btn_skip);

@@ -13,6 +13,11 @@ public class IOUser {
     public User getUser(String jsonData){
         User user = null;
         try {
+
+            if(jsonData == null || jsonData == ""){
+                return user;
+            }
+
             JSONObject jsonObject = new JSONObject(jsonData);
             JSONObject userData = jsonObject.getJSONObject("data");
 

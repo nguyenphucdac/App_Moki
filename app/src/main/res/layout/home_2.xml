@@ -23,7 +23,9 @@
                 app:logo="@drawable/logo_login"
                 app:navigationIcon="@drawable/icon_menu"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                app:theme="@style/menuItemColor" />
+                app:theme="@style/menuItemColor"
+                app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed|snap"
+                />
         </LinearLayout>
         <View
             android:layout_width="match_parent"

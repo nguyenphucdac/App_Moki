@@ -127,16 +127,9 @@ public class Home_Activity extends AppCompatActivity {
         Intent myInten = getIntent();
         User user = (User) myInten.getSerializableExtra("user");
 
-//        FragmentManager fragmentManager = getFragmentManager();
-//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//
-//        FragmentMenu fragmentMenu = new FragmentMenu();
-//        fragmentTransaction.add(R.id.menu_view, fragmentMenu);
-//        fragmentTransaction.commit();
-
         android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
         android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        FragmentMenu fragmentMenu = new FragmentMenu();
+        FragmentMenu fragmentMenu = new FragmentMenu(user);
 
         fragmentTransaction.add(R.id.menu_view, fragmentMenu);
         fragmentTransaction.commit();

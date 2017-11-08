@@ -92,6 +92,9 @@ public class FragmentListProductType2 extends Fragment {
                                     | AppBarLayout.LayoutParams.SCROLL_FLAG_SNAP);
 
                 }
+                if(currentAboveItem > 3){
+
+                }
             }
         });
 

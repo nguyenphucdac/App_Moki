@@ -15,7 +15,7 @@ import java.util.concurrent.ExecutionException;
 public class PresentationComment {
     public List<Comment> getListComment (int productId){
         String jsonData = "";
-        String link = "http://"+ Host.getHost()+"/api/get_comment_products?productId=" + productId;
+        String link = "http://"+ Host.getHost()+"/api/get_comment_products?product_id=" + productId;
         List<Comment> lstComment = new ArrayList<>();
 
         LoadData loadData = new LoadData(link);

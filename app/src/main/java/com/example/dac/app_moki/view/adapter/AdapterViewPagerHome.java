@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import com.example.dac.app_moki.model.object.Category;
 import com.example.dac.app_moki.presentation.category.PresentationCategory;
+import com.example.dac.app_moki.view.fragment.FragmentListProductType1;
 import com.example.dac.app_moki.view.fragment.FragmentListProductType2;
 
 import java.util.ArrayList;
@@ -26,7 +27,7 @@ public class AdapterViewPagerHome extends FragmentPagerAdapter {
             for(int i = 0 ; i < lstCategories.size(); i++){
                 lstTitle.add(lstCategories.get(i).getName());
                 //lstFragment.add(new FragmentListProductType1());
-                lstFragment.add(new FragmentListProductType2(lstCategories.get(i).getId()));
+                lstFragment.add(new FragmentListProductType1(lstCategories.get(i).getId()));
             }
         }
         else{

@@ -373,12 +373,13 @@
         </View>
     </LinearLayout>
 
-    <fragment
-        android:name="com.example.dac.app_moki.view.fragment.FragmentMenu"
-        android:id="@+id/menu_content"
+    <LinearLayout
+        android:id="@+id/menu_view"
         android:layout_width="850px"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         android:layout_gravity="start"
         >
-    </fragment>
+
+    </LinearLayout>
 </android.support.v4.widget.DrawerLayout>

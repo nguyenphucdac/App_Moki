@@ -13,6 +13,7 @@
         android:background="#fff"
         >
         <ImageView
+            android:id="@+id/image_product_my_like"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="80dp"
@@ -26,6 +27,7 @@
             android:orientation="vertical"
             >
             <TextView
+                android:id="@+id/name_product_my_like"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
@@ -35,6 +37,7 @@
                 android:textSize="11sp"
                 />
             <TextView
+                android:id="@+id/price_product_my_like"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"

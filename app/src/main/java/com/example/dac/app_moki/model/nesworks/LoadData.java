@@ -58,7 +58,6 @@ public class LoadData extends AsyncTask<String, Void, String>{
         return data;
     }
     private String getDataByMethodGet(HttpURLConnection httpURLConnection){
-        System.out.println("method get");
         try {
             httpURLConnection.connect();
             InputStream inputStream = httpURLConnection.getInputStream();
@@ -84,7 +83,6 @@ public class LoadData extends AsyncTask<String, Void, String>{
     }
 
     private String getDataByMethodPost(HttpURLConnection httpURLConnection){
-        System.out.println("method post");
         String key= "";
         String value = "";
         String dataByPost = "";
