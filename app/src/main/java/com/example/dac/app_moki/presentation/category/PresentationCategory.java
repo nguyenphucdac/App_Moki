@@ -13,7 +13,7 @@ import java.util.concurrent.ExecutionException;
  */
 
 public class PresentationCategory{
-    public List<Category> getListCategories() {
+    public List<Category> getListCategoryRoot() {
         String jsonData = "";
         String link = "http://"+ Host.getHost()+"/api/get_categories";
         List<Category> lstCategories = new ArrayList<>();
@@ -24,7 +24,7 @@ public class PresentationCategory{
         try {
             jsonData = loadData.get();
             IOCategory ioCategory = new IOCategory();
-            lstCategories = ioCategory.getListCategory(jsonData);
+            lstCategories = ioCategory.getListCategoryRoot(jsonData);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {

@@ -11,7 +11,6 @@ public class Product {
     private int id;
     private String code;
     private String name;
-    private int userId;
     private int price;
     private float pricePercen;
     private int number;
@@ -23,21 +22,29 @@ public class Product {
     private int numberLike;
     private int numberComment;
     private boolean isLike;
-    private int addressId;
     private String brand;
     private boolean isBlocked;
     private boolean canEdit;
     private boolean banned;
-    private int categoryId;
     private float priceNew;
     private String priceType;
     private Date modified;
-    private List<String> lstImage;
-    private Seller seller;
     private String codition;
     private String shipFrom;
     private String size;
     private String weigh;
+    private List<String> lstImage;
+    private Seller seller;
+    private Category category;
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
 
     public String getShipFrom() {
         return shipFrom;
@@ -159,13 +166,6 @@ public class Product {
         this.name = name;
     }
 
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
 
     public int getPrice() {
         return price;
@@ -245,22 +245,6 @@ public class Product {
 
     public void setNumberComment(int numbẻComment) {
         this.numberComment = numbẻComment;
-    }
-
-    public int getAddressId() {
-        return addressId;
-    }
-
-    public void setAddressId(int addressId) {
-        this.addressId = addressId;
-    }
-
-    public int getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(int categoryId) {
-        this.categoryId = categoryId;
     }
 
     public float getPriceNew() {

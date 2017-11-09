@@ -33,8 +33,9 @@ public class ResultSearch_Activity extends AppCompatActivity {
 
     private void addCotnrols() {
         Intent myIntent = getIntent();
-        String categoryId = myIntent.getStringExtra("cateroy_id");
+        String categoryId = myIntent.getStringExtra("category_id");
         String keyword = myIntent.getStringExtra("keyword");
+
 
         btnBack = (ImageButton) findViewById(R.id.btnBack);
         resultSearch = (RecyclerView) findViewById(R.id.recycle_result_search);

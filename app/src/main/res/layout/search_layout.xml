@@ -109,17 +109,17 @@
             android:layout_width="0dp"
             android:layout_weight="1.5"
             android:layout_height="match_parent">
+
             <TextView
                 android:id="@+id/name_category_search"
                 android:layout_width="0dp"
-                android:layout_weight="5.5"
                 android:layout_height="wrap_content"
-                android:text="Tất cả"
                 android:layout_gravity="center_vertical"
-                android:textColor="@color/red_button"
-                android:textSize="10sp"
+                android:layout_weight="5.5"
                 android:gravity="right"
-                />
+                android:text="Tất cả"
+                android:textColor="@color/red_button"
+                android:textSize="10sp" />
             <ImageView
                 android:layout_width="0dp"
                 android:layout_weight="1"
@@ -166,7 +166,7 @@
             android:layout_weight="1.5"
             android:layout_height="match_parent">
             <TextView
-                android:id="@+id/name_category_brand"
+                android:id="@+id/name_brand_search"
                 android:layout_width="0dp"
                 android:layout_weight="5.5"
                 android:layout_height="wrap_content"
@@ -333,7 +333,7 @@
             android:layout_weight="1.5"
             android:layout_height="match_parent">
             <TextView
-                android:id="@+id/name_state_search"
+                android:id="@+id/name_condition_search"
                 android:layout_width="0dp"
                 android:layout_weight="5.5"
                 android:layout_height="wrap_content"

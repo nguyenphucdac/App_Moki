@@ -8,10 +8,12 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import com.example.dac.app_moki.R;
+import com.example.dac.app_moki.local.data.CategoryLocal;
 import com.example.dac.app_moki.model.object.Category;
 import com.example.dac.app_moki.presentation.category.PresentationCategory;
 import com.example.dac.app_moki.view.adapter.AdapterCategories;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -44,9 +46,18 @@ public class SearchCategories_Activity extends AppCompatActivity {
         btnBack = (ImageButton) findViewById(R.id.search_categories_btn_back);
 
         recyclerViewCategories = (RecyclerView) findViewById(R.id.recycle_categories_search);
+        List<Category> lstCategories = new ArrayList<>();
 
-        PresentationCategory presentationCategory = new PresentationCategory();
-        List<Category> lstCategories =  presentationCategory.getListCategories();
+
+        if(CategoryLocal.getLstCategoriesRoot() != null && CategoryLocal.getLstCategoriesRoot().size() > 0){
+            lstCategories = CategoryLocal.getLstCategoriesRoot();
+            System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+        }
+        else {
+            PresentationCategory presentationCategory = new PresentationCategory();
+            lstCategories = presentationCategory.getListCategoryRoot();
+            System.out.println("local not data");
+        }
 
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);

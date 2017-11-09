@@ -10,9 +10,44 @@ public class User implements Serializable {
     private int id;
     private String userName;
     private String token;
-    private String statusId;
+    private String status;
     private String type;
     private String image;
+    private String url;
+    private int folowed;
+    private int isBlocked;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public int getFolowed() {
+        return folowed;
+    }
+
+    public void setFolowed(int folowed) {
+        this.folowed = folowed;
+    }
+
+    public int getIsBlocked() {
+        return isBlocked;
+    }
+
+    public void setIsBlocked(int isBlocked) {
+        this.isBlocked = isBlocked;
+    }
 
     public String getImage() {
         return image;
@@ -45,14 +80,6 @@ public class User implements Serializable {
 
     public void setToken(String token) {
         this.token = token;
-    }
-
-    public String getStatusId() {
-        return statusId;
-    }
-
-    public void setStatusId(String statusId) {
-        this.statusId = statusId;
     }
 
     public String getType() {

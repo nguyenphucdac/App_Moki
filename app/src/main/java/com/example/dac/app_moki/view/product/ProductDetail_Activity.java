@@ -2,6 +2,7 @@ package com.example.dac.app_moki.view.product;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -23,6 +24,7 @@ import com.example.dac.app_moki.model.object.Product;
 import com.example.dac.app_moki.presentation.comment.PresentationComment;
 import com.example.dac.app_moki.presentation.product.PresentationProduct;
 import com.example.dac.app_moki.view.adapter.AdapterProductComment;
+import com.example.dac.app_moki.view.adapter.AdapterViewPageImage;
 import com.example.dac.app_moki.view.user.UserInfo_Activity;
 import com.squareup.picasso.Picasso;
 
@@ -39,6 +41,10 @@ public class ProductDetail_Activity extends AppCompatActivity {
     private Intent myIntent;
     private PresentationProduct presentationProduct;
     private Product product;
+    private ViewPager viewListImage;
+    private View avatarSeller;
+    private TextView shopName;
+    private TextView scoreList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +64,7 @@ public class ProductDetail_Activity extends AppCompatActivity {
         getWindowManager().getDefaultDisplay().getMetrics(localDisplayMetrics);
         int mScreenHeight = localDisplayMetrics.heightPixels;
         int mScreenWidth = localDisplayMetrics.widthPixels;
-        LinearLayout.LayoutParams localObject = new LinearLayout.LayoutParams(mScreenWidth, (int) (9.0F * (mScreenWidth / 16.0F)));
+        LinearLayout.LayoutParams localObject = new LinearLayout.LayoutParams(mScreenWidth, (int) (15.0F * (mScreenWidth / 16.0F)));
         scrollView.setHeaderLayoutParams(localObject);
 
     }
@@ -108,19 +114,24 @@ public class ProductDetail_Activity extends AppCompatActivity {
         contentView.invalidate();
 
         TextView nameProduct = (TextView) findViewById(R.id.name_product_detail);
-        ImageView imageProduct = (ImageView) zoomView.findViewById(R.id.product_detail_image);
         TextView txtStatusProduct = (TextView) contentView.findViewById(R.id.status_product);
         TextView decription = (TextView) contentView.findViewById(R.id.decription_product_detail);
-        TextView nameCategory = (TextView) contentView.findViewById(R.id.name_category);
+        Button nameCategory = (Button) contentView.findViewById(R.id.name_category_product_detail);
         TextView nameBrand = (TextView) contentView.findViewById(R.id.name_brand);
         TextView stateProduct = (TextView) contentView.findViewById(R.id.state_product_detail);
+        TextView sizeProduct = (TextView) contentView.findViewById(R.id.size_product_detail);
+        TextView weightProduct = (TextView) contentView.findViewById(R.id.weigt_product_detail);
         TextView shipFrom = (TextView) contentView.findViewById(R.id.ship_from);
         TextView price = (TextView) findViewById(R.id.price_product_detail);
 
 
-        View avatarSeller = contentView.findViewById(R.id.avatarSeller_product_detail);
-        TextView shopName = (TextView) contentView.findViewById(R.id.shop_name_product_detail);
-        TextView scoreList = (TextView) contentView.findViewById(R.id.score_list);
+        viewListImage = (ViewPager) zoomView.findViewById(R.id.viewpager_list_image);
+        AdapterViewPageImage adapterViewPageImage = new AdapterViewPageImage(getSupportFragmentManager(), product.getListImage());
+        viewListImage.setAdapter(adapterViewPageImage);
+
+        avatarSeller = contentView.findViewById(R.id.avatarSeller_product_detail);
+        shopName = (TextView) contentView.findViewById(R.id.shop_name_product_detail);
+        scoreList = (TextView) contentView.findViewById(R.id.score_list);
 
         if(product.getSeller().getImage() != null){
             Picasso.with(zoomView.getContext()).load(product.getSeller().getImage()).into((ImageView) avatarSeller);
@@ -134,17 +145,20 @@ public class ProductDetail_Activity extends AppCompatActivity {
         nameProduct.setText(product.getName());
         decription.setText(product.getDescription());
         txtStatusProduct.setText(product.getNumberLike() + " thích và " + product.getNumberComment() + " bình luận");
-        nameBrand.setText(product.getBrand());
-        stateProduct.setText(product.getCodition());
-        shipFrom.setText(product.getShipFrom());
-        price.setText(product.getPrice() + " VNĐ");
+        nameCategory.setText(product.getCategory().getName());
 
-        if(product.getImageOnList(0) != null){
-            Picasso.with(zoomView.getContext()).load(product.getImageOnList(0)).into(imageProduct);
+        if(product.getSize() != null){
+            sizeProduct.setText(product.getSize());
         }
-        else {
-            Picasso.with(zoomView.getContext()).load(R.drawable.no_image).into(imageProduct);
+        if(product.getWeigh() != null){
+            weightProduct.setText(product.getWeigh());
         }
+        if(product.getCodition() != null){
+            stateProduct.setText(product.getCodition());
+        }
+
+        shipFrom.setText(product.getShipFrom());
+        price.setText("Giá : " +String.format("%,d", product.getPrice())  + " VNĐ");
 
 
         userInfo.setOnClickListener(new View.OnClickListener() {

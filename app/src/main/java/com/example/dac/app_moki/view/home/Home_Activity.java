@@ -33,6 +33,7 @@ import com.example.dac.app_moki.view.fragment.FragmentDialogExit;
 import com.example.dac.app_moki.view.fragment.FragmentDialogFilter;
 import com.example.dac.app_moki.view.fragment.FragmentDialogMessage;
 import com.example.dac.app_moki.view.fragment.FragmentMenu;
+import com.example.dac.app_moki.local.value.OptionView;
 import com.example.dac.app_moki.view.product.SaleCamera_Activity;
 import com.example.dac.app_moki.view.search.Search_Activity;
 import com.tekle.oss.android.animation.AnimationFactory;
@@ -267,8 +268,7 @@ public class Home_Activity extends AppCompatActivity {
         menuOptionView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                menu.getItem(3).setIcon(R.drawable.icon_grid);
-
+                OptionView.setOptionView(!OptionView.optionView);
                 int index = tabLayout.getSelectedTabPosition();
 
                 ViewAnimator viewAnimatorFragmentAll = (ViewAnimator) findViewById(R.id.viewFlipper1);
@@ -279,6 +279,7 @@ public class Home_Activity extends AppCompatActivity {
                 tabLayout.setupWithViewPager(viewPagerListProduct);
                 tabLayout.setScrollPosition(index, 0f, true);
                 viewPagerListProduct.setCurrentItem(index);
+
             }
         });
 

@@ -14,7 +14,8 @@
         <LinearLayout
             android:id="@+id/toolbar_header"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            >
             <android.support.v7.widget.Toolbar
                 android:id="@+id/home_header"
                 android:layout_width="match_parent"
@@ -24,7 +25,6 @@
                 app:navigationIcon="@drawable/icon_menu"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                 app:theme="@style/menuItemColor"
-                app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed|snap"
                 />
         </LinearLayout>
         <View

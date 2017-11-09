@@ -12,12 +12,12 @@ import java.util.concurrent.ExecutionException;
  */
 
 public class PresentationLogin {
-    public User getUser(String userName, String password) {
+    public User login(String userName, String password) {
         String jsonData = "";
-        String message = "";
         User user = null;
-        //password = MD5.crypt(password);
-        String link = "http://"+ Host.getHost()+"/api/login?user_name=mebomai&password=a932e5bab8e2f817fdcf916c293ae034";
+        password = MD5.crypt(password);
+        System.out.println("username = " + userName + " password = "+ password);
+        String link = "http://"+ Host.getHost()+"/api/login?user_name="+userName+"&password="+password;
 
         LoadData loadData = new LoadData(link);
         loadData.execute();
@@ -26,7 +26,30 @@ public class PresentationLogin {
             jsonData = loadData.get();
 
             IOUser ioUser = new IOUser();
-            user = ioUser.getUser(jsonData);
+            user = ioUser.getInfoLogin(jsonData);
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        return user;
+    }
+    public User getUser(int id){
+        String jsonData = "";
+        User user = null;
+        //password = MD5.crypt(password);
+        String link = "http://"+ Host.getHost()+"/api/get_user_info?user_id=" + id;
+
+        LoadData loadData = new LoadData(link);
+        loadData.execute();
+
+        try {
+            jsonData = loadData.get();
+
+            IOUser ioUser = new IOUser();
+            user = ioUser.getInfoLogin(jsonData);
 
         } catch (InterruptedException e) {
             e.printStackTrace();

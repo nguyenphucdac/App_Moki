@@ -106,7 +106,7 @@
             >
 
         </activity>
-        <activity android:name=".view.search.SearchState_Activity"
+        <activity android:name=".view.search.SearchCondition_Activity"
             android:screenOrientation="portrait"
             >
 

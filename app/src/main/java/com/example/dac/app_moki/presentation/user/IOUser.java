@@ -10,7 +10,7 @@ import org.json.JSONObject;
  */
 
 public class IOUser {
-    public User getUser(String jsonData){
+    public User getInfoLogin(String jsonData){
         User user = null;
         try {
 
@@ -26,6 +26,32 @@ public class IOUser {
             user.setUserName(String.valueOf(userData.getString("username")));
             user.setImage(String.valueOf(userData.getString("avartar")));
             user.setToken(String.valueOf(userData.getString("token")));
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return user;
+    }
+    public User getUser(String jsonData){
+        User user = new User();
+        try {
+
+            if(jsonData == null || jsonData == ""){
+                return user;
+            }
+
+            JSONObject jsonObject = new JSONObject(jsonData);
+            JSONObject userData = jsonObject.getJSONObject("data");
+
+
+            user.setId(Integer.parseInt(userData.getString("id")));
+            user.setUserName(String.valueOf(userData.getString("username")));
+            user.setUrl(String.valueOf(userData.getString("url")));
+            user.setStatus(String.valueOf(userData.getString("status")));
+            user.setImage(String.valueOf(userData.getString("avartar")));
+            user.setFolowed(Integer.parseInt(userData.getString("followed")));
+            user.setIsBlocked(Integer.parseInt(userData.getString("is_blocked")));
 
         } catch (JSONException e) {
             e.printStackTrace();

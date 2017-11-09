@@ -1,5 +1,6 @@
 package com.example.dac.app_moki.presentation.category;
 
+import com.example.dac.app_moki.local.data.CategoryLocal;
 import com.example.dac.app_moki.model.object.Category;
 
 import org.json.JSONArray;
@@ -14,7 +15,7 @@ import java.util.List;
  */
 
 public class IOCategory {
-    public List<Category> getListCategory(String jsonData){
+    public List<Category> getListCategoryRoot(String jsonData){
         List<Category> lstCategory = new ArrayList<>();
 
         try {
@@ -25,9 +26,6 @@ public class IOCategory {
             JSONArray arrCategories = new JSONArray(jsonData);
             for (int i = 0 ; i < arrCategories.length(); i++){
                 JSONObject itemCategory = arrCategories.getJSONObject(i);
-                if(itemCategory.getString("parent") == null){
-                    continue;
-                }
 
                 Category category = new Category();
                 category.setId(Integer.parseInt(itemCategory.getString("id")));
@@ -40,6 +38,8 @@ public class IOCategory {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+        CategoryLocal.setLstCategoriesRoot(lstCategory);
 
         return lstCategory;
     }
@@ -56,7 +56,6 @@ public class IOCategory {
             for(int i = 0 ; i < arrCategories.length(); i++){
                 JSONObject itemCategory = arrCategories.getJSONObject(i);
                 if(Integer.parseInt(itemCategory.getString("id")) == categoryId){
-                    System.out.println(itemCategory.getString("id"));
                     JSONArray arrChildren = itemCategory.getJSONArray("children");
                     for (int j = 0; j < arrChildren.length(); j++) {
                         JSONObject itemChilde = arrChildren.getJSONObject(j);
@@ -69,12 +68,12 @@ public class IOCategory {
 
                         lstCategory.add(category);
                     }
+                    break;
                 }
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        System.out.println("size lst categories in IO = " + lstCategory.size());
         return lstCategory;
     }
 }

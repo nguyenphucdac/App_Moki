@@ -35,7 +35,7 @@ public class PresentationComment {
     }
     public List<Comment> setComment(String productId, String commentContent, String index){
         String jsonData = "";
-        String link = "http://"+ Host.getHost()+"/api/get_comment_products";
+        String link = "http://"+ Host.getHost()+"/api/set_comment_products";
         List<Comment> lstComment = new ArrayList<>();
 
         LoadData loadData = new LoadData(link);

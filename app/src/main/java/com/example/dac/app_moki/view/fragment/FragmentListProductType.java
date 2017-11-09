@@ -14,48 +14,61 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
 import com.example.dac.app_moki.R;
+import com.example.dac.app_moki.local.value.OptionView;
 import com.example.dac.app_moki.model.object.Product;
 import com.example.dac.app_moki.presentation.product.PresentationProduct;
 import com.example.dac.app_moki.view.adapter.AdapterListProductType1;
+import com.example.dac.app_moki.view.adapter.AdapterListProductType2;
 
 import java.util.List;
 
 /**
- * Created by Dac on 10/13/2017.
+ * Created by Dac on 11/5/2017.
  */
-public class FragmentListProductType1 extends Fragment {
+
+public class FragmentListProductType extends Fragment {
     private RecyclerView recyclerView;
+
     private static int aboveItem = 0;
     private int numberItem = 0;
     private int itemMore = 0;
     private View toolBar_header;
     private View bottomViewButtonSale;
     private View slideHome;
+    private int category;
 
-    private int cateogry = 0;
-
-    public FragmentListProductType1(int cateogry){
-        this.cateogry = cateogry;
+    public FragmentListProductType(int category){
+        this.category = category;
     }
+
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.home_list_product_fragment, container, false);
 
-        PresentationProduct presentationProduct = new PresentationProduct();
-        List<Product> lstProduct = presentationProduct.getListProducts(cateogry);
-
         toolBar_header = getActivity().findViewById(R.id.toolbar_header);
         slideHome = getActivity().findViewById(R.id.slide_home);
         bottomViewButtonSale = getActivity().findViewById(R.id.bottom_buttonsale);
         final Animation slide_down = AnimationUtils.loadAnimation(getActivity().getApplicationContext(),R.anim.slide_down);
+        PresentationProduct presentationProduct = new PresentationProduct();
+        List<Product> lstProduct = presentationProduct.getListProducts(category);
 
-        recyclerView = (RecyclerView) view.findViewById(R.id.recycle_home_list_product);
-        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-        AdapterListProductType1 adapterListProductType1 = new AdapterListProductType1(getActivity(), lstProduct);
-        recyclerView.setAdapter(adapterListProductType1);
-        adapterListProductType1.notifyDataSetChanged();
+        if(OptionView.optionView == true){
+            recyclerView = (RecyclerView) view.findViewById(R.id.recycle_home_list_product);
+            recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+            AdapterListProductType1 adapterListProductType1 = new AdapterListProductType1(getActivity(), lstProduct);
+            recyclerView.setAdapter(adapterListProductType1);
+            adapterListProductType1.notifyDataSetChanged();
+        }
+        else {
+            recyclerView = (RecyclerView) view.findViewById(R.id.recycle_home_list_product);
+            recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+            AdapterListProductType2 adapterTabAll = new AdapterListProductType2(getActivity(), lstProduct);
+            recyclerView.setAdapter(adapterTabAll);
+            adapterTabAll.notifyDataSetChanged();
+        }
+
 
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -64,7 +77,7 @@ public class FragmentListProductType1 extends Fragment {
                 int currentAboveItem = ((LinearLayoutManager) recyclerView.getLayoutManager()).findFirstVisibleItemPosition();
 
 
-                if(currentAboveItem > 5){
+                if(currentAboveItem > 3){
                     toolBar_header.setVisibility(View.GONE);
 
                     bottomViewButtonSale.startAnimation(slide_down);
@@ -76,7 +89,7 @@ public class FragmentListProductType1 extends Fragment {
                 }
                 System.out.println(aboveItem + " --- " + currentAboveItem);
 
-                if(currentAboveItem <= 4){
+                if(currentAboveItem <= 1){
                     AppBarLayout.LayoutParams params = (AppBarLayout.LayoutParams) slideHome.getLayoutParams();
                     params.setScrollFlags(AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL
                             | AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS);
@@ -85,14 +98,18 @@ public class FragmentListProductType1 extends Fragment {
                 else {
                     AppBarLayout.LayoutParams params = (AppBarLayout.LayoutParams) slideHome.getLayoutParams();
                     params.setScrollFlags(
-                                AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL
-                            | AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS
-                            | AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS_COLLAPSED
-                            | AppBarLayout.LayoutParams.SCROLL_FLAG_SNAP);
+                            AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL
+                                    | AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS
+                                    | AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS_COLLAPSED
+                                    | AppBarLayout.LayoutParams.SCROLL_FLAG_SNAP);
+
+                }
+                if(currentAboveItem > 3){
 
                 }
             }
         });
+
 
         return view;
 

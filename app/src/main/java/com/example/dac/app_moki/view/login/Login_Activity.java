@@ -44,7 +44,7 @@ public class Login_Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 PresentationLogin presentationLogin = new PresentationLogin();
-                user = presentationLogin.getUser(txt_password.getText().toString(), txt_password.getText().toString());
+                user = presentationLogin.login(txt_phone.getText().toString(), txt_password.getText().toString());
                 if(user == null){
                     FragmentDialogError fragmentDialogError = new FragmentDialogError();
                     FragmentManager fm = getFragmentManager();

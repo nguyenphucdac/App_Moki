@@ -1,5 +1,6 @@
 package com.example.dac.app_moki.presentation.product;
 
+import com.example.dac.app_moki.model.object.Category;
 import com.example.dac.app_moki.model.object.Product;
 import com.example.dac.app_moki.model.object.Seller;
 
@@ -94,21 +95,30 @@ public class IOProduct {
             product.setBlocked(Boolean.parseBoolean(itemProduct.getString("is_blocked")));
             product.setCanEdit(Boolean.parseBoolean(itemProduct.getString("can_edit")));
             product.setBanned(Boolean.parseBoolean(itemProduct.getString("banned")));
+            product.setCodition(String.valueOf(itemProduct.getString("condition")));
+
 
             product.setShipFrom(String.valueOf(itemProduct.getString("ships_from")));
 
             JSONArray arrSize = itemProduct.getJSONArray("additionals");
-            product.setSize(String.valueOf( (arrSize.getJSONObject(0)).getString("value")));
-            product.setWeigh(String.valueOf( (arrSize.getJSONObject(1)).getString("value")));
+
+            if (arrSize != null && arrSize.length() > 0) {
+                if(arrSize.length() == 1){
+                    product.setWeigh(String.valueOf( (arrSize.getJSONObject(0)).getString("value")));
+                }
+                if(arrSize.length() == 2){
+                    product.setSize(String.valueOf( (arrSize.getJSONObject(0)).getString("value")));
+                    product.setWeigh(String.valueOf( (arrSize.getJSONObject(1)).getString("value")));
+                }
+            }
+
 
             JSONArray arrImage = itemProduct.getJSONArray("image");
             List<String> lstImages = new ArrayList<>();
-
             for(int j = 0; j < arrImage.length(); j ++){
                 JSONObject itemImage = arrImage.getJSONObject(j);
                 lstImages.add(itemImage.getString("url"));
             }
-
             product.setImage(lstImages);
 
             JSONObject objectSeller = itemProduct.getJSONObject("seller");
@@ -118,8 +128,18 @@ public class IOProduct {
             seller.setImage(String.valueOf(objectSeller.getString("avatar")));
             seller.setScore(Integer.parseInt(objectSeller.getString("score")));
             seller.setNumberProduct(Integer.parseInt(objectSeller.getString("listing")));
-
             product.setSeller(seller);
+
+            JSONArray arrCategory = itemProduct.getJSONArray("category");
+            JSONObject objectCategory = arrCategory.getJSONObject(0);
+
+            Category category = new Category();
+            category.setId(Integer.parseInt(objectCategory.getString("id")));
+            category.setName(String.valueOf(objectCategory.getString("name")));
+            category.setDecription(String.valueOf(objectCategory.getString("description")));
+
+            product.setCategory(category);
+
         } catch (JSONException e) {
             e.printStackTrace();
         }

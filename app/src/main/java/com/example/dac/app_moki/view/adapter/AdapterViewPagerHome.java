@@ -4,10 +4,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.example.dac.app_moki.local.data.CategoryLocal;
 import com.example.dac.app_moki.model.object.Category;
 import com.example.dac.app_moki.presentation.category.PresentationCategory;
-import com.example.dac.app_moki.view.fragment.FragmentListProductType1;
-import com.example.dac.app_moki.view.fragment.FragmentListProductType2;
+import com.example.dac.app_moki.view.fragment.FragmentListProductType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,21 +18,29 @@ import java.util.List;
 public class AdapterViewPagerHome extends FragmentPagerAdapter {
     List<Fragment> lstFragment = new ArrayList<>();
     List<String> lstTitle = new ArrayList<String>();
-    PresentationCategory presentationCategory = new PresentationCategory();
-    List<Category> lstCategories = presentationCategory.getListCategories();
+    List<Category> lstCategories = new ArrayList<>();
 
     public AdapterViewPagerHome(FragmentManager fm) {
         super(fm);
+        if(CategoryLocal.getLstCategoriesRoot() != null && CategoryLocal.getLstCategoriesRoot().size() > 0){
+            lstCategories = CategoryLocal.getLstCategoriesRoot();
+            System.out.println("local hava data");
+        }
+        else {
+            PresentationCategory presentationCategory = new PresentationCategory();
+            lstCategories = presentationCategory.getListCategoryRoot();
+            System.out.println("local not data");
+        }
+
         if(lstCategories.size() > 0){
             for(int i = 0 ; i < lstCategories.size(); i++){
                 lstTitle.add(lstCategories.get(i).getName());
-                //lstFragment.add(new FragmentListProductType1());
-                lstFragment.add(new FragmentListProductType1(lstCategories.get(i).getId()));
+                lstFragment.add(new FragmentListProductType(lstCategories.get(i).getId()));
             }
         }
         else{
             lstTitle.add("Tất cả");
-            lstFragment.add(new FragmentListProductType2(0));
+            lstFragment.add(new FragmentListProductType(0));
         }
     }
 
