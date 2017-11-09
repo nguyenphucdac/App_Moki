@@ -63,16 +63,6 @@ public class PresentationProduct {
         String link = "http://"+ Host.getHost()+"/api/search?category_id=" + catergoryId;
         List<Product> lstProducts = new ArrayList<>();
 
-        System.out.println(link);
-
-        HashMap<String, String> hashMap = new HashMap<>();
-        hashMap.put("keyword", keyword);
-        hashMap.put("category_id", catergoryId);
-//        hashMap.put("product_size_id", size);
-//        hashMap.put("brand_id", brand);
-//        hashMap.put("price_min", priceMax);
-//        hashMap.put("condition", state);
-
         LoadData loadData = new LoadData(link);
 
         loadData.execute();

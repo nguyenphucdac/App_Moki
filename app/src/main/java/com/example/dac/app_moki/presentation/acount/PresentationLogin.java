@@ -5,6 +5,9 @@ import com.example.dac.app_moki.model.nesworks.LoadData;
 import com.example.dac.app_moki.model.object.User;
 import com.example.dac.app_moki.presentation.user.IOUser;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 /**
@@ -16,10 +19,19 @@ public class PresentationLogin {
         String jsonData = "";
         User user = null;
         password = MD5.crypt(password);
-        System.out.println("username = " + userName + " password = "+ password);
-        String link = "http://"+ Host.getHost()+"/api/login?user_name="+userName+"&password="+password;
+        //String link = "http://"+ Host.getHost()+"/api/login?user_name="+userName+"&password="+password;
+        String link = "http://"+ Host.getHost()+"/api/login";
+        List<HashMap<String, String>> lstProps = new ArrayList<>();
+        HashMap<String , String> hashMap1 = new HashMap<>();
+        hashMap1.put("user_name",userName);
 
-        LoadData loadData = new LoadData(link);
+        HashMap<String, String> hashMap2 = new HashMap<>();
+        hashMap2.put("password", password);
+
+        lstProps.add(hashMap1);
+        lstProps.add(hashMap2);
+
+        LoadData loadData = new LoadData(link, lstProps);
         loadData.execute();
 
         try {

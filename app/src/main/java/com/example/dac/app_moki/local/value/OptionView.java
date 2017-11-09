@@ -5,7 +5,7 @@ package com.example.dac.app_moki.local.value;
  */
 
 public class OptionView {
-    public static boolean optionView = true;
+    public static boolean optionView = false;
 
     public static boolean isOptionView() {
         return optionView;
