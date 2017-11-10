@@ -1,5 +1,6 @@
 package com.example.dac.app_moki.presentation.user;
 
+import com.example.dac.app_moki.local.value.ValueLocal;
 import com.example.dac.app_moki.model.object.User;
 
 import org.json.JSONException;
@@ -26,6 +27,8 @@ public class IOUser {
             user.setUserName(String.valueOf(userData.getString("username")));
             user.setImage(String.valueOf(userData.getString("avartar")));
             user.setToken(String.valueOf(userData.getString("token")));
+
+            ValueLocal.setToken(String.valueOf(userData.getString("token")));
 
         } catch (JSONException e) {
             e.printStackTrace();

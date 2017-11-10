@@ -36,7 +36,8 @@ public class FragmentDialogExit extends android.app.DialogFragment {
         exitApp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.exit(0);
+                getActivity().finish();
+                System.exit(1);
             }
         });
         return rootView;

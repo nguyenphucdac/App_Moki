@@ -1,5 +1,6 @@
 package com.example.dac.app_moki.presentation.product;
 
+import com.example.dac.app_moki.local.data.ProductLocal;
 import com.example.dac.app_moki.model.object.Category;
 import com.example.dac.app_moki.model.object.Product;
 import com.example.dac.app_moki.model.object.Seller;
@@ -16,7 +17,7 @@ import java.util.List;
  */
 
 public class IOProduct {
-    public List<Product> getListProducts(String jsonData){
+    public List<Product> getListProducts(String jsonData, String categoryId){
         List<Product> lstProducts = new ArrayList<>();
 
         try {
@@ -64,6 +65,8 @@ public class IOProduct {
                 lstProducts.add(product);
 
             }
+            ProductLocal.addListProductOfCategory(categoryId, lstProducts);
+            ProductLocal.addLstLastId(categoryId, Integer.parseInt(dataObject.getString("last_id")));
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -188,5 +191,20 @@ public class IOProduct {
         }
 
         return lstProducts;
+    }
+
+    public String likeProduct(String jsonData){
+        String numberLike = "";
+
+        try {
+            JSONObject jsonObject = new JSONObject(jsonData);
+            JSONObject data = jsonObject.getJSONObject("data");
+
+            numberLike = data.getString("like");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return numberLike;
     }
 }

@@ -52,7 +52,7 @@ public class AdapterListProductType2 extends RecyclerView.Adapter<AdapterListPro
         else {
             Picasso.with(context).load(R.drawable.no_image).into(holder.imageProduct);
         }
-        holder.priceProduct.setText(String.valueOf(product.getPrice() + " VNĐ"));
+        holder.priceProduct.setText(String.format("%,d", product.getPrice()) + " VNĐ");
         holder.btnLike.setText(String.valueOf(product.getNumberLike()));
         holder.btnComment.setText(String.valueOf(product.getNumberComment()));
 

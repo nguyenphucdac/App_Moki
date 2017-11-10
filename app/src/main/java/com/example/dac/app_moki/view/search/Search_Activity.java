@@ -1,5 +1,6 @@
 package com.example.dac.app_moki.view.search;
 
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -8,8 +9,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.dac.app_moki.R;
+import com.example.dac.app_moki.view.fragment.FragmentChosePrice;
+import com.example.dac.app_moki.view.fragment.FragmentDialogError;
 
 /**
  * Created by Dac on 10/20/2017.
@@ -27,6 +31,7 @@ public class Search_Activity extends AppCompatActivity {
     private TextView nameBrand;
     private TextView nameSize;
     private TextView nameCondition;
+    private Button btnChosePrice;
 
     private String categoryId;
     private String brandId;
@@ -56,6 +61,7 @@ public class Search_Activity extends AppCompatActivity {
         nameCategory = (TextView) findViewById(R.id.name_category_search);
         nameBrand = (TextView) findViewById(R.id.name_brand_search);
         nameSize = (TextView) findViewById(R.id.name_size_search);
+        btnChosePrice = (Button) findViewById(R.id.button_chose_price_search);
         nameCondition = (TextView) findViewById(R.id.name_condition_search);
     }
 
@@ -97,15 +103,34 @@ public class Search_Activity extends AppCompatActivity {
             }
         });
 
+        btnChosePrice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fm = getFragmentManager();
+                FragmentChosePrice fragmentChosePrice = FragmentChosePrice.newInstance();
+                fragmentChosePrice.show(fm, "Sample Fragment");
+                Toast.makeText(Search_Activity.this, "press chose price", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Search_Activity.this, ResultSearch_Activity.class);
-                intent.putExtra("category_id", (categoryId + "").toString() );
-                intent.putExtra("brand_id", (brandId + "").toString() );
-                intent.putExtra("size_id", (sizeId + "").toString() );
-                intent.putExtra("condition_id", (conditionId + "").toString());
-                startActivity(intent);
+
+                if(categoryId != null || brandId != null || sizeId != null || conditionId != null){
+                    Intent intent = new Intent(Search_Activity.this, ResultSearch_Activity.class);
+                    intent.putExtra("category_id", (categoryId + "").toString() );
+                    intent.putExtra("brand_id", (brandId + "").toString() );
+                    intent.putExtra("size_id", (sizeId + "").toString() );
+                    intent.putExtra("condition_id", (conditionId + "").toString());
+                    startActivity(intent);
+                }
+                else {
+                    FragmentDialogError fragmentDialogError = new FragmentDialogError();
+                    FragmentManager fm = getFragmentManager();
+                    fragmentDialogError = FragmentDialogError.newInstance("Bạn phải nhập thông tin tìm kiếm cụ thể");
+                    fragmentDialogError.show(fm, "Sample Fragment");
+                }
             }
         });
     }

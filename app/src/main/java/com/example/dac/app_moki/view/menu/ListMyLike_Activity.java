@@ -48,7 +48,7 @@ public class ListMyLike_Activity extends AppCompatActivity {
         recyclerViewListMyLike = (RecyclerView) findViewById(R.id.recycle_list_my_like_menu);
 
         PresentationProduct presentationProduct = new PresentationProduct();
-        List<Product> lstProducts = presentationProduct.getListMyLike(user.getToken());
+        List<Product> lstProducts = presentationProduct.getListMyLike();
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerViewListMyLike.setLayoutManager(layoutManager);

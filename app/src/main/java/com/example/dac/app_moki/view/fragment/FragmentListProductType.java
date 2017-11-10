@@ -14,12 +14,14 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
 import com.example.dac.app_moki.R;
-import com.example.dac.app_moki.local.value.OptionView;
+import com.example.dac.app_moki.local.data.ProductLocal;
+import com.example.dac.app_moki.local.value.ValueLocal;
 import com.example.dac.app_moki.model.object.Product;
 import com.example.dac.app_moki.presentation.product.PresentationProduct;
 import com.example.dac.app_moki.view.adapter.AdapterListProductType1;
 import com.example.dac.app_moki.view.adapter.AdapterListProductType2;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -51,10 +53,21 @@ public class FragmentListProductType extends Fragment {
         slideHome = getActivity().findViewById(R.id.slide_home);
         bottomViewButtonSale = getActivity().findViewById(R.id.bottom_buttonsale);
         final Animation slide_down = AnimationUtils.loadAnimation(getActivity().getApplicationContext(),R.anim.slide_down);
-        PresentationProduct presentationProduct = new PresentationProduct();
-        List<Product> lstProduct = presentationProduct.getListProducts(category);
 
-        if(OptionView.optionView == true){
+        List<Product> lstProduct = new ArrayList<>();
+
+        if(ProductLocal.getListProductOfCategory(String.valueOf(this.category)) != null){
+            lstProduct = ProductLocal.getListProductOfCategory(String.valueOf(category));
+            System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+        }
+        else {
+            PresentationProduct presentationProduct = new PresentationProduct();
+            lstProduct = presentationProduct.getListProducts(String.valueOf(category));
+            System.out.println("000000000000000000000000000000000000000000000000000000000000000");
+        }
+
+
+        if(ValueLocal.getOptionView() == true){
             recyclerView = (RecyclerView) view.findViewById(R.id.recycle_home_list_product);
             recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
             AdapterListProductType1 adapterListProductType1 = new AdapterListProductType1(getActivity(), lstProduct);

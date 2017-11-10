@@ -7,8 +7,7 @@
     >
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.8"
+        android:layout_height="45dp"
         android:orientation="horizontal"
         android:background="#fff"
 
@@ -46,8 +45,7 @@
         ></LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
+        android:layout_height="75dp"
         android:background="#fff"
         >
         <TextView
@@ -69,31 +67,33 @@
     </android.support.v7.widget.RecyclerView>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="50dp"
         android:orientation="horizontal"
         android:background="@color/red_button"
         >
         <EditText
+            android:id="@+id/txtContentComment"
             android:layout_width="0dp"
-            android:layout_weight="5"
-            android:layout_height="35dp"
+            android:layout_weight="7"
+            android:layout_height="45dp"
             android:layout_marginLeft="5dp"
             android:layout_gravity="center_vertical"
-            android:background="@layout/search_input_background"
+            android:background="@layout/comment_input_background"
             android:ems="10"
-            android:textColor="@color/text_black"
+            android:textColor="#fff"
             android:textSize="20dp"
-            android:gravity="center"
+            android:paddingLeft="5dp"
+            android:imeOptions="actionDone"
             />
         <ImageButton
-            android:layout_width="0dp"
+            android:id="@+id/btnComment"
+            android:layout_width="10dp"
             android:layout_weight="1"
-            android:layout_height="35dp"
-            android:src="@drawable/icon_back"
-            android:background="@color/red_button"
+            android:layout_height="45dp"
+            android:src="@drawable/ic_play_dark"
             android:scaleType="fitXY"
             android:layout_gravity="center"
+            android:background="@color/red_button"
             />
     </LinearLayout>
 

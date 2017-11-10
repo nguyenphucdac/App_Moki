@@ -19,17 +19,17 @@ public class PresentationLogin {
         String jsonData = "";
         User user = null;
         password = MD5.crypt(password);
-        //String link = "http://"+ Host.getHost()+"/api/login?user_name="+userName+"&password="+password;
         String link = "http://"+ Host.getHost()+"/api/login";
+
+        HashMap<String , String> hashMapUserName = new HashMap<>();
+        hashMapUserName.put("user_name",userName);
+
+        HashMap<String, String> hashMapPassword = new HashMap<>();
+        hashMapPassword.put("password", password);
+
         List<HashMap<String, String>> lstProps = new ArrayList<>();
-        HashMap<String , String> hashMap1 = new HashMap<>();
-        hashMap1.put("user_name",userName);
-
-        HashMap<String, String> hashMap2 = new HashMap<>();
-        hashMap2.put("password", password);
-
-        lstProps.add(hashMap1);
-        lstProps.add(hashMap2);
+        lstProps.add(hashMapUserName);
+        lstProps.add(hashMapPassword);
 
         LoadData loadData = new LoadData(link, lstProps);
         loadData.execute();

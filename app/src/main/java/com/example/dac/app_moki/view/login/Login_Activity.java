@@ -48,7 +48,7 @@ public class Login_Activity extends AppCompatActivity {
                 if(user == null){
                     FragmentDialogError fragmentDialogError = new FragmentDialogError();
                     FragmentManager fm = getFragmentManager();
-                    fragmentDialogError = FragmentDialogError.newInstance();
+                    fragmentDialogError = FragmentDialogError.newInstance("Tài khoản hoặc mật khẩu không đúng !!!");
                     fragmentDialogError.show(fm, "Sample Fragment");
                 }
                 else{
@@ -59,18 +59,23 @@ public class Login_Activity extends AppCompatActivity {
                 }
             }
         });
+        btn_signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                System.exit(0);
+            }
+        });
     }
 
     private void addControls() {
         Intent myIntent = getIntent();
-        String logined = myIntent.getStringExtra("logined");
-
-        if(logined == "true"){
+        boolean logined = myIntent.getBooleanExtra("logined", true);
+        if(!logined){
             FragmentDialogError fragmentDialogError = new FragmentDialogError();
             FragmentManager fm = getFragmentManager();
-            fragmentDialogError = FragmentDialogError.newInstance();
+            fragmentDialogError = FragmentDialogError.newInstance("Bạn cần đăng nhập để sử dụng chức năng này");
             fragmentDialogError.show(fm, "Sample Fragment");
-            System.out.println("popup sadfksdajfb");
         }
 
         btn_login = (Button) findViewById(R.id.btn_login);

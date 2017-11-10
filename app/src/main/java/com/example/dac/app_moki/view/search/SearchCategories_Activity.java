@@ -51,12 +51,10 @@ public class SearchCategories_Activity extends AppCompatActivity {
 
         if(CategoryLocal.getLstCategoriesRoot() != null && CategoryLocal.getLstCategoriesRoot().size() > 0){
             lstCategories = CategoryLocal.getLstCategoriesRoot();
-            System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
         }
         else {
             PresentationCategory presentationCategory = new PresentationCategory();
             lstCategories = presentationCategory.getListCategoryRoot();
-            System.out.println("local not data");
         }
 
 

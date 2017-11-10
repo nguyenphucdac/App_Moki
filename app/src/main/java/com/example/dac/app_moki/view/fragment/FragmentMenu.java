@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.dac.app_moki.R;
+import com.example.dac.app_moki.local.value.ValueLocal;
 import com.example.dac.app_moki.model.object.User;
 import com.example.dac.app_moki.view.home.Home_Activity;
 import com.example.dac.app_moki.view.login.Login_Activity;
@@ -165,6 +166,7 @@ public class FragmentMenu extends Fragment {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(getActivity(), Login_Activity.class);
+                    ValueLocal.setToken("");
                     startActivity(intent);
                 }
             });
@@ -193,7 +195,7 @@ public class FragmentMenu extends Fragment {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(getActivity(), Login_Activity.class);
-                    intent.putExtra("logined", ("true").toString());
+                    intent.putExtra("logined", false);
                     startActivity(intent);
                 }
             });
@@ -202,7 +204,7 @@ public class FragmentMenu extends Fragment {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(getActivity(), Login_Activity.class);
-                    intent.putExtra("logined", ("true").toString());
+                    intent.putExtra("logined", false);
                     startActivity(intent);
                 }
             });
@@ -210,7 +212,7 @@ public class FragmentMenu extends Fragment {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(getActivity(), Login_Activity.class);
-                    intent.putExtra("logined", "true");
+                    intent.putExtra("logined", false);
                     startActivity(intent);
                 }
             });
@@ -227,7 +229,6 @@ public class FragmentMenu extends Fragment {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(getActivity(), Setup_Activity.class);
-                    intent.putExtra("logined", "true");
                     startActivity(intent);
                 }
             });

@@ -24,15 +24,17 @@ public class AdapterViewPagerHome extends FragmentPagerAdapter {
         super(fm);
         if(CategoryLocal.getLstCategoriesRoot() != null && CategoryLocal.getLstCategoriesRoot().size() > 0){
             lstCategories = CategoryLocal.getLstCategoriesRoot();
-            System.out.println("local hava data");
         }
         else {
             PresentationCategory presentationCategory = new PresentationCategory();
             lstCategories = presentationCategory.getListCategoryRoot();
-            System.out.println("local not data");
         }
 
+
+
         if(lstCategories.size() > 0){
+            lstTitle.add("Tất cả");
+            lstFragment.add(new FragmentListProductType(9));
             for(int i = 0 ; i < lstCategories.size(); i++){
                 lstTitle.add(lstCategories.get(i).getName());
                 lstFragment.add(new FragmentListProductType(lstCategories.get(i).getId()));
@@ -40,7 +42,7 @@ public class AdapterViewPagerHome extends FragmentPagerAdapter {
         }
         else{
             lstTitle.add("Tất cả");
-            lstFragment.add(new FragmentListProductType(0));
+            lstFragment.add(new FragmentListProductType(9));
         }
     }
 

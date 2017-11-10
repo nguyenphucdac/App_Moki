@@ -1,5 +1,6 @@
 package com.example.dac.app_moki.presentation.product;
 
+import com.example.dac.app_moki.local.value.ValueLocal;
 import com.example.dac.app_moki.model.nesworks.Host;
 import com.example.dac.app_moki.model.nesworks.LoadData;
 import com.example.dac.app_moki.model.object.Product;
@@ -14,13 +15,11 @@ import java.util.concurrent.ExecutionException;
  */
 
 public class PresentationProduct {
-    public List<Product> getListProducts(int category) {
+    public List<Product> getListProducts(String categoryId) {
         String jsonData = "";
-        String link = "http://"+ Host.getHost()+"/api/get_list_products?category_id=" + category;
-        HashMap<String,String> lstProps = new HashMap<>();
+        String link = "http://"+ Host.getHost()+"/api/get_list_products?category_id=" + categoryId;
         List<Product> lstProducts = new ArrayList<>();
 
-        lstProps.put("category_id", String.valueOf(category));
 
         LoadData loadData = new LoadData(link);
         loadData.execute();
@@ -28,7 +27,7 @@ public class PresentationProduct {
         try {
             jsonData = loadData.get();
             IOProduct ioProduct = new IOProduct();
-            lstProducts = ioProduct.getListProducts(jsonData);
+            lstProducts = ioProduct.getListProducts(jsonData, categoryId);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -69,7 +68,7 @@ public class PresentationProduct {
         try {
             jsonData = loadData.get();
             IOProduct ioProduct = new IOProduct();
-            lstProducts = ioProduct.getListProducts(jsonData);
+            lstProducts = ioProduct.getListProducts(jsonData, catergoryId);
 
 
         } catch (InterruptedException e) {
@@ -80,12 +79,18 @@ public class PresentationProduct {
 
         return lstProducts;
     }
-    public List<Product> getListMyLike(String token){
+    public List<Product> getListMyLike(){
         String jsonData = "";
-        String link = "http://"+ Host.getHost()+"/api/get_my_likes?token="+ token;
+        String link = "http://"+ Host.getHost()+"/api/get_my_likes";
         List<Product> lstProduct = new ArrayList<>();
 
-        LoadData loadData = new LoadData(link);
+        HashMap<String, String> hashMapToken = new HashMap<>();
+        hashMapToken.put("token", ValueLocal.getToken());
+
+        List<HashMap<String, String>> lstProps = new ArrayList<>();
+        lstProps.add(hashMapToken);
+
+        LoadData loadData = new LoadData(link, lstProps);
         loadData.execute();
 
         try {
@@ -101,5 +106,37 @@ public class PresentationProduct {
         }
 
         return lstProduct;
+    }
+    public String LikeProduct(String productId){
+        String jsonData = "";
+        String numberLike = "";
+        String link = "http://"+ Host.getHost()+"/api/like_products";
+
+        HashMap<String, String> hashMapToken = new HashMap<>();
+        hashMapToken.put("token", ValueLocal.getToken());
+
+        HashMap<String,String> hashMapProductId = new HashMap<>();
+        hashMapProductId.put("id", productId);
+
+        List<HashMap<String, String>> lstProps = new ArrayList<>();
+        lstProps.add(hashMapToken);
+        lstProps.add(hashMapProductId);
+
+        LoadData loadData = new LoadData(link, lstProps);
+        loadData.execute();
+
+        try {
+            jsonData = loadData.get();
+            IOProduct ioProduct = new IOProduct();
+
+            numberLike = ioProduct.likeProduct(jsonData);
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        return numberLike;
     }
 }

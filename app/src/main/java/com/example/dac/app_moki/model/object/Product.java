@@ -9,28 +9,24 @@ import java.util.List;
 
 public class Product {
     private int id;
-    private String code;
     private String name;
     private int price;
     private float pricePercen;
     private int number;
     private String fromDate;
     private String endDate;
-    private int statusId;
     private String description;
     private float rating;
     private int numberLike;
     private int numberComment;
     private boolean isLike;
-    private String brand;
     private boolean isBlocked;
     private boolean canEdit;
     private boolean banned;
-    private float priceNew;
-    private String priceType;
     private Date modified;
-    private String codition;
     private String shipFrom;
+    private String codition;
+    private String brand;
     private String size;
     private String weigh;
     private List<String> lstImage;
@@ -150,14 +146,6 @@ public class Product {
         this.id = id;
     }
 
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
     public String getName() {
         return name;
     }
@@ -207,14 +195,6 @@ public class Product {
         this.endDate = endDate;
     }
 
-    public int getStatusId() {
-        return statusId;
-    }
-
-    public void setStatusId(int statusId) {
-        this.statusId = statusId;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -246,23 +226,6 @@ public class Product {
     public void setNumberComment(int numbẻComment) {
         this.numberComment = numbẻComment;
     }
-
-    public float getPriceNew() {
-        return priceNew;
-    }
-
-    public void setPriceNew(float priceNew) {
-        this.priceNew = priceNew;
-    }
-
-    public String getPriceType() {
-        return priceType;
-    }
-
-    public void setPriceType(String priceType) {
-        this.priceType = priceType;
-    }
-
 
     public Date getModified() {
         return modified;
