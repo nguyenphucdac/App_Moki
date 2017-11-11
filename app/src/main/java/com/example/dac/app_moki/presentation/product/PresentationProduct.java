@@ -15,7 +15,7 @@ import java.util.concurrent.ExecutionException;
  */
 
 public class PresentationProduct {
-    public List<Product> getListProducts(String categoryId) {
+    public List<Product> getListProductsOfCategory(String categoryId) {
         String jsonData = "";
         String link = "http://"+ Host.getHost()+"/api/get_list_products?category_id=" + categoryId;
         List<Product> lstProducts = new ArrayList<>();
@@ -57,19 +57,50 @@ public class PresentationProduct {
 
         return product;
     }
-    public List<Product> getSerachResult(String keyword, String catergoryId){
+    public List<Product> getSerachResult(String keyword, String categoryId, String brandId, String sizeId, String conditionId){
         String jsonData = "";
-        String link = "http://"+ Host.getHost()+"/api/search?category_id=" + catergoryId;
+        String link = "http://"+ Host.getHost()+"/api/search";
         List<Product> lstProducts = new ArrayList<>();
 
-        LoadData loadData = new LoadData(link);
+        List<HashMap<String, String>> lstProps = new ArrayList<>();
+
+//        if(keyword!=null && keyword!=""){
+//            HashMap<String, String> hashMapKeyword = new HashMap<>();
+//            hashMapKeyword.put("keyword", keyword);
+//            lstProps.add(hashMapKeyword);
+//        }
+
+       if(categoryId != null){
+           HashMap<String, String> hashMapCategoryId = new HashMap<>();
+           hashMapCategoryId.put("category_id", categoryId);
+           lstProps.add(hashMapCategoryId);
+       }
+
+        if(brandId != null){
+            HashMap<String, String> hashMapBrandId = new HashMap<>();
+            hashMapBrandId.put("brand_id", brandId);
+            lstProps.add(hashMapBrandId);
+        }
+
+        if(sizeId != null){
+            HashMap<String, String> hashMapSizeId = new HashMap<>();
+            hashMapSizeId.put("size_id", sizeId);
+            lstProps.add(hashMapSizeId);
+        }
+
+        if(conditionId != null){
+            HashMap<String, String> hashMapCondition = new HashMap<>();
+            hashMapCondition.put("condition_id", conditionId);
+            lstProps.add(hashMapCondition);
+        }
+
+        LoadData loadData = new LoadData(link, lstProps);
 
         loadData.execute();
         try {
             jsonData = loadData.get();
             IOProduct ioProduct = new IOProduct();
-            lstProducts = ioProduct.getListProducts(jsonData, catergoryId);
-
+            lstProducts = ioProduct.getListProducts(jsonData);
 
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -116,7 +147,7 @@ public class PresentationProduct {
         hashMapToken.put("token", ValueLocal.getToken());
 
         HashMap<String,String> hashMapProductId = new HashMap<>();
-        hashMapProductId.put("id", productId);
+        hashMapProductId.put("product_id", productId);
 
         List<HashMap<String, String>> lstProps = new ArrayList<>();
         lstProps.add(hashMapToken);
@@ -138,5 +169,26 @@ public class PresentationProduct {
         }
 
         return numberLike;
+    }
+
+    public List<Product> getUserListings(int userId){
+        String jsonData = "";
+        String link = "http://"+ Host.getHost()+"/api/get_user_listings?user_id=" + userId;
+        List<Product> lstProducts = new ArrayList<>();
+
+        LoadData loadData = new LoadData(link);
+        loadData.execute();
+
+        try {
+            jsonData = loadData.get();
+            IOProduct ioProduct = new IOProduct();
+            lstProducts = ioProduct.getListings(jsonData);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        return lstProducts;
     }
 }

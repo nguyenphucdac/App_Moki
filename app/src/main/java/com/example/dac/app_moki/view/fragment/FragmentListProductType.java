@@ -37,10 +37,10 @@ public class FragmentListProductType extends Fragment {
     private View toolBar_header;
     private View bottomViewButtonSale;
     private View slideHome;
-    private int category;
+    private String categoryId;
 
-    public FragmentListProductType(int category){
-        this.category = category;
+    public FragmentListProductType(String categoryId){
+        this.categoryId = categoryId;
     }
 
 
@@ -56,13 +56,13 @@ public class FragmentListProductType extends Fragment {
 
         List<Product> lstProduct = new ArrayList<>();
 
-        if(ProductLocal.getListProductOfCategory(String.valueOf(this.category)) != null){
-            lstProduct = ProductLocal.getListProductOfCategory(String.valueOf(category));
+        if( ProductLocal.getLstProducs(categoryId) != null){
+            lstProduct = ProductLocal.getLstProducs(categoryId);
             System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
         }
         else {
             PresentationProduct presentationProduct = new PresentationProduct();
-            lstProduct = presentationProduct.getListProducts(String.valueOf(category));
+            lstProduct = presentationProduct.getListProductsOfCategory(categoryId);
             System.out.println("000000000000000000000000000000000000000000000000000000000000000");
         }
 

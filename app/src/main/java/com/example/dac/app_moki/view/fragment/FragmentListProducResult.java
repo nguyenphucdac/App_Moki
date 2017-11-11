@@ -15,6 +15,7 @@ import com.example.dac.app_moki.model.object.Product;
 import com.example.dac.app_moki.presentation.product.PresentationProduct;
 import com.example.dac.app_moki.view.adapter.AdapterListProductType1;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,14 +30,18 @@ public class FragmentListProducResult extends Fragment {
     private View toolBar_header;
     private View bottomViewButtonSale;
     private View slideHome;
+    private List<Product> lstProduct;
+
+    public FragmentListProducResult(int userId){
+        PresentationProduct presentationProduct = new PresentationProduct();
+        lstProduct = new ArrayList<>();
+        lstProduct = presentationProduct.getUserListings(userId);
+    }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.home_list_product_fragment, container, false);
-
-        PresentationProduct presentationProduct = new PresentationProduct();
-        List<Product> lstProduct = presentationProduct.getListProducts("9");
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recycle_home_list_product);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));

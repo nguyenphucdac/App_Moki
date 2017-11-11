@@ -30,19 +30,17 @@ public class AdapterViewPagerHome extends FragmentPagerAdapter {
             lstCategories = presentationCategory.getListCategoryRoot();
         }
 
-
-
         if(lstCategories.size() > 0){
             lstTitle.add("Tất cả");
-            lstFragment.add(new FragmentListProductType(9));
+            lstFragment.add(new FragmentListProductType("9"));
             for(int i = 0 ; i < lstCategories.size(); i++){
                 lstTitle.add(lstCategories.get(i).getName());
-                lstFragment.add(new FragmentListProductType(lstCategories.get(i).getId()));
+                lstFragment.add(new FragmentListProductType(String.valueOf(lstCategories.get(i).getId())));
             }
         }
         else{
             lstTitle.add("Tất cả");
-            lstFragment.add(new FragmentListProductType(9));
+            lstFragment.add(new FragmentListProductType("9"));
         }
     }
 

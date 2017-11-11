@@ -15,15 +15,10 @@ import java.util.List;
 public class AdapterViewPagerUserInfo extends FragmentPagerAdapter {
     List<Fragment> lstFragment = new ArrayList<Fragment>();
     List<String> lstTitle = new ArrayList<String>();
-    public AdapterViewPagerUserInfo(FragmentManager fm) {
+    public AdapterViewPagerUserInfo(FragmentManager fm, int userId) {
         super(fm);
-        lstFragment.add(new FragmentListProducResult());
-        lstFragment.add(new FragmentListProducResult());
-        lstFragment.add(new FragmentListProducResult());
-
+        lstFragment.add(new FragmentListProducResult(userId));
         lstTitle.add("Sản phẩm");
-        lstTitle.add("Đang theo dõi");
-        lstTitle.add("Người theo dõi");
     }
 
     @Override

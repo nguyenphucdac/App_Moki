@@ -24,6 +24,7 @@
             android:scaleType="fitXY"
             />
         <TextView
+            android:id="@+id/profile_name"
             android:layout_width="0dp"
             android:layout_weight="4"
             android:layout_height="wrap_content"
@@ -148,6 +149,7 @@
                                 android:orientation="vertical"
                                 >
                                 <TextView
+                                    android:id="@+id/profile_number_product"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="2120"
@@ -172,6 +174,7 @@
                                 android:orientation="vertical"
                                 >
                                 <TextView
+                                    android:id="@+id/profile_score"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="34"

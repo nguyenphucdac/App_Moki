@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.dac.app_moki.R;
 import com.example.dac.app_moki.view.fragment.FragmentChosePrice;
@@ -109,7 +108,6 @@ public class Search_Activity extends AppCompatActivity {
                 FragmentManager fm = getFragmentManager();
                 FragmentChosePrice fragmentChosePrice = FragmentChosePrice.newInstance();
                 fragmentChosePrice.show(fm, "Sample Fragment");
-                Toast.makeText(Search_Activity.this, "press chose price", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -117,8 +115,9 @@ public class Search_Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(categoryId != null || brandId != null || sizeId != null || conditionId != null){
+                if(keyword.getText() != null || categoryId != null || brandId != null || sizeId != null || conditionId != null){
                     Intent intent = new Intent(Search_Activity.this, ResultSearch_Activity.class);
+                    intent.putExtra("keyword", (keyword.getText()+"").toString());
                     intent.putExtra("category_id", (categoryId + "").toString() );
                     intent.putExtra("brand_id", (brandId + "").toString() );
                     intent.putExtra("size_id", (sizeId + "").toString() );

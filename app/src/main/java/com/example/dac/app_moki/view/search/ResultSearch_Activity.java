@@ -33,14 +33,16 @@ public class ResultSearch_Activity extends AppCompatActivity {
 
     private void addCotnrols() {
         Intent myIntent = getIntent();
-        String categoryId = myIntent.getStringExtra("category_id");
         String keyword = myIntent.getStringExtra("keyword");
-
+        String categoryId = myIntent.getStringExtra("category_id");
+        String brandId = myIntent.getStringExtra("brand_id");
+        String sizeid = myIntent.getStringExtra("size_id");
+        String conditionId = myIntent.getStringExtra("condition_id");
 
         btnBack = (ImageButton) findViewById(R.id.btnBack);
         resultSearch = (RecyclerView) findViewById(R.id.recycle_result_search);
         PresentationProduct presentationProduct = new PresentationProduct();
-        List<Product> lstProduct = presentationProduct.getSerachResult(keyword, categoryId);
+        List<Product> lstProduct = presentationProduct.getSerachResult(keyword, categoryId, brandId, sizeid, conditionId);
 
         resultSearch = (RecyclerView)findViewById(R.id.recycle_result_search);
         resultSearch.setLayoutManager(new GridLayoutManager(ResultSearch_Activity.this, 2));

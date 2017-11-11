@@ -127,7 +127,7 @@ public class ProductDetail_Activity extends AppCompatActivity {
         contentView.invalidate();
 
         Intent myIntent = getIntent();
-        String productId = myIntent.getStringExtra("productId");
+        final String productId = myIntent.getStringExtra("productId");
         PresentationProduct presentationProduct = new PresentationProduct();
         product = presentationProduct.getProduct(Integer.parseInt(productId));
 
@@ -188,6 +188,8 @@ public class ProductDetail_Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ProductDetail_Activity.this, UserInfo_Activity.class);
+                intent.putExtra("seller", product.getSeller());
+                System.out.println(product.getSeller());
                 startActivity(intent);
             }
         });
