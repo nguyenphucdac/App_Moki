@@ -65,8 +65,18 @@ public class IOProduct {
                 lstProducts.add(product);
 
             }
-            ProductLocal.setLstProducs(lstProducts);
-            ProductLocal.setCategories(categoryId);
+            if(ProductLocal.getcategories(categoryId) == -1){
+                ProductLocal.setLastId(String.valueOf(dataObject.getString("last_id")));
+                ProductLocal.setLstProducs(lstProducts);
+                ProductLocal.setCategories(categoryId);
+                System.out.println("init product in fragment");
+            }
+            else {
+                ProductLocal.updatelstProduct(lstProducts, categoryId);
+                ProductLocal.updateLastId(String.valueOf(dataObject.getString("last_id")),categoryId);
+                System.out.println("update product in fragment");
+            }
+
 
         } catch (JSONException e) {
             e.printStackTrace();

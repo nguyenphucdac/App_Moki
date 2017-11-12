@@ -10,33 +10,54 @@ import java.util.List;
  */
 
 public class ProductLocal {
-    private static List<List<Product>> lstProducs = new ArrayList<>();
-    private static List<String> lstcategories = new ArrayList<>();
+    private static List<List<Product>> lstProductss = new ArrayList<>();
+    private static List<String> lstcategoriesId = new ArrayList<>();
+    private static List<String> lstlastId = new ArrayList<>();
 
-    public static List<Product> getLstProducs(String category) {
-        int index = getcategories(category);
+    public static void setLastId(String lastId){
+        lstlastId.add(lastId);
+    }
+
+    public static String getLastId(String categoryId){
+        int index = getcategories(categoryId);
         if(index == -1){
             return null;
         }
-        return lstProducs.get(index);
+        return lstlastId.get(index);
+    }
+
+    public static void updateLastId(String lastId, String categoryId){
+        int index = getcategories(categoryId);
+        lstlastId.set(index, lastId);
+    }
+
+    public static List<Product> getLstProducs(String categoryId) {
+        int index = getcategories(categoryId);
+        if(index == -1){
+            return null;
+        }
+        return lstProductss.get(index);
     }
 
     public static void setLstProducs(List<Product> lstProducs) {
-        ProductLocal.lstProducs.add(lstProducs);
+        ProductLocal.lstProductss.add(lstProducs);
     }
-    public static void setCategories(String category) {
-        ProductLocal.lstcategories.add(category);
+    public static void setCategories(String categoryId) {
+        ProductLocal.lstcategoriesId.add(categoryId);
     }
-    public static int getcategories(String category) {
+    public static int getcategories(String categoryId) {
         int index = -1;
-        for(int i = 0 ; i < lstcategories.size(); i++){
-            if(category == lstcategories.get(i)){
+        for(int i = 0 ; i < lstcategoriesId.size(); i++){
+            if(categoryId == lstcategoriesId.get(i)){
                 index = i;
                 break;
             }
         }
         return index;
     }
-
+    public static void updatelstProduct(List<Product> lstProduct, String categoryId){
+        int index = getcategories(categoryId);
+        ProductLocal.lstProductss.set(index, lstProduct);
+    }
 
 }

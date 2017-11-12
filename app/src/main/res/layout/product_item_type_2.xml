@@ -84,7 +84,7 @@
         <ImageButton
             android:id="@+id/img_product_type_2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="320dp"
             android:background="#fff"
             android:scaleType="fitXY"
             android:src="@drawable/iphone7"

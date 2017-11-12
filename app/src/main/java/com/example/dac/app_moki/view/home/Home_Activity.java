@@ -33,6 +33,7 @@ import com.example.dac.app_moki.view.fragment.FragmentDialogAlert;
 import com.example.dac.app_moki.view.fragment.FragmentDialogExit;
 import com.example.dac.app_moki.view.fragment.FragmentDialogFilter;
 import com.example.dac.app_moki.view.fragment.FragmentDialogMessage;
+import com.example.dac.app_moki.view.fragment.FragmentDialogSort;
 import com.example.dac.app_moki.view.fragment.FragmentMenu;
 import com.example.dac.app_moki.view.product.PostProduct;
 import com.example.dac.app_moki.view.search.Search_Activity;
@@ -60,6 +61,7 @@ public class Home_Activity extends AppCompatActivity {
     AdapterViewPagerHome adapterViewPagerHome;
     private ViewPager viewPagerListProduct;
 
+    private FragmentDialogSort dialogSort;
     private FragmentDialogMessage dialogMessage;
     private FragmentDialogAlert dialogAlert;
     private FragmentDialogFilter dialogFilter;
@@ -93,8 +95,8 @@ public class Home_Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 FragmentManager fm = getFragmentManager();
-                dialogFilter = FragmentDialogFilter.newInstance("Some Title");
-                dialogFilter.show(fm, "Sample Fragment");
+                dialogSort =  FragmentDialogSort.newInstance("Some Title");
+                dialogSort.show(fm, "Sample Fragment");
             }
         });
         filter.setOnClickListener(new View.OnClickListener() {
@@ -155,6 +157,8 @@ public class Home_Activity extends AppCompatActivity {
 
         tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         tabLayout.setupWithViewPager(viewPagerListProduct);
+        tabLayout.setScrollPosition(ValueLocal.getCurrenTab(), 0f, true);
+        viewPagerListProduct.setCurrentItem(ValueLocal.getCurrenTab());
 
         dialogMessage = new FragmentDialogMessage();
         dialogAlert = new FragmentDialogAlert();
@@ -270,6 +274,7 @@ public class Home_Activity extends AppCompatActivity {
             public void onClick(View v) {
                 ValueLocal.setOptionView(!ValueLocal.getOptionView());
                 int index = tabLayout.getSelectedTabPosition();
+                ValueLocal.setCurrenTab(index);
 
                 ViewAnimator viewAnimatorFragmentAll = (ViewAnimator) findViewById(R.id.viewFlipper1);
                 AnimationFactory.flipTransition(viewAnimatorFragmentAll, AnimationFactory.FlipDirection.LEFT_RIGHT);

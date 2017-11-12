@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -30,10 +31,11 @@ import java.util.List;
 
 public class FragmentListProductType extends Fragment {
     private RecyclerView recyclerView;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
-    private static int aboveItem = 0;
-    private int numberItem = 0;
-    private int itemMore = 0;
+    private int aboveItem = 0;
+    private int numberItem = 10;
+    private int itemMore = 3;
     private View toolBar_header;
     private View bottomViewButtonSale;
     private View slideHome;
@@ -58,14 +60,22 @@ public class FragmentListProductType extends Fragment {
 
         if( ProductLocal.getLstProducs(categoryId) != null){
             lstProduct = ProductLocal.getLstProducs(categoryId);
-            System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
         }
         else {
             PresentationProduct presentationProduct = new PresentationProduct();
             lstProduct = presentationProduct.getListProductsOfCategory(categoryId);
-            System.out.println("000000000000000000000000000000000000000000000000000000000000000");
         }
 
+        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefreshLayout);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                PresentationProduct presentationProduct = new PresentationProduct();
+                List<Product> lstProduct = presentationProduct.getListProductsOfCategory(categoryId);
+                ProductLocal.updatelstProduct(lstProduct, categoryId);
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
 
         if(ValueLocal.getOptionView() == true){
             recyclerView = (RecyclerView) view.findViewById(R.id.recycle_home_list_product);
@@ -117,8 +127,18 @@ public class FragmentListProductType extends Fragment {
                                     | AppBarLayout.LayoutParams.SCROLL_FLAG_SNAP);
 
                 }
-                if(currentAboveItem > 3){
 
+                if(numberItem < currentAboveItem + itemMore){
+                    System.out.println("begin load more");
+                    PresentationProduct presentationProduct = new PresentationProduct();
+                    List<Product> lstProduct = presentationProduct.getListProductsOfCategory(categoryId, currentAboveItem, Integer.parseInt(ProductLocal.getLastId(categoryId)));
+
+
+                    AdapterListProductType2 adapterTabAll = new AdapterListProductType2(getActivity(), lstProduct);
+                    recyclerView.setAdapter(adapterTabAll);
+                    adapterTabAll.notifyDataSetChanged();
+
+                    //numberItem = numberItem + itemMore;
                 }
             }
         });

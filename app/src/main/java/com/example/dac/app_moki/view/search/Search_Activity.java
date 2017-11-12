@@ -117,11 +117,11 @@ public class Search_Activity extends AppCompatActivity {
 
                 if(keyword.getText() != null || categoryId != null || brandId != null || sizeId != null || conditionId != null){
                     Intent intent = new Intent(Search_Activity.this, ResultSearch_Activity.class);
-                    intent.putExtra("keyword", (keyword.getText()+"").toString());
-                    intent.putExtra("category_id", (categoryId + "").toString() );
-                    intent.putExtra("brand_id", (brandId + "").toString() );
-                    intent.putExtra("size_id", (sizeId + "").toString() );
-                    intent.putExtra("condition_id", (conditionId + "").toString());
+                    intent.putExtra("keyword", keyword.getText());
+                    intent.putExtra("category_id", categoryId );
+                    intent.putExtra("brand_id", brandId);
+                    intent.putExtra("size_id", sizeId);
+                    intent.putExtra("condition_id", conditionId);
                     startActivity(intent);
                 }
                 else {

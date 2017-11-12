@@ -20,7 +20,6 @@ public class PresentationProduct {
         String link = "http://"+ Host.getHost()+"/api/get_list_products?category_id=" + categoryId;
         List<Product> lstProducts = new ArrayList<>();
 
-
         LoadData loadData = new LoadData(link);
         loadData.execute();
 
@@ -64,13 +63,14 @@ public class PresentationProduct {
 
         List<HashMap<String, String>> lstProps = new ArrayList<>();
 
-//        if(keyword!=null && keyword!=""){
-//            HashMap<String, String> hashMapKeyword = new HashMap<>();
-//            hashMapKeyword.put("keyword", keyword);
-//            lstProps.add(hashMapKeyword);
-//        }
+        if(keyword!=null && keyword!=""){
+            HashMap<String, String> hashMapKeyword = new HashMap<>();
+            hashMapKeyword.put("keyword", keyword);
+            lstProps.add(hashMapKeyword);
+        }
 
-       if(categoryId != null){
+       if(categoryId !=null){
+           System.out.println("value of categoryId = " + categoryId);
            HashMap<String, String> hashMapCategoryId = new HashMap<>();
            hashMapCategoryId.put("category_id", categoryId);
            lstProps.add(hashMapCategoryId);
@@ -183,6 +183,77 @@ public class PresentationProduct {
             jsonData = loadData.get();
             IOProduct ioProduct = new IOProduct();
             lstProducts = ioProduct.getListings(jsonData);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        return lstProducts;
+    }
+    public List<Product> sortList(String value, String typeSort, String categoryId){
+        String jsonData = "";
+        String link = "http://"+ Host.getHost()+"/api/get_list_products";
+        List<Product> lstProducts = new ArrayList<>();
+
+        HashMap<String , String> hashMap0 = new HashMap<>();
+        hashMap0.put("category_id", categoryId);
+
+        HashMap<String , String> hashMap1 = new HashMap<>();
+        hashMap1.put("sort", value);
+
+        HashMap<String, String> hashMap2 = new HashMap<>();
+        hashMap2.put("typeSort", typeSort);
+
+        List<HashMap<String, String>> lstProps = new ArrayList<>();
+        lstProps.add(hashMap0);
+        lstProps.add(hashMap1);
+        lstProps.add(hashMap2);
+
+        LoadData loadData = new LoadData(link, lstProps);
+        loadData.execute();
+
+        try {
+            jsonData = loadData.get();
+            IOProduct ioProduct = new IOProduct();
+            lstProducts = ioProduct.getListProducts(jsonData);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        return lstProducts;
+    }
+
+
+    public List<Product> getListProductsOfCategory(String categoryId, int index, int lastId) {
+        String jsonData = "";
+        String link = "http://"+ Host.getHost()+"/api/get_list_products?category_id=" + categoryId;
+        List<Product> lstProducts = new ArrayList<>();
+
+
+        HashMap<String , String> hashMap0 = new HashMap<>();
+        hashMap0.put("category_id", categoryId);
+
+        HashMap<String , String> hashMap1 = new HashMap<>();
+        hashMap1.put("last_id", lastId+"");
+
+        HashMap<String, String> hashMap2 = new HashMap<>();
+        hashMap2.put("index", index+"");
+
+        List<HashMap<String, String>> lstProps = new ArrayList<>();
+        lstProps.add(hashMap0);
+        lstProps.add(hashMap1);
+        lstProps.add(hashMap2);
+
+        LoadData loadData = new LoadData(link,lstProps);
+        loadData.execute();
+
+        try {
+            jsonData = loadData.get();
+            IOProduct ioProduct = new IOProduct();
+            lstProducts = ioProduct.getListProducts(jsonData, categoryId);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {

@@ -26,6 +26,7 @@
         android:background="@color/red_button"
         ></LinearLayout>
     <LinearLayout
+        android:id="@+id/category_filter"
         android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="70dp"
@@ -46,6 +47,7 @@
                 android:textSize="16sp"
                 android:layout_gravity="center_vertical" />
             <TextView
+                android:id="@+id/name_category_filter"
                 android:layout_gravity="center_vertical"
                 android:textColor="@color/text_black"
                 android:layout_width="wrap_content"
@@ -67,6 +69,7 @@
         android:background="@color/BORDER_COLOR"
         ></LinearLayout>
     <LinearLayout
+        android:id="@+id/brand_filter"
         android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="70dp"
@@ -87,6 +90,7 @@
                 android:textSize="16sp"
                 android:layout_gravity="center_vertical" />
             <TextView
+                android:id="@+id/name_brand_filter"
                 android:layout_gravity="center_vertical"
                 android:textColor="@color/text_black"
                 android:layout_width="wrap_content"
@@ -108,6 +112,7 @@
         android:background="@color/BORDER_COLOR"
         ></LinearLayout>
     <LinearLayout
+        android:id="@+id/status_filter"
         android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="70dp"
@@ -124,10 +129,11 @@
                 android:textColor="@color/text_black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Giá"
+                android:text="Trạng thái"
                 android:textSize="16sp"
                 android:layout_gravity="center_vertical" />
             <TextView
+                android:id="@+id/name_status_filter"
                 android:layout_gravity="center_vertical"
                 android:textColor="@color/text_black"
                 android:layout_width="wrap_content"
