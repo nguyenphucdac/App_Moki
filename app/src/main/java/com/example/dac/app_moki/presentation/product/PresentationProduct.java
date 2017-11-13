@@ -227,9 +227,9 @@ public class PresentationProduct {
     }
 
 
-    public List<Product> getListProductsOfCategory(String categoryId, int index, int lastId) {
+    public List<Product> getMoreProductsOfCategory(String categoryId, int index, int lastId) {
         String jsonData = "";
-        String link = "http://"+ Host.getHost()+"/api/get_list_products?category_id=" + categoryId;
+        String link = "http://"+ Host.getHost()+"/api/get_list_products";
         List<Product> lstProducts = new ArrayList<>();
 
 
@@ -253,7 +253,7 @@ public class PresentationProduct {
         try {
             jsonData = loadData.get();
             IOProduct ioProduct = new IOProduct();
-            lstProducts = ioProduct.getListProducts(jsonData, categoryId);
+            lstProducts = ioProduct.getListProducts(jsonData);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {

@@ -60,4 +60,11 @@ public class ProductLocal {
         ProductLocal.lstProductss.set(index, lstProduct);
     }
 
+    public static void appendListProduct(List<Product> lstProduct, String categoryId){
+        int index = getcategories(categoryId);
+        if(index == -1){
+            return;
+        }
+        lstProductss.get(index).addAll(lstProduct);
+    }
 }

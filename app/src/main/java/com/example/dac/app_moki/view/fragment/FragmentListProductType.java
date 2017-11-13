@@ -30,16 +30,19 @@ import java.util.List;
  */
 
 public class FragmentListProductType extends Fragment {
-    private RecyclerView recyclerView;
-    private SwipeRefreshLayout swipeRefreshLayout;
 
     private int aboveItem = 0;
     private int numberItem = 10;
-    private int itemMore = 3;
     private View toolBar_header;
     private View bottomViewButtonSale;
     private View slideHome;
     private String categoryId;
+
+    private RecyclerView recyclerView;
+    private SwipeRefreshLayout swipeRefreshLayout;
+    private AdapterListProductType1 adapterListProductType1;
+    private  AdapterListProductType2 adapterListProductType2;
+    private List<Product> lstProduct = new ArrayList<>();
 
     public FragmentListProductType(String categoryId){
         this.categoryId = categoryId;
@@ -56,8 +59,6 @@ public class FragmentListProductType extends Fragment {
         bottomViewButtonSale = getActivity().findViewById(R.id.bottom_buttonsale);
         final Animation slide_down = AnimationUtils.loadAnimation(getActivity().getApplicationContext(),R.anim.slide_down);
 
-        List<Product> lstProduct = new ArrayList<>();
-
         if( ProductLocal.getLstProducs(categoryId) != null){
             lstProduct = ProductLocal.getLstProducs(categoryId);
         }
@@ -70,26 +71,31 @@ public class FragmentListProductType extends Fragment {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                swipeRefreshLayout.setRefreshing(true);
                 PresentationProduct presentationProduct = new PresentationProduct();
-                List<Product> lstProduct = presentationProduct.getListProductsOfCategory(categoryId);
-                ProductLocal.updatelstProduct(lstProduct, categoryId);
+                lstProduct = presentationProduct.getListProductsOfCategory(categoryId);
+                adapterListProductType1.notifyDataSetChanged();
+                adapterListProductType2.notifyDataSetChanged();
                 swipeRefreshLayout.setRefreshing(false);
+
             }
         });
 
         if(ValueLocal.getOptionView() == true){
             recyclerView = (RecyclerView) view.findViewById(R.id.recycle_home_list_product);
             recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-            AdapterListProductType1 adapterListProductType1 = new AdapterListProductType1(getActivity(), lstProduct);
+            adapterListProductType1 = new AdapterListProductType1(getActivity(), lstProduct);
+            adapterListProductType2 = new AdapterListProductType2(getActivity(), lstProduct);
             recyclerView.setAdapter(adapterListProductType1);
             adapterListProductType1.notifyDataSetChanged();
         }
         else {
             recyclerView = (RecyclerView) view.findViewById(R.id.recycle_home_list_product);
             recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-            AdapterListProductType2 adapterTabAll = new AdapterListProductType2(getActivity(), lstProduct);
-            recyclerView.setAdapter(adapterTabAll);
-            adapterTabAll.notifyDataSetChanged();
+            adapterListProductType1 = new AdapterListProductType1(getActivity(), lstProduct);
+            adapterListProductType2 = new AdapterListProductType2(getActivity(), lstProduct);
+            recyclerView.setAdapter(adapterListProductType2);
+            adapterListProductType2.notifyDataSetChanged();
         }
 
 
@@ -128,17 +134,18 @@ public class FragmentListProductType extends Fragment {
 
                 }
 
-                if(numberItem < currentAboveItem + itemMore){
+                if(lstProduct.size() < currentAboveItem + 3){
                     System.out.println("begin load more");
                     PresentationProduct presentationProduct = new PresentationProduct();
-                    List<Product> lstProduct = presentationProduct.getListProductsOfCategory(categoryId, currentAboveItem, Integer.parseInt(ProductLocal.getLastId(categoryId)));
+                    List<Product> lstProductMore = presentationProduct.getMoreProductsOfCategory(categoryId, currentAboveItem, Integer.parseInt(ProductLocal.getLastId(categoryId)));
 
+                    lstProduct.addAll(lstProductMore);
 
-                    AdapterListProductType2 adapterTabAll = new AdapterListProductType2(getActivity(), lstProduct);
-                    recyclerView.setAdapter(adapterTabAll);
-                    adapterTabAll.notifyDataSetChanged();
+                    System.out.println("so san pham load them :" + lstProductMore.size());
+                    System.out.println("tong so san pham : " + lstProduct.size());
 
-                    //numberItem = numberItem + itemMore;
+                    adapterListProductType2.notifyDataSetChanged();
+                    adapterListProductType1.notifyDataSetChanged();
                 }
             }
         });
