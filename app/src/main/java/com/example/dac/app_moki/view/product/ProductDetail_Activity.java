@@ -41,6 +41,8 @@ public class ProductDetail_Activity extends AppCompatActivity {
     private ImageButton btnLikeProduct;
     private TextView txtStatusProduct;
     private Product product;
+    private ViewPager viewListImage;
+    private View boundListImage;
 
     private PullToZoomScrollViewEx scrollView;
     private View contentView;
@@ -166,8 +168,8 @@ public class ProductDetail_Activity extends AppCompatActivity {
         TextView price = (TextView) findViewById(R.id.price_product_detail);
         price.setText("Giá : " +String.format("%,d", product.getPrice())  + " VNĐ");
 
-        ViewPager viewListImage = (ViewPager) zoomView.findViewById(R.id.viewpager_list_image);
-        AdapterViewPageImage adapterViewPageImage = new AdapterViewPageImage(getSupportFragmentManager(), product.getListImage());
+        viewListImage = (ViewPager) zoomView.findViewById(R.id.viewpager_list_image);
+        AdapterViewPageImage adapterViewPageImage = new AdapterViewPageImage(getSupportFragmentManager(), product.getListImage(), productId);
         viewListImage.setAdapter(adapterViewPageImage);
 
         View avatarSeller = contentView.findViewById(R.id.avatarSeller_product_detail);

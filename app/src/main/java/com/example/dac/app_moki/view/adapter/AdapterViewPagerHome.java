@@ -5,7 +5,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.example.dac.app_moki.local.data.CategoryLocal;
-import com.example.dac.app_moki.local.value.ValueLocal;
 import com.example.dac.app_moki.model.object.Category;
 import com.example.dac.app_moki.presentation.category.PresentationCategory;
 import com.example.dac.app_moki.view.fragment.FragmentListProductType;
@@ -29,8 +28,6 @@ public class AdapterViewPagerHome extends FragmentPagerAdapter {
         else {
             PresentationCategory presentationCategory = new PresentationCategory();
             lstCategories = presentationCategory.getListCategoryRoot();
-            ValueLocal.setCurrenTab(0);
-            ValueLocal.setCurrentCategory("9");
         }
 
         if(lstCategories.size() > 0){

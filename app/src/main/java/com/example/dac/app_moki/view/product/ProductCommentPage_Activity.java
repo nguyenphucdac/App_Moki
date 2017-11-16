@@ -29,6 +29,7 @@ public class ProductCommentPage_Activity extends AppCompatActivity {
     private RecyclerView recyclerViewComment;
     private ImageButton btnComment;
     private EditText contentComment;
+    private int lastId = 0 ;
 
     private Intent myIntent;
     private String productId;
@@ -60,7 +61,14 @@ public class ProductCommentPage_Activity extends AppCompatActivity {
                     startActivity(intent);
                 }
                 if (content != null && content != "") {
-                    presentationComment.setComment(productId, content, 0);
+
+                    for(int i = 0 ; i < lstComment.size() ; i++){
+                        if(lastId < lstComment.get(i).getId()){
+                            lastId = lstComment.get(i).getId();
+                        }
+                    }
+
+                    presentationComment.setComment(productId, content, lastId);
                     lstComment = presentationComment.getListComment(Integer.parseInt(productId));
 
                     AdapterProductComment adapterProductComment = new AdapterProductComment(ProductCommentPage_Activity.this, lstComment);
@@ -85,6 +93,7 @@ public class ProductCommentPage_Activity extends AppCompatActivity {
 
         presentationComment = new PresentationComment();
         lstComment = presentationComment.getListComment(Integer.parseInt(productId));
+
 
         recyclerViewComment = (RecyclerView) findViewById(R.id.recycle_product_comment);
         recyclerViewComment.setLayoutManager(new LinearLayoutManager(this));

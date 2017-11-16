@@ -13,6 +13,7 @@ import com.example.dac.app_moki.model.object.User;
 import com.example.dac.app_moki.presentation.acount.PresentationLogin;
 import com.example.dac.app_moki.view.fragment.FragmentDialogError;
 import com.example.dac.app_moki.view.home.Home_Activity;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 /**
  * Created by Dac on 10/12/2017.
@@ -69,6 +70,7 @@ public class Login_Activity extends AppCompatActivity {
     }
 
     private void addControls() {
+        System.out.println("token curent : "+ FirebaseInstanceId.getInstance().getToken());
         Intent myIntent = getIntent();
         boolean logined = myIntent.getBooleanExtra("logined", true);
         if(!logined){

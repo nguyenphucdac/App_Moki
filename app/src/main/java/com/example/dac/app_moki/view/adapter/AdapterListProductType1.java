@@ -33,43 +33,45 @@ public class AdapterListProductType1 extends RecyclerView.Adapter<AdapterListPro
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = layoutInflater.inflate(R.layout.product_item_type_1,parent, false );
 
-        ViewHolder viewHolder = new ViewHolder(view);
+        AdapterListProductType1.ViewHolder viewHolder = new AdapterListProductType1.ViewHolder(view);
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        final Product product = lstProduct.get(position);
 
-        holder.price.setText((product.getPrice()) + " K");
-        holder.nameProduct.setText(product.getName());
-        holder.numbeComment.setText((product.getNumberComment()) + "");
-        holder.numberLike.setText((product.getNumberLike()) + "");
-        if(product.getImageOnList(0) != null){
-            Picasso.with(context).load(product.getImageOnList(0)).into(holder.imageProductType1);
-        }
-        else {
-            Picasso.with(context).load(R.drawable.no_image).into(holder.imageProductType1);
-        }
+            final Product product = lstProduct.get(position);
 
-        holder.itemProductType1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(context.getApplicationContext(), ProductDetail_Activity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
-                intent.putExtra("productId",(product.getId()+"").toString());
-                context.getApplicationContext().startActivity(intent);
+            holder.price.setText((product.getPrice()) + " K");
+            holder.nameProduct.setText(product.getName());
+            holder.numbeComment.setText((product.getNumberComment()) + "");
+            holder.numberLike.setText((product.getNumberLike()) + "");
+            if(product.getImageOnList(0) != null){
+                Picasso.with(context).load(product.getImageOnList(0)).into(holder.imageProductType1);
             }
-        });
-        holder.imageProductType1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(context.getApplicationContext(), ProductDetail_Activity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
-                intent.putExtra("productId",(product.getId()+"").toString());
-                context.getApplicationContext().startActivity(intent);
+            else {
+                Picasso.with(context).load(R.drawable.no_image).into(holder.imageProductType1);
             }
-        });
+
+            holder.itemProductType1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent=new Intent(context.getApplicationContext(), ProductDetail_Activity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+                    intent.putExtra("productId",(product.getId()+"").toString());
+                    context.getApplicationContext().startActivity(intent);
+                }
+            });
+            holder.imageProductType1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent=new Intent(context.getApplicationContext(), ProductDetail_Activity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+                    intent.putExtra("productId",(product.getId()+"").toString());
+                    context.getApplicationContext().startActivity(intent);
+                }
+            });
+
     }
 
     @Override

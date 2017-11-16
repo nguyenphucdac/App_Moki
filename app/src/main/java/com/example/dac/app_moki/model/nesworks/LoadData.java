@@ -1,5 +1,6 @@
 package com.example.dac.app_moki.model.nesworks;
 
+import android.net.TrafficStats;
 import android.net.Uri;
 import android.os.AsyncTask;
 
@@ -37,6 +38,11 @@ public class LoadData extends AsyncTask<String, Void, String>{
     }
 
     @Override
+    protected void onPreExecute() {
+        TrafficStats.setThreadStatsTag(0xF00D);
+    }
+
+    @Override
     protected String doInBackground(String... strings) {
         try {
             URL url = new URL(link);
@@ -66,7 +72,7 @@ public class LoadData extends AsyncTask<String, Void, String>{
             String lineData = null;
             StringBuilder dataByGet = new StringBuilder();
             while ((lineData = bufferedReader.readLine()) != null){
-                System.out.println(lineData);
+                //System.out.println(lineData);
                 dataByGet.append(lineData);
             }
             bufferedReader.close();
@@ -122,5 +128,9 @@ public class LoadData extends AsyncTask<String, Void, String>{
             e.printStackTrace();
         }
         return dataByPost;
+    }
+    @Override
+    protected void onPostExecute(String result) {
+        TrafficStats.clearThreadStatsTag();
     }
 }

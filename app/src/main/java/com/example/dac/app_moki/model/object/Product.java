@@ -1,5 +1,6 @@
 package com.example.dac.app_moki.model.object;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -7,7 +8,7 @@ import java.util.List;
  * Created by Dac on 11/4/2017.
  */
 
-public class Product {
+public class Product implements Serializable {
     private int id;
     private String name;
     private int price;

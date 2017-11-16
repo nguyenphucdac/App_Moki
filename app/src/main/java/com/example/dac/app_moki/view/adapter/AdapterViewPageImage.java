@@ -14,14 +14,14 @@ import java.util.List;
 
 public class AdapterViewPageImage  extends FragmentPagerAdapter {
     List<Fragment> lstFragment = new ArrayList<Fragment>();
-    public AdapterViewPageImage(android.support.v4.app.FragmentManager fm, List<String> lstImages) {
+    public AdapterViewPageImage(android.support.v4.app.FragmentManager fm, List<String> lstImages, String productId) {
         super(fm);
         if(lstImages == null || lstImages.size() <=0 ){
             lstFragment.add(new FragmentImage());
         }
         else {
             for(int i = 0 ; i < lstImages.size(); i++){
-                lstFragment.add(new FragmentImage(lstImages.get(i)));
+                lstFragment.add(new FragmentImage(lstImages.get(i), productId));
             }
         }
     }

@@ -49,7 +49,7 @@ public class PresentationComment {
         hashMapContentComent.put("comment", commentContent);
 
         HashMap<String,String> hashMapIndex = new HashMap<>();
-        hashMapIndex.put("index", String.valueOf(index));
+        hashMapIndex.put("last_id", String.valueOf(index));
 
         List<HashMap<String, String>> lstProps = new ArrayList<>();
         lstProps.add(hashMapToken);

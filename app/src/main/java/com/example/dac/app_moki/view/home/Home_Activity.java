@@ -19,10 +19,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.Toast;
 import android.widget.ViewAnimator;
 
 import com.example.dac.app_moki.R;
@@ -31,11 +29,8 @@ import com.example.dac.app_moki.model.object.User;
 import com.example.dac.app_moki.view.adapter.AdapterViewPagerHome;
 import com.example.dac.app_moki.view.fragment.FragmentDialogAlert;
 import com.example.dac.app_moki.view.fragment.FragmentDialogExit;
-import com.example.dac.app_moki.view.fragment.FragmentDialogFilter;
 import com.example.dac.app_moki.view.fragment.FragmentDialogMessage;
-import com.example.dac.app_moki.view.fragment.FragmentDialogSort;
 import com.example.dac.app_moki.view.fragment.FragmentMenu;
-import com.example.dac.app_moki.view.product.PostProduct;
 import com.example.dac.app_moki.view.search.Search_Activity;
 import com.tekle.oss.android.animation.AnimationFactory;
 
@@ -61,21 +56,15 @@ public class Home_Activity extends AppCompatActivity {
     AdapterViewPagerHome adapterViewPagerHome;
     private ViewPager viewPagerListProduct;
 
-    private FragmentDialogSort dialogSort;
     private FragmentDialogMessage dialogMessage;
     private FragmentDialogAlert dialogAlert;
-    private FragmentDialogFilter dialogFilter;
     private FragmentDialogExit dialogExit;
-    private Button filter;
-    private Button sort;
-    private Button rada;
 
     private ViewPager slide_Pager;
     private int currentPage;
     private Integer[] slideImage = {R.drawable.prof_bg, R.drawable.prof_bg};
     private ArrayList<Integer> arrSlideImage;
 
-    private View bottomViewButtonSale;
     private ImageButton btnCameraSale;
     private MenuItem itemOptionView;
 
@@ -91,34 +80,11 @@ public class Home_Activity extends AppCompatActivity {
     }
 
     private void addEvents() {
-        sort.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentManager fm = getFragmentManager();
-                dialogSort =  FragmentDialogSort.newInstance("Some Title");
-                dialogSort.show(fm, "Sample Fragment");
-            }
-        });
-        filter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentManager fm = getFragmentManager();
-                dialogFilter = FragmentDialogFilter.newInstance("Some Title");
-                dialogFilter.show(fm, "Sample Fragment");
-            }
-        });
-        rada.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(Home_Activity.this, "press rada", Toast.LENGTH_LONG).show();
-            }
-        });
-
         btnCameraSale.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
-                Intent intent = new Intent(Home_Activity.this, PostProduct.class);
+                Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+                //Intent intent = new Intent(Home_Activity.this, PostProduct.class);
                 startActivity(intent);
 
             }
@@ -136,8 +102,6 @@ public class Home_Activity extends AppCompatActivity {
 
         fragmentTransaction.add(R.id.menu_view, fragmentMenu);
         fragmentTransaction.commit();
-
-
 
         homeHeader = (Toolbar) findViewById(R.id.home_header);
         homeHeader.setTitle("");
@@ -157,16 +121,10 @@ public class Home_Activity extends AppCompatActivity {
 
         tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         tabLayout.setupWithViewPager(viewPagerListProduct);
-        tabLayout.setScrollPosition(ValueLocal.getCurrenTab(), 0f, true);
-        viewPagerListProduct.setCurrentItem(ValueLocal.getCurrenTab());
 
         dialogMessage = new FragmentDialogMessage();
         dialogAlert = new FragmentDialogAlert();
         dialogExit = new FragmentDialogExit();
-        dialogFilter = new FragmentDialogFilter();
-        filter = (Button) findViewById(R.id.filter);
-        sort = (Button) findViewById(R.id.sort);
-        rada = (Button) findViewById(R.id.rada);
 
         btnCameraSale = (ImageButton) findViewById(R.id.btn_camera_sale);
     }
@@ -274,7 +232,6 @@ public class Home_Activity extends AppCompatActivity {
             public void onClick(View v) {
                 ValueLocal.setOptionView(!ValueLocal.getOptionView());
                 int index = tabLayout.getSelectedTabPosition();
-                ValueLocal.setCurrenTab(index);
 
                 ViewAnimator viewAnimatorFragmentAll = (ViewAnimator) findViewById(R.id.viewFlipper1);
                 AnimationFactory.flipTransition(viewAnimatorFragmentAll, AnimationFactory.FlipDirection.LEFT_RIGHT);

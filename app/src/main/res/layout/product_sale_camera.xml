@@ -115,8 +115,8 @@
                 </LinearLayout>
             </RelativeLayout>
             <ImageView
+                android:id="@+id/button_capture"
                 android:layout_gravity="center_horizontal"
-
                 android:layout_width="92.0dip"
                 android:layout_height="70.0dip"
                 android:src="@drawable/camera_photo_btn"

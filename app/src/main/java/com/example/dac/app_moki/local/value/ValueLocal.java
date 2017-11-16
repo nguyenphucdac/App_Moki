@@ -5,30 +5,11 @@ package com.example.dac.app_moki.local.value;
  */
 
 public class ValueLocal {
-    private static boolean optionView = false;
+    private static boolean optionView = true;
     private static String token = "";
     private static String sort="";
     private static String typeSort="";
-    private static int currenTab = 1;
-    private static String currentCategory = "1";
-
-    public static String getCurrentCategory() {
-        return currentCategory;
-    }
-
-    public static void setCurrentCategory(String currentCategory) {
-        ValueLocal.currentCategory = currentCategory;
-    }
-
-
-    public static int getCurrenTab() {
-        return currenTab;
-    }
-
-    public static void setCurrenTab(int currenTab) {
-        ValueLocal.currenTab = currenTab;
-    }
-
+    private static boolean skipHide = true;
 
     public static String getTypeSort() {
         return typeSort;

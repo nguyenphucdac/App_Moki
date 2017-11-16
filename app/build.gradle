@@ -26,9 +26,10 @@ dependencies {
     compile 'com.android.support:design:23.1.0'
     compile 'me.relex:circleindicator:1.2.2@aar'
     compile 'com.github.frank-zhu:pullzoomview:1.0.0'
-    //compile 'nl.psdcompany:duo-navigation-drawer:2.0.6'
-    compile 'com.google.android.gms:play-services-appindexing:8.1.0'
     compile project(':Flipview')
     compile 'de.hdodenhof:circleimageview:2.2.0'
     compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.google.firebase:firebase-core:11.6.0'
+    compile 'com.github.siyamed:android-shape-imageview:0.9.+@aar'
 }
+apply plugin: 'com.google.gms.google-services'

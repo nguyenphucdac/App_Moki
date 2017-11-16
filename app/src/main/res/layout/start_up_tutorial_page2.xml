@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res/android"
+    app:orientation="vertical"
+    app:layout_width="match_parent"
+    app:layout_height="match_parent"
+    app:weightSum="5.0">
+    <FrameLayout app:id="@+id/thirdPageLayout"
+        app:background="@drawable/tutorial_background_white"
+        app:layout_width="match_parent"
+        app:layout_height="match_parent"
+        app:layout_weight="3.2">
+        <com.example.dac.app_moki.view.tutorial.CircularImageViewFrame
+            app:id="@+id/firstZoomIcon"
+            app:layout_width="wrap_content"
+            app:layout_height="wrap_content"
+            app:src="@drawable/ava_1"
+            app:scaleType="centerCrop"
+             />
+        <com.example.dac.app_moki.view.tutorial.CircularImageViewFrame
+            app:id="@+id/secondZoomIcon"
+            app:layout_width="wrap_content"
+            app:layout_height="wrap_content"
+            app:src="@drawable/ava_2"
+            app:scaleType="centerCrop"
+            />
+        <com.example.dac.app_moki.view.tutorial.CircularImageViewFrame
+            app:id="@+id/thirdZoomIcon"
+            app:layout_width="wrap_content"
+            app:layout_height="wrap_content"
+            app:src="@drawable/ava_3"
+            app:scaleType="centerCrop"
+            />
+        <com.example.dac.app_moki.view.tutorial.CircularImageViewFrame
+            app:id="@+id/fouthZoomIcon"
+            app:layout_width="wrap_content"
+            app:layout_height="wrap_content"
+            app:src="@drawable/ava_4"
+            app:scaleType="centerCrop"
+             />
+        <com.example.dac.app_moki.view.tutorial.CircularImageViewFrame
+            app:id="@+id/fifthZoomIcon"
+            app:layout_width="wrap_content"
+            app:layout_height="wrap_content"
+            app:src="@drawable/ava_5"
+            app:scaleType="centerCrop"
+            />
+        <com.example.dac.app_moki.view.tutorial.ImageViewFrame
+            app:id="@+id/thirdPageDeviceImage"
+            app:layout_width="wrap_content"
+            app:layout_height="wrap_content"
+            app:src="@drawable/tutorial_devicebg" />
+        <ScrollView app:id="@+id/productImageScroll"
+
+            app:layout_width="wrap_content"
+            app:layout_height="wrap_content">
+            <com.example.dac.app_moki.view.tutorial.ImageViewFrame
+                app:layout_width="match_parent"
+                app:layout_height="match_parent"
+                app:src="@drawable/tutorial_main_view"
+                app:adjustViewBounds="true" />
+        </ScrollView>
+    </FrameLayout>
+    <FrameLayout
+        app:orientation="vertical"
+        app:layout_width="match_parent"
+        app:layout_height="match_parent"
+        app:layout_weight="1.8"
+        app:layout_alignParentBottom="true">
+        <TextView app:textSize="18dp"
+            app:textStyle="bold"
+            app:textColor="@color/text_black"
+            app:gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end"
+            app:layout_gravity="top|bottom|center_vertical|fill_vertical|center|fill"
+            app:id="@+id/third_page_text" app:layout_width="match_parent"
+            app:layout_height="wrap_content"
+            app:layout_marginLeft="10dp"
+            app:layout_marginRight="10dp"
+            app:layout_marginBottom="120dp"
+            app:text="Tiện lợi - Không lo tìm người vận chuyển, thu tiền, xác nhận đơn hàng."
+            app:maxLines="2" />
+    </FrameLayout>
+</LinearLayout>
