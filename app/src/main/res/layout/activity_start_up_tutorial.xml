@@ -50,16 +50,18 @@
 
         <FrameLayout
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="430dp"
+            >
 
             <com.example.dac.app_moki.view.tutorial.MotionTextView
                 android:id="@+id/second_page_text"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:layout_marginBottom="45.0dip"
-                android:layout_marginLeft="45.0dip"
-                android:layout_marginRight="45.0dip"
                 android:gravity="center"
                 android:maxLines="2"
                 android:text="Phù hợp với thói quen mua bán của mẹ trong thời gian mang thai, nuôi con nhỏ"
@@ -81,7 +83,7 @@
             android:layout_marginBottom="50.0dip"
             android:layout_marginLeft="50.0dip"
             android:layout_marginRight="50.0dip"
-            android:background="@drawable/tutorial_background_white"
+            android:background="@layout/login_button_background"
             android:text="Bỏ qua"
             android:textColor="@android:color/white"
             android:textSize="15.0dip"/>

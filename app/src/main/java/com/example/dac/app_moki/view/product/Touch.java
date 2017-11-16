@@ -1,4 +1,4 @@
-package com.example.dac.app_moki.view.my_tutorial;
+package com.example.dac.app_moki.view.product;
 
 import android.graphics.Matrix;
 import android.graphics.PointF;

@@ -14,7 +14,7 @@ import android.util.DisplayMetrics;
 import android.widget.ImageView;
 import com.example.dac.app_moki.R;
 
-public class InfiniteScrollImage extends android.support.v7.widget.AppCompatImageView {
+public class InfiniteScrollImage extends ImageView {
     static int delta = 0;
     private Handler handler = new Handler();
     private final int interval = 1;
