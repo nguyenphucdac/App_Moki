@@ -31,6 +31,7 @@ import com.example.dac.app_moki.view.fragment.FragmentDialogAlert;
 import com.example.dac.app_moki.view.fragment.FragmentDialogExit;
 import com.example.dac.app_moki.view.fragment.FragmentDialogMessage;
 import com.example.dac.app_moki.view.fragment.FragmentMenu;
+import com.example.dac.app_moki.view.product.PostProduct;
 import com.example.dac.app_moki.view.search.Search_Activity;
 import com.tekle.oss.android.animation.AnimationFactory;
 
@@ -83,8 +84,8 @@ public class Home_Activity extends AppCompatActivity {
         btnCameraSale.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
-                //Intent intent = new Intent(Home_Activity.this, PostProduct.class);
+                //Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+                Intent intent = new Intent(Home_Activity.this, PostProduct.class);
                 startActivity(intent);
 
             }

@@ -16,13 +16,13 @@
         android:largeHeap="true"
         >
         <service
-            android:name=".MyFirebaseMessagingService">
+            android:name=".view.notification.MyFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT"/>
             </intent-filter>
         </service>
         <service
-            android:name=".MyFirebaseInstanceIDService">
+            android:name=".view.notification.FirebaseIDService">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
             </intent-filter>
@@ -140,6 +140,11 @@
 
         </activity>
         <activity android:name=".view.product.ImageDetail"
+            android:screenOrientation="portrait"
+            >
+
+        </activity>
+        <activity android:name=".view.conversation.Chat_Activity"
             android:screenOrientation="portrait"
             >
 

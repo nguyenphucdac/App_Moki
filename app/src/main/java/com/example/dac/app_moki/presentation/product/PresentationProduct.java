@@ -170,7 +170,6 @@ public class PresentationProduct {
 
         return numberLike;
     }
-
     public List<Product> getUserListings(int userId){
         String jsonData = "";
         String link = "http://"+ Host.getHost()+"/api/get_user_listings?user_id=" + userId;
@@ -191,42 +190,6 @@ public class PresentationProduct {
 
         return lstProducts;
     }
-    public List<Product> sortList(String value, String typeSort, String categoryId){
-        String jsonData = "";
-        String link = "http://"+ Host.getHost()+"/api/get_list_products";
-        List<Product> lstProducts = new ArrayList<>();
-
-        HashMap<String , String> hashMap0 = new HashMap<>();
-        hashMap0.put("category_id", categoryId);
-
-        HashMap<String , String> hashMap1 = new HashMap<>();
-        hashMap1.put("sort", value);
-
-        HashMap<String, String> hashMap2 = new HashMap<>();
-        hashMap2.put("typeSort", typeSort);
-
-        List<HashMap<String, String>> lstProps = new ArrayList<>();
-        lstProps.add(hashMap0);
-        lstProps.add(hashMap1);
-        lstProps.add(hashMap2);
-
-        LoadData loadData = new LoadData(link, lstProps);
-        loadData.execute();
-
-        try {
-            jsonData = loadData.get();
-            IOProduct ioProduct = new IOProduct();
-            lstProducts = ioProduct.getListProducts(jsonData);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-
-        return lstProducts;
-    }
-
-
     public List<Product> getMoreProductsOfCategory(String categoryId, int index, int lastId) {
         String jsonData = "";
         String link = "http://"+ Host.getHost()+"/api/get_list_products";
@@ -262,4 +225,80 @@ public class PresentationProduct {
 
         return lstProducts;
     }
+    public boolean addProduct(
+            String name,
+            String price,
+            String size_id,
+            String brand_id,
+            String category_id,
+            String described,
+            String shipFrom,
+            String condition_id,
+            String dimension,
+            String weight
+    ){
+        String jsonData = "";
+        String link = "http://"+ Host.getHost()+"/api/add_products";
+
+        HashMap<String, String> hashMapToken = new HashMap<>();
+        hashMapToken.put("token", ValueLocal.getToken());
+
+        HashMap<String, String> hashMapNameProduct = new HashMap<>();
+        hashMapNameProduct.put("name", name);
+
+        HashMap<String, String> hashMapPrice = new HashMap<>();
+        hashMapPrice.put("price", price);
+
+        HashMap<String, String> hashMapSizeId = new HashMap<>();
+        hashMapSizeId.put("product_size_id", size_id);
+
+        HashMap<String, String> hashMapBrandId = new HashMap<>();
+        hashMapBrandId.put("brand_id", brand_id);
+
+        HashMap<String, String> hashMapCategoryId = new HashMap<>();
+        hashMapCategoryId.put("category_id", category_id);
+
+        HashMap<String, String> hashMapDescribed = new HashMap<>();
+        hashMapDescribed.put("described", described);
+
+        HashMap<String, String> hashMapShipFrom = new HashMap<>();
+        hashMapShipFrom.put("ships_from", shipFrom);
+
+        HashMap<String, String> hashMapConditionId = new HashMap<>();
+        hashMapPrice.put("condition_id", condition_id);
+
+        HashMap<String, String> hashMapDimension = new HashMap<>();
+        hashMapDimension.put("dimension", dimension);
+
+        HashMap<String, String> hashMapWeight = new HashMap<>();
+        hashMapWeight.put("weight", weight);
+
+        List<HashMap<String, String>> lstProps = new ArrayList<>();
+        lstProps.add(hashMapToken);
+        lstProps.add(hashMapNameProduct);
+        lstProps.add(hashMapPrice);
+        lstProps.add(hashMapSizeId);
+        lstProps.add(hashMapBrandId);
+        lstProps.add(hashMapCategoryId);
+        lstProps.add(hashMapDescribed);
+        lstProps.add(hashMapShipFrom);
+        lstProps.add(hashMapConditionId);
+        lstProps.add(hashMapDimension);
+        lstProps.add(hashMapWeight);
+
+        LoadData loadData = new LoadData(link, lstProps);
+        loadData.execute();
+
+        try {
+            jsonData = loadData.get();
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+        return true;
+    }
+
 }

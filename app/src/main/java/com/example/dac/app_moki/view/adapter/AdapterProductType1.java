@@ -82,8 +82,7 @@ public class AdapterProductType1 extends RecyclerView.Adapter<RecyclerView.ViewH
         if (holder instanceof UserViewHolder) {
             final Product product = lstProduct.get(position);
 
-
-                    ((UserViewHolder) holder).price.setText((product.getPrice()) + " K");
+            ((UserViewHolder) holder).price.setText((product.getPrice()) + " K");
             ((UserViewHolder) holder).nameProduct.setText(product.getName());
             ((UserViewHolder) holder).numbeComment.setText((product.getNumberComment()) + "");
             ((UserViewHolder) holder).numberLike.setText((product.getNumberLike()) + "");
@@ -97,7 +96,7 @@ public class AdapterProductType1 extends RecyclerView.Adapter<RecyclerView.ViewH
             ((UserViewHolder) holder).itemProductType1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent=new Intent(context.getApplicationContext(), ProductDetail_Activity.class);
+                    Intent intent = new Intent(context.getApplicationContext(), ProductDetail_Activity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
                     intent.putExtra("productId",(product.getId()+"").toString());
                     context.getApplicationContext().startActivity(intent);
@@ -106,7 +105,7 @@ public class AdapterProductType1 extends RecyclerView.Adapter<RecyclerView.ViewH
             ((UserViewHolder) holder).imageProductType1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent=new Intent(context.getApplicationContext(), ProductDetail_Activity.class);
+                    Intent intent = new Intent(context.getApplicationContext(), ProductDetail_Activity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
                     intent.putExtra("productId",(product.getId()+"").toString());
                     context.getApplicationContext().startActivity(intent);

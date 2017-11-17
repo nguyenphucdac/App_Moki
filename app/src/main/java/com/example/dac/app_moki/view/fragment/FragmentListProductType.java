@@ -12,15 +12,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 
 import com.example.dac.app_moki.R;
 import com.example.dac.app_moki.local.data.ProductLocal;
 import com.example.dac.app_moki.local.value.ValueLocal;
 import com.example.dac.app_moki.model.object.Product;
 import com.example.dac.app_moki.presentation.product.PresentationProduct;
-import com.example.dac.app_moki.view.adapter.AdapterListProductType1;
-import com.example.dac.app_moki.view.adapter.AdapterListProductType2;
 import com.example.dac.app_moki.view.adapter.AdapterProductType1;
 import com.example.dac.app_moki.view.adapter.AdapterProductType2;
 import com.example.dac.app_moki.view.adapter.OnLoadMoreListener;
@@ -33,19 +30,13 @@ import java.util.List;
  */
 
 public class FragmentListProductType extends Fragment{
-
-    private int aboveItem = 0;
-    private int numberItem = 10;
     private View toolBar_header;
     private View bottomViewButtonSale;
     private View slideHome;
     private String categoryId;
-    private ProgressBar progressBar;
 
     private RecyclerView recyclerView;
     private SwipeRefreshLayout swipeRefreshLayout;
-    private AdapterListProductType1 adapterListProductType1;
-    private  AdapterListProductType2 adapterListProductType2;
     private List<Product> lstProduct;
     private PresentationProduct presentationProduct;
     private AdapterProductType1 adapterProductType1;

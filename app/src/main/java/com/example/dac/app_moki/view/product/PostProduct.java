@@ -2,6 +2,8 @@ package com.example.dac.app_moki.view.product;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.ImageButton;
 
 import com.example.dac.app_moki.R;
 
@@ -10,6 +12,8 @@ import com.example.dac.app_moki.R;
  */
 
 public class PostProduct extends AppCompatActivity {
+
+    private ImageButton btnBack;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -20,10 +24,15 @@ public class PostProduct extends AppCompatActivity {
     }
 
     private void addEvents() {
-
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void addControls() {
-
+        btnBack = (ImageButton) findViewById(R.id.post_product_back);
     }
 }

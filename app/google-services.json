@@ -1,35 +1,27 @@
 {
   "project_info": {
-    "project_number": "111995209322",
-    "firebase_url": "https://appmoki-ce363.firebaseio.com",
-    "project_id": "appmoki-ce363",
-    "storage_bucket": "appmoki-ce363.appspot.com"
+    "project_number": "272484167511",
+    "firebase_url": "https://moki-a4048.firebaseio.com",
+    "project_id": "moki-a4048",
+    "storage_bucket": "moki-a4048.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:111995209322:android:9b82557f4b8748e1",
+        "mobilesdk_app_id": "1:272484167511:android:9b82557f4b8748e1",
         "android_client_info": {
           "package_name": "com.example.dac.app_moki"
         }
       },
       "oauth_client": [
         {
-          "client_id": "111995209322-8fs2hgpnsf06nvl0nv0572259ftugd50.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.dac.app_moki",
-            "certificate_hash": "70965dbca0ddaa537cfc041f85d213216f7fbe6f"
-          }
-        },
-        {
-          "client_id": "111995209322-a08q8niisnjj5sctkt6j12ablk60utog.apps.googleusercontent.com",
+          "client_id": "272484167511-sjporp5diu414qmo0t6tpvl7q72rtein.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDzXUiXtqyid_WdSxTfdTJ5V2DmE2zZXDw"
+          "current_key": "AIzaSyAqr7pj67hOREqjiliKM7q4Nm_rNHdJe54"
         }
       ],
       "services": {
@@ -37,13 +29,8 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 2,
-          "other_platform_oauth_client": [
-            {
-              "client_id": "111995209322-a08q8niisnjj5sctkt6j12ablk60utog.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "status": 1,
+          "other_platform_oauth_client": []
         },
         "ads_service": {
           "status": 2
