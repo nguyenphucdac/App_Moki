@@ -59,6 +59,7 @@
                 android:orientation="horizontal">
 
                 <ImageView
+                    android:id="@+id/image_product_sale"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_gravity="center_vertical"
@@ -98,6 +99,7 @@
                 >
 
                 <EditText
+                    android:id="@+id/txt_name_product"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@layout/search_input_background"
@@ -114,6 +116,7 @@
                 android:minHeight="80dp">
 
                 <EditText
+                    android:id="@+id/txt_described_product"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@layout/search_input_background"
@@ -303,6 +306,7 @@
                     android:layout_weight="1.5">
 
                     <TextView
+                        android:id="@+id/category_id"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
@@ -345,6 +349,7 @@
                     android:layout_weight="1.5">
 
                     <TextView
+                        android:id="@+id/condition_id"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
@@ -400,6 +405,7 @@
                     android:layout_weight="1.5">
 
                     <TextView
+                        android:id="@+id/ship_from"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
@@ -414,6 +420,7 @@
                 android:layout_height="40dp">
 
                 <TextView
+                    android:id="@+id/price_product"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
@@ -574,6 +581,7 @@
                 android:orientation="vertical">
 
                 <Button
+                    android:id="@+id/button_sale_product"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_marginLeft="30dp"

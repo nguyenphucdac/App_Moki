@@ -3,8 +3,11 @@ package com.example.dac.app_moki.presentation.product;
 import com.example.dac.app_moki.local.value.ValueLocal;
 import com.example.dac.app_moki.model.nesworks.Host;
 import com.example.dac.app_moki.model.nesworks.LoadData;
+import com.example.dac.app_moki.model.nesworks.UpLoadData;
 import com.example.dac.app_moki.model.object.Product;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -232,7 +235,7 @@ public class PresentationProduct {
             String brand_id,
             String category_id,
             String described,
-            String shipFrom,
+            String shipsFrom,
             String condition_id,
             String dimension,
             String weight
@@ -262,10 +265,10 @@ public class PresentationProduct {
         hashMapDescribed.put("described", described);
 
         HashMap<String, String> hashMapShipFrom = new HashMap<>();
-        hashMapShipFrom.put("ships_from", shipFrom);
+        hashMapShipFrom.put("ships_from", shipsFrom);
 
         HashMap<String, String> hashMapConditionId = new HashMap<>();
-        hashMapPrice.put("condition_id", condition_id);
+        hashMapConditionId.put("condition_id", condition_id);
 
         HashMap<String, String> hashMapDimension = new HashMap<>();
         hashMapDimension.put("dimension", dimension);
@@ -285,20 +288,69 @@ public class PresentationProduct {
         lstProps.add(hashMapConditionId);
         lstProps.add(hashMapDimension);
         lstProps.add(hashMapWeight);
+        //lstProps.add(hashMapImage);
 
         LoadData loadData = new LoadData(link, lstProps);
         loadData.execute();
 
         try {
             jsonData = loadData.get();
-
+            System.out.println(jsonData);
+            return true;
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-
-        return true;
+        return false;
     }
 
+    public boolean addProduct(
+            String name,
+            String price,
+            String size_id,
+            String brand_id,
+            String category_id,
+            String described,
+            String shipsFrom,
+            String condition_id,
+            String dimension,
+            String weight,
+            File picture
+    ){
+        String jsonData = "";
+        String link = "http://"+ Host.getHost()+"/api/add_products";
+
+        try {
+            UpLoadData upLoadData = new UpLoadData(link, "UTF-8");
+
+            upLoadData.execute();
+            upLoadData.get();
+
+            upLoadData.addFormField("token", ValueLocal.getToken());
+            upLoadData.addFormField("name", name);
+            upLoadData.addFormField("price", price);
+            upLoadData.addFormField("product_size_id", size_id);
+            upLoadData.addFormField("brand_id", brand_id);
+            upLoadData.addFormField("category_id", category_id);
+            upLoadData.addFormField("described", described);
+            upLoadData.addFormField("ships_from", shipsFrom);
+            upLoadData.addFormField("condition_id", condition_id);
+            upLoadData.addFormField("dimension", dimension);
+            upLoadData.addFormField("weight", weight);
+
+            upLoadData.addFilePart("image", picture);
+
+            String response = upLoadData.finish();
+
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

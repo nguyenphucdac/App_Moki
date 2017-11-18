@@ -6,7 +6,7 @@ package com.example.dac.app_moki.view.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,13 +39,24 @@ public class AdapterProductType1 extends RecyclerView.Adapter<RecyclerView.ViewH
         this.lstProduct = lstProduct;
         this.mRecyclerView = mRecyclerView;
 
-        final LinearLayoutManager linearLayoutManager = (LinearLayoutManager) mRecyclerView.getLayoutManager();
+        final GridLayoutManager gridLayoutManager = (GridLayoutManager) mRecyclerView.getLayoutManager();
+
+        gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {
+                if(getItemViewType(position) == VIEW_TYPE_LOADING){
+                    return gridLayoutManager.getSpanCount();
+                }
+                else return 1;
+            }
+        });
+
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                totalItemCount = linearLayoutManager.getItemCount();
-                lastVisibleItem = linearLayoutManager.findLastVisibleItemPosition();
+                totalItemCount = gridLayoutManager.getItemCount();
+                lastVisibleItem = gridLayoutManager.findLastVisibleItemPosition();
                 if (!isLoading && totalItemCount <= (lastVisibleItem + visibleThreshold)) {
                     if (mOnLoadMoreListener != null) {
                         mOnLoadMoreListener.onLoadMore();
@@ -114,6 +125,7 @@ public class AdapterProductType1 extends RecyclerView.Adapter<RecyclerView.ViewH
 
 
         } else if (holder instanceof LoadingViewHolder) {
+
             LoadingViewHolder loadingViewHolder = (LoadingViewHolder) holder;
             loadingViewHolder.progressBar.setIndeterminate(true);
         }

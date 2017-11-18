@@ -11,7 +11,7 @@ import android.widget.ImageButton;
 import com.example.dac.app_moki.R;
 import com.example.dac.app_moki.model.object.Product;
 import com.example.dac.app_moki.presentation.product.PresentationProduct;
-import com.example.dac.app_moki.view.adapter.AdapterListProductType1;
+import com.example.dac.app_moki.view.adapter.AdapterListProductResult;
 
 import java.util.List;
 
@@ -46,9 +46,9 @@ public class ResultSearch_Activity extends AppCompatActivity {
 
         resultSearch = (RecyclerView)findViewById(R.id.recycle_result_search);
         resultSearch.setLayoutManager(new GridLayoutManager(ResultSearch_Activity.this, 2));
-        AdapterListProductType1 adapterListProductType1 = new AdapterListProductType1(ResultSearch_Activity.this, lstProduct);
-        resultSearch.setAdapter(adapterListProductType1);
-        adapterListProductType1.notifyDataSetChanged();
+        AdapterListProductResult adapterListProductResult = new AdapterListProductResult(ResultSearch_Activity.this, lstProduct);
+        resultSearch.setAdapter(adapterListProductResult);
+        adapterListProductResult.notifyDataSetChanged();
 
     }
     private void addEvents() {

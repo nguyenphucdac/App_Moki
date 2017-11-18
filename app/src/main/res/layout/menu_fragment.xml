@@ -8,6 +8,7 @@
     >
 
     <LinearLayout
+        android:id="@+id/view_profile"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:background="#fff"
@@ -26,7 +27,7 @@
             android:layout_centerHorizontal="true"
             />
 
-        <Button
+        <TextView
             android:id="@+id/name_user"
             android:layout_width="0dp"
             android:layout_height="60dp"

@@ -9,6 +9,7 @@
             android:id="@+id/preview_camera"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent">
+
             <SurfaceView
                 android:id="@+id/surfaceView"
                 android:layout_width="fill_parent"
@@ -114,12 +115,14 @@
                     </RelativeLayout>
                 </LinearLayout>
             </RelativeLayout>
-            <ImageView
+            <ImageButton
+                android:background="#00ffffff"
                 android:id="@+id/button_capture"
                 android:layout_gravity="center_horizontal"
                 android:layout_width="92.0dip"
                 android:layout_height="70.0dip"
                 android:src="@drawable/camera_photo_btn"
+                android:foregroundGravity="center"
                 android:scaleType="fitXY" />
             <ImageView
                 android:layout_gravity="center_horizontal"

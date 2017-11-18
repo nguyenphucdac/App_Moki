@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import com.example.dac.app_moki.R;
 import com.example.dac.app_moki.model.object.Product;
 import com.example.dac.app_moki.presentation.product.PresentationProduct;
-import com.example.dac.app_moki.view.adapter.AdapterListProductType1;
+import com.example.dac.app_moki.view.adapter.AdapterListProductResult;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,9 +45,9 @@ public class FragmentListProducResult extends Fragment {
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recycle_home_list_product);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-        AdapterListProductType1 adapterListProductType1 = new AdapterListProductType1(getActivity(), lstProduct);
-        recyclerView.setAdapter(adapterListProductType1);
-        adapterListProductType1.notifyDataSetChanged();
+        AdapterListProductResult adapterListProductResult = new AdapterListProductResult(getActivity(), lstProduct);
+        recyclerView.setAdapter(adapterListProductResult);
+        adapterListProductResult.notifyDataSetChanged();
 
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override

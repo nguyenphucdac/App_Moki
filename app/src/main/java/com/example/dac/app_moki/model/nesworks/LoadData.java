@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -26,6 +27,7 @@ import java.util.Map;
 public class LoadData extends AsyncTask<String, Void, String>{
     String link = "";
     List<HashMap<String, String>> lstProps;
+    List<HashMap<String, File>> filePost;
     String data = "";
 
     public LoadData(String link){
@@ -35,6 +37,11 @@ public class LoadData extends AsyncTask<String, Void, String>{
         this.link = link;
         this.lstProps = lstProps;
 
+    }
+    public LoadData(String link, List<HashMap<String, String>> lstProps, List<HashMap<String, File>> filePost){
+        this.link = link;
+        this.lstProps = lstProps;
+        this.filePost = filePost;
     }
 
     @Override
@@ -51,7 +58,7 @@ public class LoadData extends AsyncTask<String, Void, String>{
             if(lstProps == null || lstProps.size() == 0){
                 data = getDataByMethodGet(httpURLConnection);
             }
-            else {
+            else{
                 data = getDataByMethodPost(httpURLConnection);
             }
 
@@ -107,6 +114,15 @@ public class LoadData extends AsyncTask<String, Void, String>{
                 }
                 builder.appendQueryParameter(key, value);
             }
+
+            if(filePost != null){
+                for(Map.Entry<String, File> item : filePost.get(0).entrySet()){
+                    key = item.getKey();
+                    value = item.getValue().toString();
+                }
+                builder.appendQueryParameter(key, value);
+            }
+
             String query = builder.build().getEncodedQuery();
             System.out.println(builder);
 

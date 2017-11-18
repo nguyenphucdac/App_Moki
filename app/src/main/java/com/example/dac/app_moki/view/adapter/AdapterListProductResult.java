@@ -19,11 +19,11 @@ import java.util.List;
 /**
  * Created by Dac on 10/14/2017.
  */
-public class AdapterListProductType1 extends RecyclerView.Adapter<AdapterListProductType1.ViewHolder> {
+public class AdapterListProductResult extends RecyclerView.Adapter<AdapterListProductResult.ViewHolder> {
     Context context;
     List<Product> lstProduct;
 
-    public AdapterListProductType1(Context context, List<Product> lstProduct){
+    public AdapterListProductResult(Context context, List<Product> lstProduct){
         this.context = context;
         this.lstProduct = lstProduct;
     }
@@ -33,7 +33,7 @@ public class AdapterListProductType1 extends RecyclerView.Adapter<AdapterListPro
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = layoutInflater.inflate(R.layout.product_item_type_1,parent, false );
 
-        AdapterListProductType1.ViewHolder viewHolder = new AdapterListProductType1.ViewHolder(view);
+        AdapterListProductResult.ViewHolder viewHolder = new AdapterListProductResult.ViewHolder(view);
         return viewHolder;
     }
 

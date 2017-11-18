@@ -57,8 +57,8 @@ public class Touch implements View.OnTouchListener {
             case MotionEvent.ACTION_MOVE:
                 if (mode == DRAG) {
 
-                    //matrix.set(savedMatrix);
-                    //matrix.postTranslate(event.getX() - start.x, event.getY() - start.y);
+                    matrix.set(savedMatrix);
+                    matrix.postTranslate(event.getX() - start.x, event.getY() - start.y);
                 } else if (mode == ZOOM) {
                     float newDist = spacing(event);
                     if (newDist > 10f) {

@@ -48,28 +48,4 @@ public class PresentationLogin {
 
         return user;
     }
-    public User getUser(int id){
-        String jsonData = "";
-        User user = null;
-        //password = MD5.crypt(password);
-        String link = "http://"+ Host.getHost()+"/api/get_user_info?user_id=" + id;
-
-        LoadData loadData = new LoadData(link);
-        loadData.execute();
-
-        try {
-            jsonData = loadData.get();
-
-            IOUser ioUser = new IOUser();
-            user = ioUser.getInfoLogin(jsonData);
-
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-
-        return user;
-    }
-
 }

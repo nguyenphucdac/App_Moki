@@ -23,6 +23,7 @@ import com.example.dac.app_moki.view.menu.ListMySale_Activity;
 import com.example.dac.app_moki.view.menu.News_Activity;
 import com.example.dac.app_moki.view.menu.Setup_Activity;
 import com.example.dac.app_moki.view.menu.SupportCenter_Activity;
+import com.example.dac.app_moki.view.user.Profile_Activity;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -31,6 +32,7 @@ import com.squareup.picasso.Picasso;
 public class FragmentMenu extends Fragment {
     private User user;
 
+    private View itemViewProfile;
     private View itemHomeMenu;
     private View itemNewsmenu;
     private View itemListLikeMenu;
@@ -60,6 +62,7 @@ public class FragmentMenu extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.menu_fragment, container, false);
 
+        itemViewProfile = view.findViewById(R.id.view_profile);
         itemHomeMenu = view.findViewById(R.id.item_home_menu);
         itemNewsmenu = view.findViewById(R.id.item_news_menu);
         itemListLikeMenu = view.findViewById(R.id.item_listlike_menu);
@@ -85,6 +88,15 @@ public class FragmentMenu extends Fragment {
             else {
                 Picasso.with(view.getContext()).load(R.drawable.unknown_user).into((ImageView) avatar);
             }
+
+            itemViewProfile.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getActivity(), Profile_Activity.class);
+                    intent.putExtra("user", user);
+                    startActivity(intent);
+                }
+            });
 
             itemHomeMenu.setOnClickListener(new View.OnClickListener() {
                 @Override
