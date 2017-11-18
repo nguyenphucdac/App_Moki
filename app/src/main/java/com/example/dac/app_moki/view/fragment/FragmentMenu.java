@@ -192,7 +192,7 @@ public class FragmentMenu extends Fragment {
             itemViewProfile.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(getActivity(), Profile_Activity.class);
+                    Intent intent = new Intent(getActivity(), Login_Activity.class);
                     startActivity(intent);
                 }
             });

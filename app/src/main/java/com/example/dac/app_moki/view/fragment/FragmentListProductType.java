@@ -9,6 +9,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,11 +26,15 @@ import com.example.dac.app_moki.view.adapter.OnLoadMoreListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import in.srain.cube.views.ptr.PtrClassicFrameLayout;
+import in.srain.cube.views.ptr.PtrFrameLayout;
+import in.srain.cube.views.ptr.PtrHandler;
+
 /**
  * Created by Dac on 11/5/2017.
  */
 
-public class FragmentListProductType extends Fragment{
+public class FragmentListProductType extends Fragment implements PtrHandler {
     private View toolBar_header;
     private View bottomViewButtonSale;
     private View slideHome;
@@ -41,6 +46,8 @@ public class FragmentListProductType extends Fragment{
     private PresentationProduct presentationProduct;
     private AdapterProductType1 adapterProductType1;
     private AdapterProductType2 adapterProductType2;
+
+    private PtrClassicFrameLayout frameLayoutPullToRefesh;
 
     public FragmentListProductType(String categoryId){
         this.categoryId = categoryId;
@@ -63,14 +70,23 @@ public class FragmentListProductType extends Fragment{
         }
         else {
             lstProduct = presentationProduct.getListProductsOfCategory(categoryId);
+//            new Thread(new Runnable() {
+//                @Override
+//                public void run() {
+//                    lstProduct = presentationProduct.getListProductsOfCategory(categoryId);
+//                }
+//            }).start();
         }
-        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefreshLayout);
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                swipeRefreshLayout.setRefreshing(false);
-            }
-        });
+
+
+
+        frameLayoutPullToRefesh = (PtrClassicFrameLayout) view.findViewById(R.id.recycler_view_ptr_frame);
+        frameLayoutPullToRefesh.setPtrHandler(this);
+        frameLayoutPullToRefesh.setDurationToClose(200);
+        frameLayoutPullToRefesh.setDurationToCloseHeader(1000);
+        frameLayoutPullToRefesh.setLastUpdateTimeRelateObject(this);
+
+
 
         if(ValueLocal.getOptionView() == true){
             recyclerView = (RecyclerView) view.findViewById(R.id.recycle_home_list_product);
@@ -182,4 +198,58 @@ public class FragmentListProductType extends Fragment{
 
     }
 
+    @Override
+    public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
+        if (this.recyclerView.getChildCount() == 0) {
+            return true;
+        }
+        int top = this.recyclerView.getChildAt(0).getTop();
+        if (top != 0) {
+            return false;
+        }
+        final RecyclerView recyclerView = this.recyclerView;
+        RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
+        if (layoutManager instanceof LinearLayoutManager) {
+            int position = ((LinearLayoutManager) layoutManager).findFirstCompletelyVisibleItemPosition();
+            if (position == 0) {
+                return true;
+            } else if (position == -1) {
+                position = ((LinearLayoutManager) layoutManager).findFirstVisibleItemPosition();
+                return position == 0;
+            }
+        } else if (layoutManager instanceof StaggeredGridLayoutManager) {
+            boolean allViewAreOverScreen = true;
+            int[] positions = ((StaggeredGridLayoutManager) layoutManager).findFirstVisibleItemPositions(null);
+            for (int i = 0; i < positions.length; i++) {
+                if (positions[i] == 0) {
+                    return true;
+                }
+                if (positions[i] != -1) {
+                    allViewAreOverScreen = false;
+                }
+            }
+            if (allViewAreOverScreen) {
+                positions = ((StaggeredGridLayoutManager) layoutManager).findFirstVisibleItemPositions(null);
+                for (int i = 0; i < positions.length; i++) {
+                    if (positions[i] == 0) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public void onRefreshBegin(final PtrFrameLayout frame) {
+        frame.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                lstProduct = presentationProduct.getListProductsOfCategory(categoryId);
+                adapterProductType1.notifyDataSetChanged();
+                //adapterProductType2.notifyDataSetChanged();
+                frame.refreshComplete();
+            }
+        }, 1800);
+    }
 }

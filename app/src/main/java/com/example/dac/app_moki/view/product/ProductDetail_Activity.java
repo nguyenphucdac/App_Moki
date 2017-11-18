@@ -110,6 +110,7 @@ public class ProductDetail_Activity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ProductDetail_Activity.this, ProductOfCategory.class);
                 intent.putExtra("categoryId", product.getCategory().getId() + "");
+                intent.putExtra("categoryName", product.getCategory().getName() + "");
                 startActivity(intent);
             }
         });

@@ -15,6 +15,8 @@ import android.widget.ImageView;
 import com.example.dac.app_moki.R;
 import com.example.dac.app_moki.presentation.product.PresentationProduct;
 import com.example.dac.app_moki.view.fragment.FragmentDialogError;
+import com.example.dac.app_moki.view.search.SearchCategories_Activity;
+import com.example.dac.app_moki.view.search.SearchCondition_Activity;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
@@ -31,6 +33,14 @@ public class AddProduct extends AppCompatActivity {
     private EditText describedProduct;
     private EditText price;
     private EditText shipFrom;
+
+    private Button btnGetCategoryId;
+    private Button btnGetCoditionId;
+
+    private String categoryId;
+    private String sizeId;
+    private String weight;
+    private String coditionId;
 
     private Button btnSaleProduct;
 
@@ -53,10 +63,7 @@ public class AddProduct extends AppCompatActivity {
 
     private void addControls() {
         Intent intent = getIntent();
-
         final File picture = (File)intent.getExtras().get("image");
-
-        System.out.println(picture);
 
         btnBack = (ImageButton) findViewById(R.id.post_product_back);
 
@@ -65,6 +72,30 @@ public class AddProduct extends AppCompatActivity {
 
         nameProduct = (EditText) findViewById(R.id.txt_name_product);
         describedProduct = (EditText) findViewById(R.id.txt_described_product);
+        price = (EditText) findViewById(R.id.txt_price_product);
+        shipFrom = (EditText) findViewById(R.id.txt_ship_from);
+
+        btnGetCategoryId = (Button) findViewById(R.id.button_get_category);
+
+
+        btnGetCategoryId.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AddProduct.this, SearchCategories_Activity.class);
+                startActivityForResult(intent, 1);
+            }
+        });
+
+        btnGetCoditionId = (Button) findViewById(R.id.button_get_condition);
+        btnGetCoditionId.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AddProduct.this, SearchCondition_Activity.class);
+                startActivityForResult(intent, 4);
+            }
+        });
+
+
 
         btnSaleProduct = (Button) findViewById(R.id.button_sale_product);
 
@@ -80,14 +111,14 @@ public class AddProduct extends AppCompatActivity {
             public void onClick(View v) {
                 PresentationProduct presentationProduct = new PresentationProduct();
                 Boolean check = presentationProduct.addProduct(
-                        "guitar",
-                        "0",
+                        nameProduct.getText()+"",
+                        price.getText()+"",
                         "1",
                         "1",
-                        "1",
-                        "test",
-                        "test",
-                        "1",
+                        categoryId + "",
+                        describedProduct.getText()+"",
+                        shipFrom.getText()+"",
+                        coditionId+"",
                         "1,1,1",
                         "100",
                          picture
@@ -108,5 +139,21 @@ public class AddProduct extends AppCompatActivity {
                 }
             }
         });
+    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            if(resultCode == RESULT_OK) {
+                btnGetCategoryId.setText(data.getStringExtra("category_name"));
+                categoryId = data.getStringExtra("category_id");
+            }
+        }
+        if (requestCode == 4) {
+            if(resultCode == RESULT_OK) {
+                btnGetCoditionId.setText(data.getStringExtra("condition_name"));
+                coditionId = data.getStringExtra("condition_id");
+            }
+        }
     }
 }

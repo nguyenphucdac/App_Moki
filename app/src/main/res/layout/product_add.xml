@@ -305,14 +305,16 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1.5">
 
-                    <TextView
-                        android:id="@+id/category_id"
+                    <Button
+                        android:id="@+id/button_get_category"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
                         android:layout_marginRight="10dp"
                         android:layout_weight="5.5"
-                        android:gravity="right"
+                        android:gravity="right|center_vertical"
+                        android:textAllCaps="false"
+                        android:background="#fff"
+
                         android:text="Yêu cầu" />
                 </LinearLayout>
             </LinearLayout>
@@ -348,14 +350,15 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1.5">
 
-                    <TextView
-                        android:id="@+id/condition_id"
+                    <Button
+                        android:id="@+id/button_get_condition"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
                         android:layout_marginRight="10dp"
                         android:layout_weight="5.5"
-                        android:gravity="right"
+                        android:gravity="right|center_vertical"
+                        android:textAllCaps="false"
+                        android:background="#fff"
                         android:text="Yêu cầu" />
                 </LinearLayout>
             </LinearLayout>
@@ -404,15 +407,17 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1.5">
 
-                    <TextView
-                        android:id="@+id/ship_from"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                    <EditText
+                        android:id="@+id/txt_ship_from"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginRight="10dp"
-                        android:layout_weight="5.5"
-                        android:gravity="right"
-                        android:text="Yêu cầu" />
+                        android:background="@layout/search_input_background"
+                        android:hint="Giá không tính vận chuyển"
+                        android:paddingLeft="5dp"
+                        android:textSize="11sp"
+
+                        />
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout
@@ -463,6 +468,7 @@
                     android:layout_weight="1">
 
                     <EditText
+                        android:id="@+id/txt_price_product"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
                         android:layout_gravity="center_vertical"
