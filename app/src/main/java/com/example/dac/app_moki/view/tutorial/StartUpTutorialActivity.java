@@ -121,7 +121,7 @@ public class StartUpTutorialActivity extends AppCompatActivity {
         }
 
         public void run() {
-            StartUpTutorialActivity.this.timer.schedule(new TimerTaskCustom(), 0, 10);
+            //StartUpTutorialActivity.this.timer.schedule(new TimerTaskCustom(), 0, 10);
         }
     }
 

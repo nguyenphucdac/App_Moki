@@ -318,6 +318,7 @@ public class PresentationProduct {
             String weight,
             File picture
     ){
+        Boolean checkUpLoad = false;
         String jsonData = "";
         String link = "http://"+ Host.getHost()+"/api/add_products";
 
@@ -341,9 +342,9 @@ public class PresentationProduct {
 
             upLoadData.addFilePart("image", picture);
 
-            String response = upLoadData.finish();
+            checkUpLoad = upLoadData.upload();
 
-            return true;
+            return checkUpLoad;
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
@@ -351,6 +352,6 @@ public class PresentationProduct {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-        return false;
+        return checkUpLoad;
     }
 }

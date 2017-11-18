@@ -36,7 +36,7 @@ public class IOProduct {
                 product.setName(itemProduct.getString("name"));
                 product.setPrice(Integer.parseInt(itemProduct.getString("price")));
                 product.setPricePercen(Integer.parseInt(itemProduct.getString("price_percent")));
-                //product.setBrand(itemProduct.getString("brand"));
+                product.setBrand(itemProduct.getString("brand"));
                 product.setDescription(itemProduct.getString("described"));
                 product.setFromDate(itemProduct.getString("created"));
                 product.setNumberLike(Integer.parseInt(itemProduct.getString("like")));
@@ -99,7 +99,7 @@ public class IOProduct {
             product.setName(itemProduct.getString("name"));
             product.setPrice(Integer.parseInt(itemProduct.getString("price")));
             product.setPricePercen(Integer.parseInt(itemProduct.getString("price_percent")));
-            //product.setBrand(itemProduct.getString("brand"));
+            product.setBrand(itemProduct.getString("brand"));
             product.setDescription(itemProduct.getString("described"));
             product.setFromDate(itemProduct.getString("created"));
             product.setNumberLike(Integer.parseInt(itemProduct.getString("like")));

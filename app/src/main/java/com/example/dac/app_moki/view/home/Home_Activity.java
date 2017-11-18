@@ -31,6 +31,7 @@ import com.example.dac.app_moki.view.fragment.FragmentDialogAlert;
 import com.example.dac.app_moki.view.fragment.FragmentDialogExit;
 import com.example.dac.app_moki.view.fragment.FragmentDialogMessage;
 import com.example.dac.app_moki.view.fragment.FragmentMenu;
+import com.example.dac.app_moki.view.login.Login_Activity;
 import com.example.dac.app_moki.view.product.SaleCamera_Activity;
 import com.example.dac.app_moki.view.search.Search_Activity;
 import com.tekle.oss.android.animation.AnimationFactory;
@@ -86,9 +87,15 @@ public class Home_Activity extends AppCompatActivity {
             public void onClick(View v) {
                 //Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
                 //Intent intent = new Intent(Home_Activity.this, AddProduct.class);
-                Intent intent = new Intent(Home_Activity.this, SaleCamera_Activity.class);
-                startActivity(intent);
-
+                if(ValueLocal.getToken() == null || ValueLocal.getToken() == ""){
+                    Intent intent = new Intent(Home_Activity.this, Login_Activity.class);
+                    intent.putExtra("logined", false);
+                    startActivity(intent);
+                }
+                else {
+                    Intent intent = new Intent(Home_Activity.this, SaleCamera_Activity.class);
+                    startActivity(intent);
+                }
             }
         });
     }

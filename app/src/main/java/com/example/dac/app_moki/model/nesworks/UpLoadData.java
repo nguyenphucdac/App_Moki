@@ -6,6 +6,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
@@ -14,8 +15,6 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Dac on 11/18/2017.
@@ -31,8 +30,7 @@ public class UpLoadData extends AsyncTask<String, Void, String> {
     private String link;
 
 
-    public UpLoadData(String link, String charset)
-            throws IOException {
+    public UpLoadData(String link, String charset){
         this.charset = charset;
         this.link = link;
 
@@ -46,7 +44,6 @@ public class UpLoadData extends AsyncTask<String, Void, String> {
      * @param value field value
      */
     public void addFormField(String name, String value) {
-        System.out.println("value of  : " + value);
         writer.append("--" + boundary).append(LINE_FEED);
         writer.append("Content-Disposition: form-data; name=\"" + name + "\"")
                 .append(LINE_FEED);
@@ -80,7 +77,7 @@ public class UpLoadData extends AsyncTask<String, Void, String> {
         writer.flush();
 
         FileInputStream inputStream = new FileInputStream(uploadFile);
-        byte[] buffer = new byte[80960];
+        byte[] buffer = new byte[4096];
         int bytesRead = -1;
         while ((bytesRead = inputStream.read(buffer)) != -1) {
             outputStream.write(buffer, 0, bytesRead);
@@ -98,7 +95,6 @@ public class UpLoadData extends AsyncTask<String, Void, String> {
      * @param value - value of the header field
      */
     public void addHeaderField(String name, String value) {
-        System.out.println("value of token : " + value);
         writer.append(name + ": " + value).append(LINE_FEED);
         writer.flush();
     }
@@ -109,26 +105,43 @@ public class UpLoadData extends AsyncTask<String, Void, String> {
      * status OK, otherwise an exception is thrown.
      * @throws IOException
      */
-    public String finish() throws IOException {
-        List<String> response = new ArrayList<String>();
+    public String finish(){
         writer.append(LINE_FEED).flush();
         writer.append("--" + boundary + "--").append(LINE_FEED);
         writer.close();
 
-        // checks server's status code first
-        //int status = httpConn.getResponseCode();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(
-                    httpConn.getInputStream()));
-            String line = null;
-            while ((line = reader.readLine()) != null) {
-                response.add(line);
-            }
+        try {
+            InputStream inputStream = httpConn.getInputStream();
+            InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+            BufferedReader reader = new BufferedReader(inputStreamReader);
             reader.close();
             httpConn.disconnect();
 
+            return "";
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+       return "";
+    }
 
+    public Boolean upload(){
+        new Thread(new Runnable() {
+            public void run() {
+                writer.append(LINE_FEED).flush();
+                writer.append("--" + boundary + "--").append(LINE_FEED);
+                writer.close();
+                BufferedReader reader = null;
+                try {
+                    reader = new BufferedReader(new InputStreamReader(httpConn.getInputStream()));
+                    reader.close();
+                    httpConn.disconnect();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
-        return "";
+            }
+        }).start();
+        return true;
     }
 
     @Override
@@ -150,6 +163,6 @@ public class UpLoadData extends AsyncTask<String, Void, String> {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return "";
+        return null;
     }
 }

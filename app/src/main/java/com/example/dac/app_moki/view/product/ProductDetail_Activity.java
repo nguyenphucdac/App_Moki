@@ -26,6 +26,7 @@ import com.example.dac.app_moki.presentation.comment.PresentationComment;
 import com.example.dac.app_moki.presentation.product.PresentationProduct;
 import com.example.dac.app_moki.view.adapter.AdapterProductComment;
 import com.example.dac.app_moki.view.adapter.AdapterViewPageImage;
+import com.example.dac.app_moki.view.category.ProductOfCategory;
 import com.example.dac.app_moki.view.login.Login_Activity;
 import com.example.dac.app_moki.view.user.UserInfo_Activity;
 import com.squareup.picasso.Picasso;
@@ -42,7 +43,7 @@ public class ProductDetail_Activity extends AppCompatActivity {
     private TextView txtStatusProduct;
     private Product product;
     private ViewPager viewListImage;
-    private View boundListImage;
+    private Button nameCategory;
 
     private PullToZoomScrollViewEx scrollView;
     private View contentView;
@@ -104,6 +105,14 @@ public class ProductDetail_Activity extends AppCompatActivity {
 
             }
         });
+        nameCategory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProductDetail_Activity.this, ProductOfCategory.class);
+                intent.putExtra("categoryId", product.getCategory().getId() + "");
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -142,10 +151,13 @@ public class ProductDetail_Activity extends AppCompatActivity {
         TextView decription = (TextView) contentView.findViewById(R.id.decription_product_detail);
         decription.setText(product.getDescription());
 
-        Button nameCategory = (Button) contentView.findViewById(R.id.name_category_product_detail);
+        nameCategory = (Button) contentView.findViewById(R.id.name_category_product_detail);
         nameCategory.setText(product.getCategory().getName());
 
         TextView nameBrand = (TextView) contentView.findViewById(R.id.name_brand);
+        if(product.getBrand() != null){
+            nameBrand.setText(product.getBrand());
+        }
 
         TextView conditionProduct = (TextView) contentView.findViewById(R.id.state_product_detail);
         if(product.getCodition() != null){

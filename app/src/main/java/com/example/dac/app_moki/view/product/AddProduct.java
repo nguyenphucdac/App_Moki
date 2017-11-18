@@ -80,7 +80,7 @@ public class AddProduct extends AppCompatActivity {
             public void onClick(View v) {
                 PresentationProduct presentationProduct = new PresentationProduct();
                 Boolean check = presentationProduct.addProduct(
-                        "mouse new men",
+                        "guitar",
                         "0",
                         "1",
                         "1",

@@ -189,6 +189,14 @@ public class FragmentMenu extends Fragment {
 
             Picasso.with(view.getContext()).load(R.drawable.unknown_user).into((ImageView) avatar);
 
+            itemViewProfile.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getActivity(), Profile_Activity.class);
+                    startActivity(intent);
+                }
+            });
+
             itemHomeMenu.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
