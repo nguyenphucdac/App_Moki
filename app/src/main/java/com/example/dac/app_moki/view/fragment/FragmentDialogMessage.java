@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.view.Window;
 
 import com.example.dac.app_moki.R;
+import com.example.dac.app_moki.model.object.Conversation;
+import com.example.dac.app_moki.presentation.conversation.PresentationConversation;
 import com.example.dac.app_moki.view.adapter.AdapterConversation;
 
 import java.util.ArrayList;
@@ -33,15 +35,14 @@ public class FragmentDialogMessage extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.home_fragment_dialog_messeage, container, false);
 
-        List<String> lstData = new ArrayList<>();
+        PresentationConversation presentationConversation = new PresentationConversation();
+        List<Conversation> lstConversation = new ArrayList<>();
+        lstConversation = presentationConversation.getListConversation();
 
-        for(int i = 0 ; i < 10 ; i++){
-            lstData.add("Ádfsf");
-        }
 
         recyclerViewListConvesation = (RecyclerView) rootView.findViewById(R.id.recycler_list_conversation);
         recyclerViewListConvesation.setLayoutManager(new LinearLayoutManager(getActivity()));
-        AdapterConversation adapterConversation = new AdapterConversation(getActivity(), lstData);
+        AdapterConversation adapterConversation = new AdapterConversation(getActivity(), lstConversation);
         recyclerViewListConvesation.setAdapter(adapterConversation);
         adapterConversation.notifyDataSetChanged();
 

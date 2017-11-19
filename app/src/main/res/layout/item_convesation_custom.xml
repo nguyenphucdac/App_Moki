@@ -14,7 +14,7 @@
         android:orientation="horizontal"
         >
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/avatarSeller_product_detail"
+            android:id="@+id/avatar_user"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="60dp"
@@ -32,6 +32,7 @@
             android:orientation="vertical"
             >
             <TextView
+                android:id="@+id/name_user_conversation"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
@@ -41,6 +42,7 @@
                 android:textSize="15sp"
                 />
             <TextView
+                android:id="@+id/last_message"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"

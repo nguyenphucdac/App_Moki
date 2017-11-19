@@ -6,9 +6,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.dac.app_moki.R;
+import com.example.dac.app_moki.model.object.Conversation;
 import com.example.dac.app_moki.view.conversation.Chat_Activity;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -19,11 +23,12 @@ import java.util.List;
 public class AdapterConversation extends RecyclerView.Adapter<AdapterConversation.ViewHolder> {
 
     Context context;
-    List<String> lstString;
+    List<Conversation> lstConversation;
 
-    public AdapterConversation(Context context, List<String> lstString){
+    public AdapterConversation(Context context, List<Conversation> lstConversation){
         this.context = context;
-        this.lstString = lstString;
+        System.out.println("size of list : " + lstConversation.size());
+        this.lstConversation = lstConversation;
     }
 
     @Override
@@ -37,6 +42,8 @@ public class AdapterConversation extends RecyclerView.Adapter<AdapterConversatio
 
     @Override
     public void onBindViewHolder(AdapterConversation.ViewHolder holder, int position) {
+        Conversation conversation = lstConversation.get(position);
+
         holder.itemConversation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -46,20 +53,31 @@ public class AdapterConversation extends RecyclerView.Adapter<AdapterConversatio
                 context.getApplicationContext().startActivity(intent);
             }
         });
+        Picasso.with(context).load(conversation.getUserSend().getImage()).into((ImageView) holder.avatar);
+
+        holder.nameUser.setText(conversation.getUserSend().getUserName());
+        holder.lastMessage.setText(conversation.getLastMessage());
     }
 
 
     @Override
     public int getItemCount() {
-        return lstString.size();
+        return lstConversation.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private View itemConversation;
+        private View avatar;
+        private TextView nameUser;
+        private TextView lastMessage;
 
         public ViewHolder(final View itemView) {
             super(itemView);
             itemConversation = itemView.findViewById(R.id.item_conversation);
+            avatar = itemView.findViewById(R.id.avatar_user);
+            nameUser = (TextView) itemView.findViewById(R.id.name_user_conversation);
+            lastMessage = (TextView) itemView.findViewById(R.id.last_message);
+
         }
     }
 }

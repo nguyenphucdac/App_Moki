@@ -245,8 +245,8 @@ public class FragmentListProductType extends Fragment implements PtrHandler {
         frame.postDelayed(new Runnable() {
             @Override
             public void run() {
-                lstProduct = presentationProduct.getListProductsOfCategory(categoryId);
-                adapterProductType1.notifyDataSetChanged();
+//                lstProduct = presentationProduct.getListProductsOfCategory(categoryId);
+//                adapterProductType1.notifyDataSetChanged();
                 //adapterProductType2.notifyDataSetChanged();
                 frame.refreshComplete();
             }
