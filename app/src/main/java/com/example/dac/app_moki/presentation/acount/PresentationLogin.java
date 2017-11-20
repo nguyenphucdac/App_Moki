@@ -1,5 +1,6 @@
 package com.example.dac.app_moki.presentation.acount;
 
+import com.example.dac.app_moki.model.nesworks.ConnectSocket;
 import com.example.dac.app_moki.model.nesworks.Host;
 import com.example.dac.app_moki.model.nesworks.LoadData;
 import com.example.dac.app_moki.model.object.User;
@@ -40,6 +41,10 @@ public class PresentationLogin {
             IOUser ioUser = new IOUser();
             user = ioUser.getInfoLogin(jsonData);
 
+
+            if(user != null){
+                ConnectSocket.setmSocket();
+            }
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {

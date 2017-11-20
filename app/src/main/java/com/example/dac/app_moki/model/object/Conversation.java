@@ -5,9 +5,18 @@ package com.example.dac.app_moki.model.object;
  */
 
 public class Conversation {
+    private String id;
     private User userSend;
     private String productId;
     private String lastMessage;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public User getUserSend() {
         return userSend;

@@ -42,14 +42,14 @@ public class AdapterConversation extends RecyclerView.Adapter<AdapterConversatio
 
     @Override
     public void onBindViewHolder(AdapterConversation.ViewHolder holder, int position) {
-        Conversation conversation = lstConversation.get(position);
+        final Conversation conversation = lstConversation.get(position);
 
         holder.itemConversation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context.getApplicationContext(), Chat_Activity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
-                //intent.putExtra("productId",(product.getId()+"").toString());
+                intent.putExtra("roomId", conversation.getId());
                 context.getApplicationContext().startActivity(intent);
             }
         });

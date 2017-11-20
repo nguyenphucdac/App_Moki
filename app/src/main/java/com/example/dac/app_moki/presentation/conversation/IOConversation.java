@@ -1,6 +1,7 @@
 package com.example.dac.app_moki.presentation.conversation;
 
 import com.example.dac.app_moki.model.object.Conversation;
+import com.example.dac.app_moki.model.object.Message;
 import com.example.dac.app_moki.model.object.User;
 
 import org.json.JSONArray;
@@ -43,6 +44,7 @@ public class IOConversation {
 
                 conversation.setProductId(String.valueOf(jsonObjectProudct.getString("id")));
                 conversation.setLastMessage(String.valueOf(jsonObjectLastMessage.getString("message")));
+                conversation.setId(String.valueOf(item.get("id")));
 
                 lstConversation.add(conversation);
 
@@ -54,5 +56,41 @@ public class IOConversation {
 
 
         return lstConversation;
+    }
+    public List<Message> getConversation(String jsonData){
+        List<Message> lstMessage = new ArrayList<>();
+
+        if (jsonData == null || jsonData == "") {
+            return lstMessage;
+        }
+
+        try {
+            JSONObject jsonObject = new JSONObject(jsonData);
+            JSONArray arrMessage = jsonObject.getJSONArray("data");
+
+            for(int i = 0 ; i < arrMessage.length() ; i++){
+                JSONObject objectMessage = arrMessage.getJSONObject(i);
+                Message message = new Message();
+                message.setMessage(String.valueOf(objectMessage.getString("message")));
+
+                JSONObject sender = objectMessage.getJSONObject("sender");
+                User user = new User();
+                user.setId(Integer.parseInt(sender.getString("id")));
+                user.setUserName(String.valueOf(sender.getString("username")));
+                user.setImage(String.valueOf(sender.getString("avartar")));
+                message.setUser(user);
+
+                message.setUnread(String.valueOf(objectMessage.get("unread")));
+
+                lstMessage.add(message);
+
+            }
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return lstMessage;
     }
 }

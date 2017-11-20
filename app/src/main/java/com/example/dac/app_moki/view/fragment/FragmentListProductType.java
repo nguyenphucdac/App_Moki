@@ -165,7 +165,7 @@ public class FragmentListProductType extends Fragment implements PtrHandler {
                 super.onScrolled(recyclerView, dx, dy);
                 int currentAboveItem = ((LinearLayoutManager) recyclerView.getLayoutManager()).findFirstVisibleItemPosition();
 
-                if(currentAboveItem >= 3){
+                if(currentAboveItem >= 12){
                     toolBar_header.setVisibility(View.GONE);
                     bottomViewButtonSale.setVisibility(View.GONE);
                 }
@@ -173,7 +173,7 @@ public class FragmentListProductType extends Fragment implements PtrHandler {
                     toolBar_header.setVisibility(View.VISIBLE);
                     bottomViewButtonSale.setVisibility(View.VISIBLE);
                 }
-                if(currentAboveItem <= 1){
+                if(currentAboveItem <= 6){
                     AppBarLayout.LayoutParams params = (AppBarLayout.LayoutParams) slideHome.getLayoutParams();
                     params.setScrollFlags(
                             AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL

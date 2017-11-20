@@ -6,6 +6,6 @@ package com.example.dac.app_moki.model.nesworks;
 
 public class Host {
     public static String getHost(){
-        return "192.168.1.3:1337";
+        return "192.168.10.100:1337";
     }
 }

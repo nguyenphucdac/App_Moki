@@ -140,6 +140,7 @@ public class ProductDetail_Activity extends AppCompatActivity {
 
         Intent myIntent = getIntent();
         final String productId = myIntent.getStringExtra("productId");
+
         PresentationProduct presentationProduct = new PresentationProduct();
         product = presentationProduct.getProduct(Integer.parseInt(productId));
 
