@@ -9,7 +9,6 @@ import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import com.example.dac.app_moki.R;
-import com.example.dac.app_moki.view.home.Home_Activity;
 import com.example.dac.app_moki.view.product.ProductDetail_Activity;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
@@ -38,8 +37,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         Intent resultIntent = new Intent(this, MyFirebaseMessagingService.class);;
         switch (title){
             case "New Product" : {
-
-
                 resultIntent = new Intent(this, ProductDetail_Activity.class);
                 try {
                     resultIntent.putExtra("productId", dataObject.getString("product_id"));
@@ -48,7 +45,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 }
             }; break;
             case "New Message" : {
-                resultIntent = new Intent(this, Home_Activity.class);
+
 
             }; break;
         }

@@ -15,11 +15,7 @@ import com.example.dac.app_moki.model.nesworks.ConnectSocket;
 import com.example.dac.app_moki.model.object.Conversation;
 import com.example.dac.app_moki.presentation.conversation.PresentationConversation;
 import com.example.dac.app_moki.view.adapter.AdapterConversation;
-import com.github.nkzawa.emitter.Emitter;
 import com.github.nkzawa.socketio.client.Socket;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.List;
 
@@ -43,37 +39,7 @@ public class FragmentDialogMessage extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.home_fragment_dialog_messeage, container, false);
-        mSocket.on(mSocket.EVENT_MESSAGE, new Emitter.Listener() {
 
-            @Override
-            public void call(final Object... args) {
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        JSONObject data = (JSONObject) args[0];
-
-                        // add the message to view
-                        try {
-                            switch (data.getString("type")){
-                                case "chat_message": {
-
-                                }; break;
-                                case "join" : {
-
-                                };break;
-                                case "add":{
-
-                                };break;
-
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-                    }
-                });
-            }
-        });
         PresentationConversation presentationConversation = new PresentationConversation();
         lstConversation = presentationConversation.getListConversation();
 

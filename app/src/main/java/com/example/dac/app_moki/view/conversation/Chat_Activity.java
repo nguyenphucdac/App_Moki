@@ -38,8 +38,6 @@ public class Chat_Activity extends AppCompatActivity {
     private AdapterMessage adapterMessage;
     private String roomId;
 
-    private static final String SERVERPORT = "1337";
-    private static final String SERVER_IP = "192.168.10.100";
     private Socket mSocket;
 
 

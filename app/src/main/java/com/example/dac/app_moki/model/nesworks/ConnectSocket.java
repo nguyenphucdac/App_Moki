@@ -20,7 +20,7 @@ public class ConnectSocket extends AppCompatActivity {
             IO.Options options = new IO.Options();
             options.forceNew = true;
             options.query = "token="+ ValueLocal.getToken();
-            mSocket = IO.socket("http://192.168.10.100:1337",options);
+            mSocket = IO.socket("http://" + Host.getHost(),options);
             mSocket.connect();
 
         } catch (URISyntaxException e) {

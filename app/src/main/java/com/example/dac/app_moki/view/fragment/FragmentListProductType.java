@@ -70,12 +70,6 @@ public class FragmentListProductType extends Fragment implements PtrHandler {
         }
         else {
             lstProduct = presentationProduct.getListProductsOfCategory(categoryId);
-//            new Thread(new Runnable() {
-//                @Override
-//                public void run() {
-//                    lstProduct = presentationProduct.getListProductsOfCategory(categoryId);
-//                }
-//            }).start();
         }
 
 
